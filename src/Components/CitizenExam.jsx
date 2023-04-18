@@ -174,6 +174,8 @@ return (
                 de esta forma se le tomara el examen para la nacionalidad Española.
                 puede elegir preguntas : Random, Nivel bajo, Medio, Alto.
                 &nbsp;
+                Al final podras verificar tus respuestas.
+                &nbsp;
               </td>
             </tr>
           </table>
@@ -192,19 +194,19 @@ return (
   </tr>
   <tr>
     <td></td>
-    <td>
+    <td align='center'>
         <Button variant="secondary" onClick={() => NewForm(0)} > Random </Button>{' '}
     </td>
     <td></td>
-    <td>
+    <td align='center'>
        <Button variant="success" onClick={() => NewForm(1)} >Nivel Facil</Button>{' '}
     </td>
     <td></td>
-    <td>
+    <td align='center'>
        <Button variant="warning" onClick={() => NewForm(2)} >Nivel Medio </Button>{' '}
     </td>
     <td></td>
-    <td>
+    <td align='center'>
        <Button variant="danger" onClick={() => NewForm(3)} >Nivel Avanzado</Button>{' '}
     </td>
     <td></td>
@@ -228,13 +230,14 @@ return (
             Podes ver las respuestas correctas en cada pregunta.
             <br></br>
             
-            { (CorrectAnwers > 23 ) && (  
+            { (CorrectAnwers >= 22 ) && (  
                 <a> 
                     Oye tio.!!.. tu eres mas español que el JAMON !! que haces tu aqui ?.. 
+                    tienes muy buen resultado...
                 </a>
             ) }
 
-            { (CorrectAnwers >= 15) && (  
+            { (CorrectAnwers >= 15 && CorrectAnwers < 22 ) && (  
                 <a> Felicitaciones!!! has aprobado el examen con exito.
                     Aun asi te aconsejo que pruebes unas veces mas para tener todo mucho mas claro.
                 </a>

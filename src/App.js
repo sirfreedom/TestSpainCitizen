@@ -1,6 +1,6 @@
 import './Css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import React, {useState,useEffect} from 'react';
+import React from 'react';
 import CitizenExam from './Components/CitizenExam';
 
 
