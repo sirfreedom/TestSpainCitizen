@@ -1,4 +1,5 @@
 import '../Css/App.css';
+import '../Css/bootstrap.min.css';
 import React, { useState,useEffect } from "react";
 import {CitizenTest} from './Helpers';
 import Accordion from 'react-bootstrap/Accordion';
@@ -64,87 +65,79 @@ export const CitizenExam = () => {
 return (
 <>
 
-<br></br>
-<h2> Bienvenido al examen CCSE 2023 NACIONALIDAD ESPAÑOLA </h2>
-<br></br>
+<div className='container-fluid mt-5 mb-5' > 
 
-<br>
-</br>
+  <div className='row justify-content-center' >
+      <div className='col-12 m-2'> 
+          <h2> Bienvenido al examen CCSE 2023 NACIONALIDAD ESPAÑOLA </h2>
+      </div>
+  </div>
 
 <Accordion defaultActiveKey="0">
       
       {Test.map((rowQuestion, indexQuestion) => 
-        {
+       {
         return (
-        <Accordion.Item eventKey={indexQuestion}>
-
-        <Accordion.Header>
         
-        <table width="100%">
-          <tr>
-             <td width="2%" >
+        <Accordion.Item eventKey={indexQuestion}>
+        <Accordion.Header>
 
+        <div className="row justify-content-center" >
+          <div className='col-1'>
+            <div className='row justify-content-start' >
                 {rowQuestion.level === 3 && (
-                <div class="cuadradoNivelAlto"></div>
+                  <div className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-lg-1 cuadradoNivelAlto"></div>
                 )}
-
-                 {rowQuestion.level === 2 && (
-                <div class="cuadradoNivelMedio"></div>
+            
+                {rowQuestion.level === 2 && (
+                  <div className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 cuadradoNivelMedio"></div>
                 )}
-
+            
                 {rowQuestion.level === 1 && (
-                <div class="cuadradoNivelBajo"></div>
+                  <div className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 cuadradoNivelBajo"></div>
                 )}
 
-             </td>
-             <td width="98%">
-             <strong>
-             #{indexQuestion+1}
-             {'. '}  &nbsp;
-             {rowQuestion.question} 
+            </div>
+          </div>
+
+          <div className='col-11' >
+            <strong>
+              #{indexQuestion+1}
+                {'. '}  &nbsp;
+              {rowQuestion.question} 
             </strong>
-             </td>
-          </tr>
-        </table>
+          </div>
+        </div>
 
         </Accordion.Header>
 
-        <Accordion.Body>
+        <Accordion.Body className='align-items-center' >
 
         {rowQuestion.answers.map((rowAnswer, idAnswer) => 
         {
         return (
-                <div >
-                    <p class="respuesta"> 
-                       <input className='radio' type="radio" id={idAnswer} name={indexQuestion} radioGroup={indexQuestion} disabled={DisableAnwers} data-respuesta={rowAnswer.valid} ></input>
-                       &nbsp;
-                       <label className='answer' for={idAnswer} > {rowAnswer.text} </label>
-                       &nbsp;
-                       {ShowValid && rowAnswer.valid &&(
-                       <img
-                              className="imgA"
-                              title="Valida"
-                              border="0"
-                              width="18px"
-                              height="18px"
-                            ></img>
-                       )}
-                       {ShowValid && !rowAnswer.valid &&(
-                        <img
-                              className="imgX"
-                              title="Invalida"
-                              border="0"
-                              width="18px"
-                              height="18px"
-                         ></img>
-                       )}
-                    </p>
-                </div>
-            );
+
+        <div className="row justify-content-center" >
+          <div className='col-12 align-items-center'>
+            <p className="respuesta"> 
+              <input className='radio' type="radio" id={idAnswer} name={indexQuestion} radioGroup={indexQuestion} disabled={DisableAnwers} data-respuesta={rowAnswer.valid} ></input>
+                  &nbsp;
+                  <label className='answer' for={idAnswer} > {rowAnswer.text} </label>
+                  &nbsp;
+                  {ShowValid && rowAnswer.valid &&(
+                    <img key={'imgA'+ idAnswer} className="imgA" title="Valida" border="0" width="18px" height="18px" ></img>
+                  )}
+                  {ShowValid && !rowAnswer.valid &&(
+                    <img key={'imgX' + idAnswer}  className="imgX" title="Invalida" border="0" width="18px" height="18px"  ></img>
+                  )}
+                  </p>
+            </div>
+        </div>
+
+        );
         })}
         </Accordion.Body>
       </Accordion.Item>
-      
       );
      })}
 
@@ -163,11 +156,10 @@ return (
           <Modal.Title>Bienvenido al examen CCSE 2023 </Modal.Title>
         </Modal.Header>
         <Modal.Body> 
-          <div>
-          <table>
-            <tr>
-              <td width="5%" ></td>
-              <td>
+          
+          <div className='row justify-content-center' >
+            <div className='col-12'>
+                <p>
                 El examen consta de 25 preguntas totalmente aleatorias, obtenidas de unas 300 
                 que son tomadas en el examen real, para poder aprobar el examen debe tener 15 preguntas 
                 respondidas de forma correcta.
@@ -176,43 +168,48 @@ return (
                 &nbsp;
                 Al final podras verificar tus respuestas.
                 &nbsp;
-              </td>
-            </tr>
-          </table>
-          Este examen es a modo de prueba para saber sus conocimientos y poder practicar para estar mas preprado.
-          Suerte...
+                </p>
+                <a href="https://examenes.cervantes.es/sites/default/files/MANUAL%20NIPO%20ENTERO_CCSE_023.pdf" >
+                    Baja el doumento de Preparacion Examen Ciudadania 
+                </a>
+            </div>
+
           </div>
+          <div className='row justify-content-center'>
+              <div className='col-12' >
+                  <p>
+                    Este examen es a modo de prueba para saber sus conocimientos y poder practicar para estar mas preprado.
+                    Suerte...
+                  </p>
+              </div>
+          </div>
+
          </Modal.Body>
          <Modal.Footer>
-         <table align="center" width="80%">
-  <tr>
-        <td colSpan="9" align="center" >
-          <strong>
-            Nivel de preguntas
-          </strong>
-        </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td align='center'>
-        <Button variant="secondary" onClick={() => NewForm(0)} > Random </Button>{' '}
-    </td>
-    <td></td>
-    <td align='center'>
-       <Button variant="success" onClick={() => NewForm(1)} >Nivel Facil</Button>{' '}
-    </td>
-    <td></td>
-    <td align='center'>
-       <Button variant="warning" onClick={() => NewForm(2)} >Nivel Medio </Button>{' '}
-    </td>
-    <td></td>
-    <td align='center'>
-       <Button variant="danger" onClick={() => NewForm(3)} >Nivel Avanzado</Button>{' '}
-    </td>
-    <td></td>
-  </tr>
-</table>
 
+           <div className='row justify-content-center'>
+              <div className='col-8' >
+                <p>
+                    <strong>
+                      Nivel de preguntas
+                    </strong>
+                </p>
+              </div>
+            </div>
+            <div className='row justify-content-center'>
+              <div className='col-3'>
+                <Button variant="secondary" onClick={() => NewForm(0)} > Random </Button>{' '}
+              </div>
+            <div className='col-3'>
+                <Button variant="success" onClick={() => NewForm(1)} >Nivel Facil</Button>{' '}
+            </div>
+            <div className='col-3'>
+                <Button variant="warning" onClick={() => NewForm(2)} >Nivel Medio </Button>{' '}
+            </div>
+            <div className='col-3'>
+                <Button variant="danger" onClick={() => NewForm(3)} >Nivel Avanzado</Button>{' '}
+            </div>
+          </div>
 
         </Modal.Footer>
       </Modal>
@@ -223,49 +220,83 @@ return (
         </Modal.Header>
         <Modal.Body> 
 
-            El puntaje obtenido por Ud. fue &nbsp;
-            {CorrectAnwers} {' /25 '}  &nbsp; Respuestas correctas.
-            <br>
-            </br>
-            Podes ver las respuestas correctas en cada pregunta.
-            <br></br>
-            
-            { (CorrectAnwers >= 22 ) && (  
+          <div className='row mb-3'>
+            <div className='col-12'>
+              <p>
+                  El puntaje obtenido por Ud. fue &nbsp;
+                  {CorrectAnwers} {' /25 '}  &nbsp; Respuestas correctas.
+              </p>
+            </div>
+          </div>
+          <div className='row mb-3'>
+            <div className='col-12'> 
+                <p>
+                    Podes ver las respuestas correctas en cada pregunta.
+                </p>
+            </div>
+          </div>
+           
+          { (CorrectAnwers >= 22 ) && (  
+            <div className='row'>
+              <div className='col-12' >
                 <a> 
-                    Oye tio.!!.. tu eres mas español que el JAMON !! que haces tu aqui ?.. 
-                    tienes muy buen resultado...
+                  Oye tio.!!.. tu eres mas español que el JAMON !! que haces tu aqui ?.. 
+                  tienes muy buen resultado...
                 </a>
+              </div>
+            </div>
             ) }
 
-            { (CorrectAnwers >= 15 && CorrectAnwers < 22 ) && (  
-                <a> Felicitaciones!!! has aprobado el examen con exito.
-                    Aun asi te aconsejo que pruebes unas veces mas para tener todo mucho mas claro.
-                </a>
-            ) }
+
+
+              {(CorrectAnwers >= 15 && CorrectAnwers < 22 ) && (  
+               <div className='row'>
+                 <div className='col-12' >
+                   <a> 
+                    Felicitaciones!!! has aprobado el examen con exito.
+                       Aun asi te aconsejo que pruebes unas veces mas para tener todo mucho mas claro.
+                  </a>
+                </div>
+                </div>
+              )}
 
             { (CorrectAnwers < 5) && (  
-                <a> No has aprobado el examen.. :-/ necesitas estudiar mucho. pero ANIMO.. con tiempo y estudio
-                    no dudo que mejoraras.!
+              <div className='row'>
+              <div className='col-12' >
+                <a> 
+                  No has aprobado el examen.. :-/ necesitas estudiar mucho. pero ANIMO.. con tiempo y estudio
+                  no dudo que mejoraras.!
                 </a>
+              </div>
+            </div>
             ) }
 
             { (CorrectAnwers < 10 && CorrectAnwers > 5 ) && (  
-                <a> No has aprobado el examen.. necesitas estudiar un poquito mas.. 
-                    una vez mas.. y estas...
-                </a>
+            <div className='row'>
+            <div className='col-12' >
+              <a> 
+                  No has aprobado el examen.. necesitas estudiar un poquito mas.. 
+                  una vez mas.. y estas...
+              </a>
+            </div>
+          </div>
             ) }
 
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleFinishAnswerClose}>
-            Cerrar
-          </Button>
+
+          <div className='row' >
+              <div className='col-12' >
+                <Button variant="secondary" onClick={handleFinishAnswerClose}>
+                  Cerrar
+                </Button>
+              </div>
+          </div>
+
         </Modal.Footer>
       </Modal>
- 
-    <br></br>
-    <br></br>
 
+    </div>
     </>
     
     )}

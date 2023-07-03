@@ -40,9 +40,9 @@ div {
 .respuesta {
   background-color: #A6D2FF;
   color: #000000;
-  padding: 10px;
-  margin: 10px 0;
-  width: 80%;
+  padding: 0.3rem;
+  margin: 0.2rem;
+  width: 100%;
 }
 
 
@@ -54,9 +54,6 @@ div {
   padding: 10px;
   margin: 10px 0;
 }
-
-
-
 
 .Auth-form-container {
   display: flex;
