@@ -62,6 +62,7 @@ export const CitizenExam = () => {
         setIsSelectQuestion(true);
     }
 
+
 return (
 <>
 
@@ -120,15 +121,15 @@ return (
         <div className="row justify-content-center" >
           <div className='col-12 align-items-center'>
             <p className="respuesta"> 
-              <input className='radio' type="radio" id={idAnswer} name={indexQuestion} radioGroup={indexQuestion} disabled={DisableAnwers} data-respuesta={rowAnswer.valid} ></input>
+              <input className='radio' type="radio"  key={'op' + idAnswer} id={'op' + idAnswer} name={indexQuestion} radioGroup={indexQuestion} disabled={DisableAnwers} data-respuesta={rowAnswer.valid} ></input>
                   &nbsp;
-                  <label className='answer' for={idAnswer} > {rowAnswer.text} </label>
+                  <label className='answer' key={'lbl' + idAnswer} htmlFor={idAnswer} > {rowAnswer.text} </label>
                   &nbsp;
                   {ShowValid && rowAnswer.valid &&(
-                    <img key={'imgA'+ idAnswer} className="imgA" title="Valida" border="0" width="18px" height="18px" ></img>
+                    <img key={'imgA'+ idAnswer} className="imgA" title="Valida" alt="imagen correcta" border="0" width="18px" height="18px" ></img>
                   )}
                   {ShowValid && !rowAnswer.valid &&(
-                    <img key={'imgX' + idAnswer}  className="imgX" title="Invalida" border="0" width="18px" height="18px"  ></img>
+                    <img key={'imgX' + idAnswer}  className="imgX" title="Invalida" alt="imagen incorrecta" border="0" width="18px" height="18px"  ></img>
                   )}
                   </p>
             </div>
@@ -159,7 +160,7 @@ return (
           
           <div className='row justify-content-center' >
             <div className='col-12'>
-                <p>
+                <p className='align-items-start' >
                 El examen consta de 25 preguntas totalmente aleatorias, obtenidas de unas 300 
                 que son tomadas en el examen real, para poder aprobar el examen debe tener 15 preguntas 
                 respondidas de forma correcta.
@@ -169,15 +170,16 @@ return (
                 Al final podras verificar tus respuestas.
                 &nbsp;
                 </p>
-                <a href="https://examenes.cervantes.es/sites/default/files/MANUAL%20NIPO%20ENTERO_CCSE_023.pdf" >
+
+                <a key="download" target='_blank' rel="noreferrer" href="https://examenes.cervantes.es/sites/default/files/MANUAL%20NIPO%20ENTERO_CCSE_023.pdf" >
                     Baja el doumento de Preparacion Examen Ciudadania 
                 </a>
-            </div>
-
+                
+           </div>
           </div>
           <div className='row justify-content-center'>
               <div className='col-12' >
-                  <p>
+                  <p className='align-items-start'>
                     Este examen es a modo de prueba para saber sus conocimientos y poder practicar para estar mas preprado.
                     Suerte...
                   </p>
@@ -189,40 +191,47 @@ return (
 
            <div className='row justify-content-center'>
               <div className='col-8' >
-                <p>
+                <p className='align-items-center'>
                     <strong>
                       Nivel de preguntas
                     </strong>
                 </p>
               </div>
             </div>
+
             <div className='row justify-content-center'>
-              <div className='col-3'>
-                <Button variant="secondary" onClick={() => NewForm(0)} > Random </Button>{' '}
-              </div>
-            <div className='col-3'>
-                <Button variant="success" onClick={() => NewForm(1)} >Nivel Facil</Button>{' '}
+              
+                   <div className='col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-sm-1'>
+                      <Button variant="secondary" onClick={() => NewForm(0)} > Random </Button>{' '}
+                    </div>
+                 
+                    <div className='col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-sm-1'>
+                      <Button variant="success" onClick={() => NewForm(1)} >Nivel Facil</Button>{' '}
+                    </div>
+                 
+                    <div className='col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-sm-1'>
+                      <Button variant="warning" onClick={() => NewForm(2)} >Nivel Medio </Button>{' '}
+                    </div>
+                 
+                    <div className='col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-sm-1'>
+                      <Button variant="danger" onClick={() => NewForm(3)} >Nivel Avanzado</Button>{' '}
+                    </div>
+
             </div>
-            <div className='col-3'>
-                <Button variant="warning" onClick={() => NewForm(2)} >Nivel Medio </Button>{' '}
-            </div>
-            <div className='col-3'>
-                <Button variant="danger" onClick={() => NewForm(3)} >Nivel Avanzado</Button>{' '}
-            </div>
-          </div>
+            
 
         </Modal.Footer>
       </Modal>
 
       <Modal key="mFinishAnswer" show={ShowFinishAnswer} onHide={handleFinishAnswerClose}>
         <Modal.Header closeButton>
-          <Modal.Title> Finalizacion del examen </Modal.Title>
+            <Modal.Title> Finalizacion del examen </Modal.Title>
         </Modal.Header>
         <Modal.Body> 
 
           <div className='row mb-3'>
             <div className='col-12'>
-              <p>
+              <p className='align-items-center'> 
                   El puntaje obtenido por Ud. fue &nbsp;
                   {CorrectAnwers} {' /25 '}  &nbsp; Respuestas correctas.
               </p>
@@ -230,7 +239,7 @@ return (
           </div>
           <div className='row mb-3'>
             <div className='col-12'> 
-                <p>
+                <p className='align-items-center'>
                     Podes ver las respuestas correctas en cada pregunta.
                 </p>
             </div>
@@ -239,34 +248,32 @@ return (
           { (CorrectAnwers >= 22 ) && (  
             <div className='row'>
               <div className='col-12' >
-                <a> 
+                <p className='align-items-center' > 
                   Oye tio.!!.. tu eres mas español que el JAMON !! que haces tu aqui ?.. 
                   tienes muy buen resultado...
-                </a>
+                </p>
               </div>
             </div>
             ) }
 
-
-
-              {(CorrectAnwers >= 15 && CorrectAnwers < 22 ) && (  
+            {(CorrectAnwers >= 15 && CorrectAnwers < 22 ) && (  
                <div className='row'>
                  <div className='col-12' >
-                   <a> 
+                   <p className='align-items-center'> 
                     Felicitaciones!!! has aprobado el examen con exito.
                        Aun asi te aconsejo que pruebes unas veces mas para tener todo mucho mas claro.
-                  </a>
+                  </p>
                 </div>
                 </div>
-              )}
+            )}
 
             { (CorrectAnwers < 5) && (  
               <div className='row'>
               <div className='col-12' >
-                <a> 
+                <p className='align-items-center' > 
                   No has aprobado el examen.. :-/ necesitas estudiar mucho. pero ANIMO.. con tiempo y estudio
                   no dudo que mejoraras.!
-                </a>
+                </p>
               </div>
             </div>
             ) }
@@ -274,10 +281,10 @@ return (
             { (CorrectAnwers < 10 && CorrectAnwers > 5 ) && (  
             <div className='row'>
             <div className='col-12' >
-              <a> 
+              <p className='align-items-center' > 
                   No has aprobado el examen.. necesitas estudiar un poquito mas.. 
                   una vez mas.. y estas...
-              </a>
+              </p>
             </div>
           </div>
             ) }

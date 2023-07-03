@@ -1,36 +1,5 @@
-import { useState,createContext,useContext } from "react";
+//import React from "react";
 
-export const UserContext = createContext();
-export const UserChangeContext = createContext();
-
-
-export const UserProvider = (props) => {
-
-const [User,setUser] = useState([{ mail: '.', pass: '.'}]);
-
-const ChangePass = (jsonuser) => 
-{
-    setUser(jsonuser);
-    console.log("Funcion ChangePass");
-    console.log(jsonuser);
-}
-
-return (
-  <UserContext.Provider  value={User}>
-      <UserChangeContext.Provider value={ChangePass} >
-          {props.children}
-      </UserChangeContext.Provider>
-  </UserContext.Provider>
-);
-}
-
-export function useUserContext() {
-  return useContext(UserContext);
-}
-
-export function useUserChangeContext () {
-  return useContext(UserChangeContext);
-}
 
 
 export const CitizenTest = async (id) => {
@@ -50,7 +19,7 @@ export const CitizenTest = async (id) => {
   }
 
   if (id > 0 ){
-    data = tempdata.filter(x => x.level == id);    
+    data = tempdata.filter(x => x.level === id);    
   }
 
   while (lIndex.length <= 25) 
@@ -73,21 +42,6 @@ export const CitizenTest = async (id) => {
     console.log(ex);
   }
   return lQuestion;
-}
-
-
-
-
-
-export const getStorage = (key, defaultValue) => {
-  const saved = localStorage.getItem(key);
-  const initial = JSON.parse(saved);
-  return initial || defaultValue;
-}
-
-export const setStorage = (key, value) =>
-{
-  localStorage.setItem(key, JSON.stringify(value));
 }
 
 
