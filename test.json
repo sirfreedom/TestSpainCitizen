@@ -6,10 +6,10 @@
         "text": "Una monarquia parlamentaria",
         "valid": true
     }, {
-        "text": "Una republica federal",
+        "text": "Una Republica federal",
         "valid": false
     }, {
-        "text": "Una Monarquia Federal",
+        "text": "Una Monarquia federal",
         "valid": false
     }
     ]
@@ -52,7 +52,7 @@
         "text": "una institucion Europea",
         "valid": false
     }, {
-        "text": "Un Organismo español",
+        "text": "Un organismo Español",
         "valid": true
     }, {
         "text": "una ONG",
