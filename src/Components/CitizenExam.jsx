@@ -36,6 +36,8 @@ export const CitizenExam = () => {
             {
                 if (ls[i].checked.toString() === "true" &&  ls[i].dataset.respuesta === "true" )
                 {
+                  document.getElementById('imgAproboA')
+                   //'imgAproboX' + rowQuestion.cod
                     iCorrectAnwers++;
                 }
             }
@@ -90,15 +92,19 @@ return (
                 {rowQuestion.level === 3 && (
                   <div key={'colNivelAlto_'+ rowQuestion.cod + indexQuestion} className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-lg-1 cuadradoNivelAlto"></div>
                 )}
-            
                 {rowQuestion.level === 2 && (
                   <div key={'colNivelMedio_' + rowQuestion.cod + indexQuestion} className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 cuadradoNivelMedio"></div>
                 )}
-            
                 {rowQuestion.level === 1 && (
                   <div key={'colNivelBajo' + rowQuestion.cod + indexQuestion} className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 cuadradoNivelBajo"></div>
                 )}
 
+            </div>
+            <div className='row'>
+              <div className='col-1'  >
+                  <img key={'imgAproboA' + rowQuestion.cod } className="imgAA disabled" title="Valida" alt="imagen correcta" border="0" ></img>
+                  <img key={'imgAproboX' + rowQuestion.cod } className="imgXX disabled" title="Invalida" alt="imagen incorrecta" border="0" ></img>
+              </div>
             </div>
           </div>
 
@@ -122,15 +128,15 @@ return (
             <div key={'rowRespuesta_' + rowQuestion.cod + indexQuestion + idAnswer } className="row justify-content-center" >
               <div key={'colRespuesta_' +  rowQuestion.cod + indexQuestion + idAnswer } className='col-12 align-items-center'>
                   <p key={'p' + rowQuestion.cod + indexQuestion + idAnswer} className="respuesta"> 
-                      <input className='radio' type="radio"  key={'op' + rowQuestion.cod + indexQuestion + idAnswer } id={'op' + idAnswer} name={indexQuestion} radioGroup={indexQuestion} disabled={DisableAnwers} data-respuesta={rowAnswer.valid} ></input>
+                      <input className='radio' type="radio" data-cod={rowQuestion.cod} key={'op' + rowQuestion.cod + indexQuestion + idAnswer } id={'op' + idAnswer} name={indexQuestion} radioGroup={indexQuestion} disabled={DisableAnwers} data-respuesta={rowAnswer.valid} ></input>
                       &nbsp;
                       <label className='answer' key={'lbl' + rowQuestion.cod + indexQuestion + idAnswer} htmlFor={idAnswer} > {rowAnswer.text} </label>
                       &nbsp;
                       {ShowValid && rowAnswer.valid &&(
-                        <img key={'imgA'+ rowQuestion.cod + indexQuestion + idAnswer} className="imgA" title="Valida" alt="imagen correcta" border="0" width="18px" height="18px" ></img>
+                        <img key={'imgA'+ rowQuestion.cod + indexQuestion + idAnswer} className="imgA" title="Valida" alt="imagen correcta" border="0" width="10px" height="10px" ></img>
                       )}
                       {ShowValid && !rowAnswer.valid &&(
-                        <img key={'imgX' + rowQuestion.cod + indexQuestion + idAnswer}  className="imgX" title="Invalida" alt="imagen incorrecta" border="0" width="18px" height="18px"  ></img>
+                        <img key={'imgX' + rowQuestion.cod + indexQuestion + idAnswer} className="imgX" title="Invalida" alt="imagen incorrecta" border="0" width="10px" height="10px"  ></img>
                       )}
                   </p>
               </div>
