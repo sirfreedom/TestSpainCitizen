@@ -34,12 +34,19 @@ export const CitizenExam = () => {
 
             for (let i = 0; i < ls.length; i++)
             {
+
                 if (ls[i].checked.toString() === "true" &&  ls[i].dataset.respuesta === "true" )
                 {
-                  document.getElementById('imgAproboA')
-                   //'imgAproboX' + rowQuestion.cod
-                    iCorrectAnwers++;
+                  document.getElementById('imgAproboA' + ls[i].dataset.cod).className = "imgAA enabled";
+                  iCorrectAnwers++;
                 }
+
+                
+                if (document.getElementById('imgAproboA' + ls[i].dataset.cod).className !== "imgAA enabled" )
+                {
+                  document.getElementById('imgAproboA' + ls[i].dataset.cod).className = "imgXX enabled";
+                }
+
             }
             setCorrectAnwers(iCorrectAnwers);
             setShowValid(true);
@@ -88,6 +95,7 @@ return (
 
         <div key={'rowCuadrado_' + rowQuestion.cod + indexQuestion } className="row justify-content-center" >
           <div key={'colCuadrado' + rowQuestion.cod + indexQuestion } className='col-1'>
+
             <div  key={'rowNivelCuadrado_' + rowQuestion.cod + indexQuestion } className='row justify-content-start' >
                 {rowQuestion.level === 3 && (
                   <div key={'colNivelAlto_'+ rowQuestion.cod + indexQuestion} className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-lg-1 cuadradoNivelAlto"></div>
@@ -98,14 +106,15 @@ return (
                 {rowQuestion.level === 1 && (
                   <div key={'colNivelBajo' + rowQuestion.cod + indexQuestion} className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 cuadradoNivelBajo"></div>
                 )}
-
             </div>
+
             <div className='row'>
-              <div className='col-1'  >
-                  <img key={'imgAproboA' + rowQuestion.cod } className="imgAA disabled" title="Valida" alt="imagen correcta" border="0" ></img>
-                  <img key={'imgAproboX' + rowQuestion.cod } className="imgXX disabled" title="Invalida" alt="imagen incorrecta" border="0" ></img>
+              <div className='col-1' >
+                  <img key={'imgAproboA' + rowQuestion.cod } id={'imgAproboA' + rowQuestion.cod } className="imgAA disabled" title="Correcta" alt="Correcta" border="0" ></img>
+                  <img key={'imgAproboX' + rowQuestion.cod } id={'imgAproboX' + rowQuestion.cod } className="imgXX disabled" title="Incorrecta" alt="Incorrecta" border="0" ></img>
               </div>
             </div>
+                
           </div>
 
           <div className='col-11' >
@@ -127,16 +136,16 @@ return (
           return (
             <div key={'rowRespuesta_' + rowQuestion.cod + indexQuestion + idAnswer } className="row justify-content-center" >
               <div key={'colRespuesta_' +  rowQuestion.cod + indexQuestion + idAnswer } className='col-12 align-items-center'>
-                  <p key={'p' + rowQuestion.cod + indexQuestion + idAnswer} className="respuesta"> 
+                  <p key={'p' + rowQuestion.cod + indexQuestion + idAnswer} id={'p' + rowQuestion.cod + indexQuestion + idAnswer} className="respuesta"> 
                       <input className='radio' type="radio" data-cod={rowQuestion.cod} key={'op' + rowQuestion.cod + indexQuestion + idAnswer } id={'op' + idAnswer} name={indexQuestion} radioGroup={indexQuestion} disabled={DisableAnwers} data-respuesta={rowAnswer.valid} ></input>
                       &nbsp;
-                      <label className='answer' key={'lbl' + rowQuestion.cod + indexQuestion + idAnswer} htmlFor={idAnswer} > {rowAnswer.text} </label>
+                      <label className='answer' id={'lbl' + rowQuestion.cod + indexQuestion + idAnswer} key={'lbl' + rowQuestion.cod + indexQuestion + idAnswer} htmlFor={idAnswer} > {rowAnswer.text} </label>
                       &nbsp;
                       {ShowValid && rowAnswer.valid &&(
-                        <img key={'imgA'+ rowQuestion.cod + indexQuestion + idAnswer} className="imgA" title="Valida" alt="imagen correcta" border="0" width="10px" height="10px" ></img>
+                        <img key={'imgA'+ rowQuestion.cod + indexQuestion + idAnswer} id={'imgA'+ rowQuestion.cod + indexQuestion + idAnswer} className="imgA" title="Valida" alt="imagen correcta" border="0" width="10px" height="10px" ></img>
                       )}
                       {ShowValid && !rowAnswer.valid &&(
-                        <img key={'imgX' + rowQuestion.cod + indexQuestion + idAnswer} className="imgX" title="Invalida" alt="imagen incorrecta" border="0" width="10px" height="10px"  ></img>
+                        <img key={'imgX' + rowQuestion.cod + indexQuestion + idAnswer} id={'imgX' + rowQuestion.cod + indexQuestion + idAnswer} className="imgX" title="Invalida" alt="imagen incorrecta" border="0" width="10px" height="10px"  ></img>
                       )}
                   </p>
               </div>
