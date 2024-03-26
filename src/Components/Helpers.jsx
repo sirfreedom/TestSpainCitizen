@@ -1,5 +1,3 @@
-//import React from "react";
-
 
 
 export const CitizenTest = async (id) => {
@@ -8,6 +6,7 @@ export const CitizenTest = async (id) => {
   let data = [];
   let tempdata = [];
 
+  debugger;
   let lIndex = [];
   let lQuestion = [];
   try {
