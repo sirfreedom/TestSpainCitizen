@@ -226,6 +226,7 @@ return (
         </div>
       </div>
 
+    <div className='content' >
       <div className='row justify-content-center'>
               
         <div className='col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-sm-1'>
@@ -233,18 +234,19 @@ return (
         </div>
                  
         <div className='col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-sm-1'>
-          <Button key="btnFacil" variant="success" onClick={() => NewForm(1)} >Nivel Facil</Button>{' '}
+          <Button key="btnFacil" variant="success" onClick={() => NewForm(1)} > Facil</Button>{' '}
         </div>
                  
         <div className='col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-sm-1'>
-          <Button key="btnMedio" variant="warning" onClick={() => NewForm(2)} >Nivel Medio </Button>{' '}
+          <Button key="btnMedio" variant="warning" onClick={() => NewForm(2)} > Medio </Button>{' '}
         </div>
                  
         <div className='col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-sm-1'>
-          <Button key="btnAvanzado" variant="danger" onClick={() => NewForm(3)} >Nivel Avanzado</Button>{' '}
+          <Button key="btnAvanzado" variant="danger" onClick={() => NewForm(3)} > Avanzado</Button>{' '}
         </div>
 
       </div>
+    </div>
     </Modal.Footer>
 </Modal>
 
