@@ -178,7 +178,7 @@ return (
     <Modal.Header key="modalwelcome_header" closeButton>
       <Modal.Title key="modalwelcome_tittle">
         <p>
-          Bienvenido al examen CCSE 2023   
+          Bienvenido al examen CCSE 2023 
         </p>
       </Modal.Title>
     </Modal.Header>
@@ -280,7 +280,7 @@ return (
       </div>
     </div>
 
-    { (CorrectAnwers >= 22 ) && (  
+    { (CorrectAnwers < 25 && CorrectAnwers > 23 ) && (  
     <div className='row'>
       <div className='col-12' >
         <p className='align-items-center' > 
@@ -291,7 +291,7 @@ return (
     </div>
     )}
 
-    {(CorrectAnwers >= 15 && CorrectAnwers < 22 ) && (  
+    {(CorrectAnwers < 25 && CorrectAnwers > 15 ) && (  
     <div className='row'>
         <div className='col-12' >
           <p className='align-items-center'> 
@@ -302,7 +302,7 @@ return (
     </div>
     )}
 
-    { (CorrectAnwers < 5) && (  
+    { (CorrectAnwers < 10 && CorrectAnwers > 6) && (  
     <div className='row'>
       <div className='col-12' >
         <p className='align-items-center' > 
@@ -313,7 +313,7 @@ return (
     </div>
     )}
 
-    {(CorrectAnwers < 10 && CorrectAnwers > 5 ) && (  
+    {(CorrectAnwers < 5 && CorrectAnwers > 1 ) && (  
     <div className='row'>
       <div className='col-12' >
         <p className='align-items-center' > 

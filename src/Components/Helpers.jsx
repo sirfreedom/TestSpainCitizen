@@ -7,8 +7,6 @@ export const getQuestions = async (id) =>
   let data = [];
   let tempdata = [];
 
-  debugger;
-
   let lIndex = [];
   let lQuestion = [];
   try {
