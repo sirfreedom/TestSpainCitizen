@@ -1,12 +1,14 @@
 
 
-export const CitizenTest = async (id) => {
-  let url = 'https://raw.githubusercontent.com/sirfreedom/TestSpainCitizen/main/test.json';
+export const getQuestions = async (id) => 
+{
+  let url = 'https://raw.githubusercontent.com/sirfreedom/TestSpainCitizen/main/test1.json';
   let res;
   let data = [];
   let tempdata = [];
 
   debugger;
+
   let lIndex = [];
   let lQuestion = [];
   try {
@@ -14,11 +16,11 @@ export const CitizenTest = async (id) => {
   tempdata = await res.json().catch(err => console.log(err));
 
   if (id === 0){
-    data = tempdata;
+    data = tempdata.questions;
   }
 
   if (id > 0 ){
-    data = tempdata.filter(x => x.level === id);    
+    data = tempdata.questions.filter(x => x.level === id);    
   }
 
   while (lIndex.length <= 25) 

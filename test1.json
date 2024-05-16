@@ -1,4 +1,33 @@
 {
+"settings": [
+    {
+        "setting": "BASIC",
+        "cod": 1,
+        "questionpage": 25,
+        "tittle": "Bienvenido al examen CCSE 2023 NACIONALIDAD ESPAÑOLA",
+        "subtittle": "Bienvenido al examen CCSE 2023",
+        "instruction": "El examen consta de 25 preguntas totalmente aleatorias, obtenidas de unas 300 que son tomadas en el examen real, para poder aprobar el examen debe tener 15 preguntas respondidas de forma correcta.de esta forma se le tomara el examen para la nacionalidad Española. puede elegir preguntas : Random, Nivel bajo, Medio, Alto. &nbsp; Al final podras verificar tus respuestas. &nbsp;",
+        "downloadtittle" : "Baja el documento de Preparacion Examen Ciudadania",
+        "downloadlink" : "https://examenes.cervantes.es/sites/default/files/MANUAL%20NIPO%20ENTERO_CCSE_023.pdf"
+    }
+],
+"wronganswer" : [
+    {
+        "cod" : 1,
+        "answersrangemin": 5,
+        "answersrangemax": 1,
+        "description" : "No has aprobado el examen.. necesitas estudiar un poquito mas.. una vez mas.. y estas..."
+    },
+    {
+        "cod" : 2,
+        "answersrangemin": 10,
+        "answersrangemax": 6,
+        "description" : "No has aprobado el examen.. necesitas estudiar un poquito mas.. una vez mas.. y estas..."
+    }
+    
+]
+,
+
 "questions" : [
     {
     "question": "España es",

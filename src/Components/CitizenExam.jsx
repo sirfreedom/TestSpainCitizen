@@ -1,7 +1,7 @@
 import '../Css/App.css';
 import '../Css/bootstrap.min.css';
 import React, { useState,useEffect } from "react";
-import {CitizenTest} from './Helpers';
+import {getQuestions} from './Helpers';
 import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -59,9 +59,9 @@ export const CitizenExam = () => {
         }
     }
 
-    const NewForm = (iLevel) => {
-  
-        CitizenTest(iLevel).then(lTest => {
+    const NewForm = (iLevel) => 
+    {
+        getQuestions(iLevel).then(lTest => {
             setTest(lTest);
         });
         setCorrectAnwers(0);
@@ -196,7 +196,7 @@ return (
             &nbsp;
           </p>
 
-          <a key="download" target='_blank' rel="noreferrer" href="https://examenes.cervantes.es/sites/default/files/MANUAL%20NIPO%20ENTERO_CCSE_023.pdf" >
+          <a key="download" rel="noopener" href="https://examenes.cervantes.es/sites/default/files/MANUAL%20NIPO%20ENTERO_CCSE_023.pdf" >
             Baja el documento de Preparacion Examen Ciudadania 
           </a>
           <p>
