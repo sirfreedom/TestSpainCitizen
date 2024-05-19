@@ -1,10 +1,8 @@
 
 
-
-
 export const getMessagesFinalTest = async () =>
 {
-  let url = 'https://raw.githubusercontent.com/sirfreedom/TestSpainCitizen/main/test2.json';
+  let url = 'https://raw.githubusercontent.com/sirfreedom/TestSpainCitizen/main/test1.json';
   let res;
   let data = [];
   let tempdata = [];

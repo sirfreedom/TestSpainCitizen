@@ -23,7 +23,8 @@ export const CitizenExam = () => {
     const [ShowFinishAnswer, setShowFinishAnswer] = useState(false);
     const handleFinishAnswerClose = () => setShowFinishAnswer(false);
 
-    useEffect(() => {
+    useEffect(() => 
+    {
         setShowWelcome(true);
 
         getSetting().then(data => {
@@ -80,7 +81,7 @@ export const CitizenExam = () => {
       setShowWelcome(false);
       setIsSelectQuestion(true);
       setLevel(iLevel);
-      getQuestions(iLevel,Setting.questionpage).then(lTest => {
+      getQuestions(iLevel,Setting.questionperpage).then(lTest => {
         setTest(lTest);
       });
     }
@@ -178,7 +179,7 @@ return (
 <div className='row justify-content-center mt-2 mb-3' >
   <div className='col-12'>
       {IsSelectQuestion && !ShowValid &&(
-      <Button key="btnValidQuestion" variant="success" onClick={() => ValidQuestion() } > Completar el Examen </Button>
+      <Button key="btnValidQuestion" variant="success" onClick={ValidQuestion} > Completar el Examen </Button>
       )}
   </div>
 </div>
@@ -275,7 +276,9 @@ return (
       <div className='col-12'>
         <p className='align-items-center'> 
           El puntaje obtenido por Ud. fue &nbsp;
-            {CorrectAnwers} {' / ' + Setting.questionpage }  &nbsp; Respuestas correctas.
+            {CorrectAnwers} {' / ' + Setting.correctanswers }  
+            &nbsp; 
+            Respuestas correctas.
         </p>
       </div>
     </div>
@@ -289,9 +292,8 @@ return (
 
     {FinalTestMessage.map((item, idx ) => 
     {
-     debugger;
      return (
-            (item.answersrangemax < CorrectAnwers && CorrectAnwers < item.answersrangemin ) && (  
+            (CorrectAnwers > item.answersrangemin  && CorrectAnwers <= item.answersrangemax ) && (  
               <div key={'divrow' + idx} className='row'>
                   <div key={'divcol' + idx} className='col-12' >
                     <p key={'p' + idx} className='align-items-center' > 
