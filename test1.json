@@ -11,22 +11,117 @@
         "downloadlink" : "https://examenes.cervantes.es/sites/default/files/MANUAL%20NIPO%20ENTERO_CCSE_023.pdf"
     }
 ],
-"wronganswer" : [
+"finaltestmessage" : [
     {
         "cod" : 1,
         "answersrangemin": 5,
         "answersrangemax": 1,
-        "description" : "No has aprobado el examen.. necesitas estudiar un poquito mas.. una vez mas.. y estas..."
+        "description" : "No has aprobado el examen.. necesitas estudiar un poquito mas.. una vez mas.. y estas...",
+        "levels" : [
+            {
+                "level": 1
+            },
+            {
+                "level": 2
+            },
+            {
+                "level": 3
+            }
+        ]
     },
     {
         "cod" : 2,
         "answersrangemin": 10,
         "answersrangemax": 6,
-        "description" : "No has aprobado el examen.. necesitas estudiar un poquito mas.. una vez mas.. y estas..."
+        "description" : "No has aprobado el examen.. necesitas estudiar un poquito mas.. una vez mas.. y estas...",
+        "levels" : 
+        [
+            {
+                "level": 1
+            },
+            {
+                "level": 2
+            },
+            {
+                "level": 3
+            }
+        ]
+    },
+    {
+        "cod" : 3,
+        "answersrangemin": 25,
+        "answersrangemax": 15,
+        "description" : "Felicitaciones!!! has aprobado el examen con exito. Aun asi te aconsejo que pruebes unas veces mas para tener todo mucho mas claro.",
+        "levels" :
+         [
+            {
+                "level": 1
+            },
+            {
+                "level": 2
+            },
+            {
+                "level": 3
+            }
+        ]
+    },
+    {
+        "cod" : 4,
+        "answersrangemin": 25,
+        "answersrangemax": 23,
+        "description" : "Oye tio.!!.. tu eres mas español que el JAMON !! que haces tu aqui ?.. tienes muy buen resultado...",
+        "levels" :
+         [
+            {
+                "level": 1
+            },
+            {
+                "level": 2
+            },
+            {
+                "level": 3
+            }
+        ]
+    },
+    {
+        "cod" : 5,
+        "answersrangemin": -1,
+        "answersrangemax": 0,
+        "description" : "Oye..!. no tienes ganas de hacer el examen? .. no has contestado ninguna.",
+        "levels" :
+         [
+            {
+                "level": 1
+            },
+            {
+                "level": 2
+            },
+            {
+                "level": 3
+            }
+        ]
     }
 ]
 ,
-
+"questionlevels" : 
+[
+    {
+        "cod": 0,
+        "description" : "Random"
+    },
+    {
+        "cod": 1,
+        "description" : "Facil"
+    },
+    {
+        "cod": 2,
+        "description" : "Medio"
+    },
+    {
+        "cod": 3,
+        "description" : "Dificil"
+    }
+],
 "questions" : [
     {
     "question": "España es",
