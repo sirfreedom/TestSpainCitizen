@@ -1,7 +1,7 @@
 import '../Css/App.css';
 import '../Css/bootstrap.min.css';
 import React, { useState,useEffect } from "react";
-import {getQuestions} from './Helpers';
+import {getQuestions, getSetting, getMessagesFinalTest} from './Helpers';
 import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -13,6 +13,9 @@ export const CitizenExam = () => {
     const [CorrectAnwers,setCorrectAnwers] = useState(0);
     const [DisableAnwers, setDisableAnwers] = useState(false);
     const [IsSelectQuestion,setIsSelectQuestion] = useState(false);
+    const [Level, setLevel] = useState(0);
+    const [Setting, setSetting] = useState([]);
+    const [FinalTestMessage,setFinalTestMessage] = useState([]);
   
     const [ShowWelcome, setShowWelcome] = useState(false);
     const handleWelcomeClose = () => setShowWelcome(false);
@@ -22,7 +25,17 @@ export const CitizenExam = () => {
 
     useEffect(() => {
         setShowWelcome(true);
+
+        getSetting().then(data => {
+          setSetting(data);
+        });
+
+        getMessagesFinalTest().then(data => {
+          setFinalTestMessage(data);
+        });
+
     }, []);
+    
 
     const ValidQuestion = () => 
     {
@@ -61,14 +74,15 @@ export const CitizenExam = () => {
 
     const NewForm = (iLevel) => 
     {
-        getQuestions(iLevel).then(lTest => {
-            setTest(lTest);
-        });
-        setCorrectAnwers(0);
-        setShowValid(false);
-        setDisableAnwers(false);
-        setShowWelcome(false);
-        setIsSelectQuestion(true);
+      setCorrectAnwers(0);
+      setShowValid(false);
+      setDisableAnwers(false);
+      setShowWelcome(false);
+      setIsSelectQuestion(true);
+      setLevel(iLevel);
+      getQuestions(iLevel,Setting.questionpage).then(lTest => {
+        setTest(lTest);
+      });
     }
 
 
@@ -79,7 +93,7 @@ return (
 
   <div className='row justify-content-center' >
       <div className='col-12 m-2'> 
-          <h2> Bienvenido al examen CCSE 2023 NACIONALIDAD ESPAÑOLA </h2>
+          <h2> { Setting.tittle } </h2>
       </div>
   </div>
 
@@ -178,7 +192,7 @@ return (
     <Modal.Header key="modalwelcome_header" closeButton>
       <Modal.Title key="modalwelcome_tittle">
         <p>
-          Bienvenido al examen CCSE 2023 
+          {Setting.subtittle}
         </p>
       </Modal.Title>
     </Modal.Header>
@@ -186,18 +200,11 @@ return (
       <div className='row justify-content-center' >
         <div className='col-12'>
           <p className='align-items-start' >
-            El examen consta de 25 preguntas totalmente aleatorias, obtenidas de unas 300 
-            que son tomadas en el examen real, para poder aprobar el examen debe tener 15 preguntas 
-            respondidas de forma correcta.
-            de esta forma se le tomara el examen para la nacionalidad Española.
-            puede elegir preguntas : Random, Nivel bajo, Medio, Alto.
-            &nbsp;
-            Al final podras verificar tus respuestas.
-            &nbsp;
+            {Setting.instruction}
           </p>
 
-          <a key="download" rel="noopener" href="https://examenes.cervantes.es/sites/default/files/MANUAL%20NIPO%20ENTERO_CCSE_023.pdf" >
-            Baja el documento de Preparacion Examen Ciudadania 
+          <a key="download" rel="noopener" href={Setting.downloadlink} >
+            {Setting.downloadtittle}
           </a>
           <p>
             Revisa las instrucciones antes del inicio del examen.  
@@ -207,7 +214,7 @@ return (
       <div className='row justify-content-center'>
         <div className='col-12' >
           <p className='align-items-start'>
-            Este examen es a modo de prueba para saber sus conocimientos y poder practicar para estar mas preprado.
+            Este examen es a modo de prueba para saber sus conocimientos y poder practicar 
             Suerte...
           </p>
         </div>
@@ -268,7 +275,7 @@ return (
       <div className='col-12'>
         <p className='align-items-center'> 
           El puntaje obtenido por Ud. fue &nbsp;
-            {CorrectAnwers} {' /25 '}  &nbsp; Respuestas correctas.
+            {CorrectAnwers} {' / ' + Setting.questionpage }  &nbsp; Respuestas correctas.
         </p>
       </div>
     </div>
@@ -280,49 +287,19 @@ return (
       </div>
     </div>
 
-    { (CorrectAnwers < 25 && CorrectAnwers > 23 ) && (  
-    <div className='row'>
-      <div className='col-12' >
-        <p className='align-items-center' > 
-          Oye tio.!!.. tu eres mas español que el JAMON !! que haces tu aqui ?.. 
-          tienes muy buen resultado...
-        </p>
-      </div>
-    </div>
-    )}
+    {FinalTestMessage.map((item, idx ) => {
+     return (
+            (CorrectAnwers < item.answersrangemax && CorrectAnwers > item.answersrangemin ) && (  
+              <div className='row'>
+                  <div className='col-12' >
+                    <p className='align-items-center' > 
+                    { item.description }
+                   </p>
+                  </div>
+              </div>
 
-    {(CorrectAnwers < 25 && CorrectAnwers > 15 ) && (  
-    <div className='row'>
-        <div className='col-12' >
-          <p className='align-items-center'> 
-            Felicitaciones!!! has aprobado el examen con exito.
-            Aun asi te aconsejo que pruebes unas veces mas para tener todo mucho mas claro.
-          </p>
-        </div>
-    </div>
-    )}
-
-    { (CorrectAnwers < 10 && CorrectAnwers > 6) && (  
-    <div className='row'>
-      <div className='col-12' >
-        <p className='align-items-center' > 
-          No has aprobado el examen.. :-/ necesitas estudiar mucho. pero ANIMO.. con tiempo y estudio
-          no dudo que mejoraras.!
-        </p>
-      </div>
-    </div>
-    )}
-
-    {(CorrectAnwers < 5 && CorrectAnwers > 1 ) && (  
-    <div className='row'>
-      <div className='col-12' >
-        <p className='align-items-center' > 
-          No has aprobado el examen.. necesitas estudiar un poquito mas.. 
-          una vez mas.. y estas...
-        </p>
-      </div>
-    </div>
-    )}
+             ));
+    })}
 
   </Modal.Body>
 
