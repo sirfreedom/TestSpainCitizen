@@ -1,7 +1,6 @@
 {
 "settings": [
     {
-        "setting": "BASIC",
         "cod": 1,
         "questionperpage": 25,
         "correctanswers" : 15,
@@ -12,13 +11,15 @@
         "downloadlink" : "https://examenes.cervantes.es/sites/default/files/MANUAL%20NIPO%20ENTERO_CCSE_023.pdf"
     }
 ],
-"finaltestmessage" : [
+"finaltestmessage" : 
+[
     {
         "cod" : 1,
-        "answersrangemin": 1,
-        "answersrangemax": 14,
-        "description" : "No has aprobado el examen.. necesitas estudiar un poquito mas.. una vez mas.. y estas...",
-        "levels" : [
+        "answersrangemin": -1,
+        "answersrangemax": 0,
+        "description" : "Oye..!. no tienes ganas de hacer el examen? .. no has contestado ninguna.",
+        "levels" :
+         [
             {
                 "level": 1
             },
@@ -32,8 +33,8 @@
     },
     {
         "cod" : 2,
-        "answersrangemin": 10,
-        "answersrangemax": 6,
+        "answersrangemin": 1,
+        "answersrangemax": 14,
         "description" : "No has aprobado el examen.. necesitas estudiar un poquito mas.. una vez mas.. y estas...",
         "levels" : 
         [
@@ -50,8 +51,8 @@
     },
     {
         "cod" : 3,
-        "answersrangemin": 25,
-        "answersrangemax": 15,
+        "answersrangemin": 15,
+        "answersrangemax": 20,
         "description" : "Felicitaciones!!! has aprobado el examen con exito. Aun asi te aconsejo que pruebes unas veces mas para tener todo mucho mas claro.",
         "levels" :
          [
@@ -68,27 +69,9 @@
     },
     {
         "cod" : 4,
-        "answersrangemin": 25,
-        "answersrangemax": 23,
+        "answersrangemin": 21,
+        "answersrangemax": 25,
         "description" : "Oye tio.!!.. tu eres mas español que el JAMON !! que haces tu aqui ?.. tienes muy buen resultado...",
-        "levels" :
-         [
-            {
-                "level": 1
-            },
-            {
-                "level": 2
-            },
-            {
-                "level": 3
-            }
-        ]
-    },
-    {
-        "cod" : 5,
-        "answersrangemin": -1,
-        "answersrangemax": 0,
-        "description" : "Oye..!. no tienes ganas de hacer el examen? .. no has contestado ninguna.",
         "levels" :
          [
             {
@@ -123,18 +106,23 @@
         "description" : "Dificil"
     }
 ],
-"questions" : [
+"questions" : 
+[
     {
     "question": "España es",
     "cod": "1001",
     "level": 1,
-    "answers": [{
+    "answers": 
+    [
+    {
         "text": "Una monarquia parlamentaria",
         "valid": true
-    }, {
+    }, 
+    {
         "text": "Una Republica federal",
         "valid": false
-    }, {
+    }, 
+    {
         "text": "Una Monarquia federal",
         "valid": false
     }
