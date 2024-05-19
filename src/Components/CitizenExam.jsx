@@ -30,10 +30,6 @@ export const CitizenExam = () => {
           setSetting(data);
         });
 
-        getMessagesFinalTest().then(data => {
-          setFinalTestMessage(data);
-        });
-
     }, []);
     
 
@@ -53,7 +49,6 @@ export const CitizenExam = () => {
                   document.getElementById('imgAproboA' + ls[i].dataset.cod).className = "imgAA enabled";
                   iCorrectAnwers++;
                 }
-
                 
                 if (document.getElementById('imgAproboA' + ls[i].dataset.cod).className !== "imgAA enabled" )
                 {
@@ -66,6 +61,11 @@ export const CitizenExam = () => {
             setShowFinishAnswer(true);
             setDisableAnwers(true);
             setIsSelectQuestion(false);
+
+            getMessagesFinalTest().then(data => {
+              setFinalTestMessage(data);
+            });
+    
         }
         catch (e) {
             alert(e.message);
@@ -178,7 +178,7 @@ return (
 <div className='row justify-content-center mt-2 mb-3' >
   <div className='col-12'>
       {IsSelectQuestion && !ShowValid &&(
-      <Button key="btnValidQuestion" variant="success" onClick={ValidQuestion} > Completar el Examen </Button>
+      <Button key="btnValidQuestion" variant="success" onClick={() => ValidQuestion() } > Completar el Examen </Button>
       )}
   </div>
 </div>
@@ -287,17 +287,18 @@ return (
       </div>
     </div>
 
-    {FinalTestMessage.map((item, idx ) => {
+    {FinalTestMessage.map((item, idx ) => 
+    {
+     debugger;
      return (
-            (CorrectAnwers < item.answersrangemax && CorrectAnwers > item.answersrangemin ) && (  
-              <div className='row'>
-                  <div className='col-12' >
-                    <p className='align-items-center' > 
+            (item.answersrangemax < CorrectAnwers && CorrectAnwers < item.answersrangemin ) && (  
+              <div key={'divrow' + idx} className='row'>
+                  <div key={'divcol' + idx} className='col-12' >
+                    <p key={'p' + idx} className='align-items-center' > 
                     { item.description }
                    </p>
                   </div>
               </div>
-
              ));
     })}
 

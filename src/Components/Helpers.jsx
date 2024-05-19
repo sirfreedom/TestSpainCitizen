@@ -4,7 +4,7 @@
 
 export const getMessagesFinalTest = async () =>
 {
-  let url = 'https://raw.githubusercontent.com/sirfreedom/TestSpainCitizen/main/test1.json';
+  let url = 'https://raw.githubusercontent.com/sirfreedom/TestSpainCitizen/main/test2.json';
   let res;
   let data = [];
   let tempdata = [];
@@ -12,7 +12,6 @@ export const getMessagesFinalTest = async () =>
   {
     res = await fetch(url);
     tempdata = await res.json().catch(err => console.log(err));
-    debugger;
     data = tempdata.finaltestmessage;
   }
   catch(ex){
