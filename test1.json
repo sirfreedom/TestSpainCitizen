@@ -6,7 +6,7 @@
         "correctanswers" : 15,
         "tittle": "Bienvenido al examen CCSE 2023 NACIONALIDAD ESPAÑOLA",
         "subtittle": "Bienvenido al examen CCSE 2023",
-        "instruction": "El examen consta de 25 preguntas totalmente aleatorias, obtenidas de unas 300 que son tomadas en el examen real, para poder aprobar el examen debe tener 15 preguntas respondidas de forma correcta.de esta forma se le tomara el examen para la nacionalidad Española. puede elegir preguntas : Random, Nivel bajo, Medio, Alto. &nbsp; Al final podras verificar tus respuestas. &nbsp;",
+        "instruction": "El examen consta de 25 preguntas totalmente aleatorias, obtenidas de unas 300 que son tomadas en el examen real, para poder aprobar el examen debe tener 15 preguntas respondidas de forma correcta.de esta forma se le tomara el examen para la nacionalidad Española. puede elegir preguntas : Random, Nivel bajo, Medio, Alto. Al final podras verificar tus respuestas. ",
         "downloadtittle" : "Baja el documento de Preparacion Examen Ciudadania",
         "downloadlink" : "https://examenes.cervantes.es/sites/default/files/MANUAL%20NIPO%20ENTERO_CCSE_023.pdf"
     }
@@ -20,6 +20,9 @@
         "description" : "Oye..!. no tienes ganas de hacer el examen? .. no has contestado ninguna.",
         "levels" :
          [
+            {
+                "level": 0
+            },
             {
                 "level": 1
             },
@@ -39,6 +42,9 @@
         "levels" : 
         [
             {
+                "level": 0
+            },
+            {
                 "level": 1
             },
             {
@@ -57,6 +63,9 @@
         "levels" :
          [
             {
+                "level": 0
+            },
+            {
                 "level": 1
             },
             {
@@ -74,6 +83,9 @@
         "description" : "Oye tio.!!.. tu eres mas español que el JAMON !! que haces tu aqui ?.. tienes muy buen resultado...",
         "levels" :
          [
+            {
+                "level": 0
+            },
             {
                 "level": 1
             },

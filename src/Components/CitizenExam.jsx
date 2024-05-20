@@ -245,12 +245,15 @@ return (
       {QuestionLevels.map((item, idx ) => 
       {
        return (
+        
+     
 
-              <div className='col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-sm-1'>
+              <div key={'divquestionlevel' + idx } className='col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-sm-1'>
                 <Button key={'btn' + item.description} variant={item.class} onClick={() => NewForm(item.cod)} > {item.description} </Button>{' '}
               </div>
-        
-            );
+            
+ 
+            ); //End Return
       })}
 
       </div>
@@ -293,7 +296,9 @@ return (
     {FinalTestMessage.map((item, idx ) => 
     {
      return (
-            (CorrectAnwers > item.answersrangemin  && CorrectAnwers <= item.answersrangemax ) && (  
+              ( item.levels.filter(x => x.level === Level).length > 0 ) 
+              && (CorrectAnwers > item.answersrangemin)  
+              && (CorrectAnwers <= item.answersrangemax ) && (  
               <div key={'divrow' + idx} className='row'>
                   <div key={'divcol' + idx} className='col-12' >
                     <p key={'p' + idx} className='align-items-center' > 
