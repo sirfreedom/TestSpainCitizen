@@ -16,6 +16,7 @@ export const CitizenExam = () => {
     const [Level, setLevel] = useState(0);
     const [Setting, setSetting] = useState([]);
     const [FinalTestMessage,setFinalTestMessage] = useState([]);
+    const [QuestionLevels,setQuestionLevels] = useState([]);
   
     const [ShowWelcome, setShowWelcome] = useState(false);
     const handleWelcomeClose = () => setShowWelcome(false);
@@ -29,6 +30,10 @@ export const CitizenExam = () => {
 
         getSetting().then(data => {
           setSetting(data);
+        });
+
+        getQuestionLevels().then(data => {
+          setQuestionLevels(data);
         });
 
     }, []);
@@ -236,22 +241,17 @@ return (
 
     <div className='content' >
       <div className='row justify-content-center'>
-              
-        <div className='col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-sm-1'>
-          <Button key="btnRandom" variant="secondary" onClick={() => NewForm(0)} > Random </Button>{' '}
-        </div>
-                 
-        <div className='col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-sm-1'>
-          <Button key="btnFacil" variant="success" onClick={() => NewForm(1)} > Facil</Button>{' '}
-        </div>
-                 
-        <div className='col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-sm-1'>
-          <Button key="btnMedio" variant="warning" onClick={() => NewForm(2)} > Medio </Button>{' '}
-        </div>
-                 
-        <div className='col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-sm-1'>
-          <Button key="btnAvanzado" variant="danger" onClick={() => NewForm(3)} > Avanzado</Button>{' '}
-        </div>
+
+      {QuestionLevels.map((item, idx ) => 
+      {
+       return (
+
+              <div className='col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-sm-1'>
+                <Button key={'btn' + item.description} variant={item.class} onClick={() => NewForm(item.cod)} > {item.description} </Button>{' '}
+              </div>
+        
+            );
+      })}
 
       </div>
     </div>

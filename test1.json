@@ -91,19 +91,23 @@
 [
     {
         "cod": 0,
-        "description" : "Random"
+        "description" : "Random",
+        "class": "secondary"
     },
     {
         "cod": 1,
-        "description" : "Facil"
+        "description" : "Facil",
+        "class": "success"
     },
     {
         "cod": 2,
-        "description" : "Medio"
+        "description" : "Medio",
+        "class": "warning"
     },
     {
         "cod": 3,
-        "description" : "Dificil"
+        "description" : "Avanzado",
+        "class": "danger"
     }
 ],
 "questions" : 

@@ -1,5 +1,25 @@
 
 
+
+export const getQuestionLevels = async () =>
+{
+  let url = 'https://raw.githubusercontent.com/sirfreedom/TestSpainCitizen/main/test1.json';
+  let res;
+  let data = [];
+  let tempdata = [];
+  try 
+  {
+    res = await fetch(url);
+    tempdata = await res.json().catch(err => console.log(err));
+    data = tempdata.questionlevels;
+  }
+  catch(ex){
+    console.log(ex);
+  }
+  return data;
+}
+
+
 export const getMessagesFinalTest = async () =>
 {
   let url = 'https://raw.githubusercontent.com/sirfreedom/TestSpainCitizen/main/test1.json';
