@@ -4,11 +4,11 @@
         "cod": 1,
         "questionperpage": 25,
         "correctanswers" : 15,
-        "tittle": "Bienvenido al examen CCSE 2023 NACIONALIDAD ESPAÑOLA",
-        "subtittle": "Bienvenido al examen CCSE 2023",
+        "tittle": "Bienvenido al examen CCSE 2024 NACIONALIDAD ESPAÑOLA version 2.0",
+        "subtittle": "Bienvenido al examen CCSE 2024",
         "instruction": "El examen consta de 25 preguntas totalmente aleatorias, obtenidas de unas 300 que son tomadas en el examen real, para poder aprobar el examen debe tener 15 preguntas respondidas de forma correcta.de esta forma se le tomara el examen para la nacionalidad Española. puede elegir preguntas : Random, Nivel bajo, Medio, Alto. Al final podras verificar tus respuestas. ",
         "downloadtittle" : "Baja el documento de Preparacion Examen Ciudadania",
-        "downloadlink" : "https://examenes.cervantes.es/sites/default/files/MANUAL%20NIPO%20ENTERO_CCSE_023.pdf"
+        "downloadlink" : "https://examenes.cervantes.es/sites/default/files/Manual%20CCSE%202024_0.pdf"
     }
 ],
 "finaltestmessage" : 
