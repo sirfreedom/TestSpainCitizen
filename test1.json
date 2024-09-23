@@ -222,7 +222,7 @@
 {
     "question": "Cual de estas fuerzas de seguridad es de ámbito autonomico",
     "cod": "1007",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "Policia local",
         "valid": false
@@ -333,7 +333,7 @@
 {
     "question": "Con respecto a los poderes del Estado, el Tribunal Constitucional es...",
     "cod": "1014",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "Dependiente",
         "valid": false
@@ -378,7 +378,7 @@
 {
     "question": "Cuantas ciudades autonomas hay en España",
     "cod": "1017",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "17",
         "valid": false
@@ -393,7 +393,7 @@
 {
     "question": "Como se aprobó la Constitucion",
     "cod": "1018",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "Por ley",
         "valid": false
@@ -528,7 +528,7 @@
 {
     "question": "Cuantas comunidades autonomas hay en España",
     "cod": "1027",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "8",
         "valid": false
@@ -744,7 +744,7 @@
 {
     "question": "Cual de los siguientes cuerpos forma parte de las Fuerzas Armadas de España",
     "cod": "1040",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "La Policia Foral",
         "valid": false
@@ -851,7 +851,7 @@
 {
     "question": "Cuantas comunidades autonomas tienen su propia bandera",
     "cod": "1047",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "Ninguna",
         "valid": false
@@ -913,7 +913,7 @@
 {
     "question": "En la organizacion de la Administracion se distinguen tres niveles central, autonomica y...",
     "cod": "1051",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "estatal",
         "valid": false
@@ -928,7 +928,7 @@
 {
     "question": "El poder legislativo corresponde",
     "cod": "1052",
-    "level": 3,
+    "level": 1,
     "answers": [{
         "text": "al presidente y los ministros",
         "valid": false
@@ -1078,7 +1078,7 @@
 {
     "question": "Cuantos millones de habitantes tiene España, hasta el ultimo censo",
     "cod": "1062",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "35 millones",
         "valid": false
@@ -1198,7 +1198,7 @@
 {
     "question": "Como se llama el organo de gobierno de los jueces y magistrados",
     "cod": "1070",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "Tribunal Supremo",
         "valid": false
@@ -1228,7 +1228,7 @@
 {
     "question": "La Constitucion Española es...",
     "cod": "1072",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "La ley fundamental",
         "valid": true
@@ -1333,7 +1333,7 @@
 {
     "question": "Quien controla la circulacion de coches en la ciudades",
     "cod": "1079",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "La Guardia Civil",
         "valid": false
@@ -1348,7 +1348,7 @@
 {
     "question": "Como se llama la policia autonomica de Cataluña",
     "cod": "1080",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "Guardia Civil",
         "valid": false
@@ -1363,7 +1363,7 @@
 {
     "question": "Como se llama la policia autonomica del Pais Vasco",
     "cod": "1081",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "Ertzaintza",
         "valid": true
@@ -1573,7 +1573,7 @@
 {
     "question": "Quien tiene el mando supremo de las Fuerzas Armadas",
     "cod": "1095",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "El Rey",
         "valid": true
@@ -1638,7 +1638,7 @@
         "text": "al Gobierno del Estado",
         "valid": true
     }, {
-        "text": "al Congreso y al Senada",
+        "text": "al Congreso y al Senado",
         "valid": false
     }, {
         "text": "a los jueces y magistrados",
@@ -1663,7 +1663,7 @@
 {
     "question": "Quien tiene la competencia en un urbanismo",
     "cod": "1101",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "Los ayuntamientos",
         "valid": true
@@ -1858,7 +1858,7 @@
 {
     "question": "Quien controla la gestion financiera del Estado",
     "cod": "1114",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "El banco de España",
         "valid": false
@@ -1873,7 +1873,7 @@
 {
     "question": "A quienes se elige en las elecciones generales",
     "cod": "1115",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "A los senadores y diputados",
         "valid": true
@@ -1888,7 +1888,7 @@
 {
     "question": "Cuantos miembros tiene el Congreso de los Diputados",
     "cod": "1116",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "300",
         "valid": false
@@ -1903,7 +1903,7 @@
 {
     "question": "Los municipios y provincias forman parte de la Administracion...",
     "cod": "1117",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "Autonomica",
         "valid": false
@@ -1933,7 +1933,7 @@
 {
     "question": "Como se llama la organizacion que defiende los intereses de los trabajadores",
     "cod": "1119",
-    "level": 1,
+    "level": 2,
     "answers": [{
         "text": "Asociacion",
         "valid": false
@@ -1975,7 +1975,7 @@
 {
     "question": "Los españoles que obtienen la nacionalidad por residencia deben esperar tres años para poder votar en las elecciones.",
     "cod": "2002",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "Verdadero",
         "valid": false
@@ -2578,7 +2578,7 @@
 {
     "question": "España se divide en ...",
     "cod": "3013",
-    "level": 1,
+    "level": 2,
     "answers": [{
         "text": "departamentos y regiones",
         "valid": false
@@ -2683,7 +2683,7 @@
 {
     "question": "Canarias tiene un clima",
     "cod": "3020",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "Mediterraneo",
         "valid": false
@@ -2713,7 +2713,7 @@
 {
     "question": "España esta entre los paises de Europa mas...",
     "cod": "3022",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "lluviosos",
         "valid": false
@@ -2833,7 +2833,7 @@
 {
     "question": "Que dulce es tipico de las navidades",
     "cod": "4006",
-    "level": 2,
+    "level": 1,
     "answers": [{
         "text": "El Flan",
         "valid": false
@@ -2923,7 +2923,7 @@
 {
     "question": "Donde esta la Sagrada Familia, el monumento de Gaudi",
     "cod": "4012",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "En Barcelona",
         "valid": true
@@ -2953,7 +2953,7 @@
 {
     "question": "En que epoca del año es la Semana Santa",
     "cod": "4014",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "En Enero-Febrero",
         "valid": false
@@ -3118,7 +3118,7 @@
 {
     "question": "Donde esta el Museo del Prado",
     "cod": "4025",
-    "level": 1,
+    "level": 3,
     "answers": [{
         "text": "En Madrid",
         "valid": true
@@ -3163,7 +3163,7 @@
 {
     "question": "Que tres culturas convivieron en la España medieval",
     "cod": "4028",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "La cristiana, la judia y la musulmana",
         "valid": true
@@ -3328,7 +3328,7 @@
 {
     "question": "A que edad es obligatorio tener el DNI",
     "cod": "5003",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "A los 14 años",
         "valid": true
@@ -3343,7 +3343,7 @@
 {
     "question": "Cual es la edad minima para conducir en España",
     "cod": "5004",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "16 años",
         "valid": false
@@ -3403,7 +3403,7 @@
 {
     "question": "Cual de estos canales de television es autonomico",
     "cod": "5008",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "Telecinco",
         "valid": false
@@ -3448,7 +3448,7 @@
 {
     "question": "Las viviendas de proteccion oficial ...",
     "cod": "5011",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "tienen un precio limitado",
         "valid": true
@@ -3463,7 +3463,7 @@
 {
     "question": "Que comunidad autonoma es conocida por la calidad de su aceite de oliva",
     "cod": "5012",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "Cantabria",
         "valid": false
@@ -3478,7 +3478,7 @@
 {
     "question": "Como se llama la revision que deben pasar obligatoriamente los coches",
     "cod": "5013",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "Impuesto sobre Bienes Inmueble (IBI) ",
         "valid": false
@@ -3508,7 +3508,7 @@
 {
     "question": "Donde se tramita la tarjeta sanitaria",
     "cod": "5015",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "En la comisaria de policia",
         "valid": false
@@ -3598,7 +3598,7 @@
 {
     "question": "Cual de estos canales de television es publico",
     "cod": "5021",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "Tele5",
         "valid": false
@@ -3643,7 +3643,7 @@
 {
     "question": "La sidra es una bebida tipica de ...",
     "cod": "5024",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "Asturias",
         "valid": true
@@ -3658,7 +3658,7 @@
 {
     "question": "Los españoles tienen dos apellidos, el primer es...",
     "cod": "5025",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "obligatoriamente el de la madre",
         "valid": false
@@ -3673,7 +3673,7 @@
 {
     "question": "La Fiesta Nacional de España es el ...",
     "cod": "5026",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "6 de diciembre",
         "valid": false
@@ -3688,7 +3688,7 @@
 {
     "question": "Cual es el horario habitual de los hipermercados y centros comerciales",
     "cod": "5027",
-    "level": 3,
+    "level": 1,
     "answers": [{
         "text": "de 9:00 a 17:00 h",
         "valid": false
@@ -3703,7 +3703,7 @@
 {
     "question": "Donde se hace el pasaporte",
     "cod": "5028",
-    "level": 3,
+    "level": 1,
     "answers": [{
         "text": "En el registro civil",
         "valid": false
@@ -3747,7 +3747,7 @@
 },
 {
     "question": "El DNI se hace ...",
-    "level": 2,
+    "level": 1,
     "cod": "5031",
     "answers": [{
         "text": "por internet",
@@ -3791,9 +3791,9 @@
     }]
 },
 {
-    "question": "Cual de estos productos necesita importar España de otros paises",
+    "question": "Cual de estos productos necesita IMPORTAR España de otros paises",
     "cod": "5034",
-    "level": 2,
+    "level": 1,
     "answers": [{
         "text": "Petroleo",
         "valid": true
@@ -3823,7 +3823,7 @@
 {
     "question": "Los adultos sin Bachillerato pueden estudiar en la Universidad haciendo una prueba especial a partir de los ...",
     "cod": "5036",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "18 años",
         "valid": false
@@ -3838,7 +3838,7 @@
 {
     "question": "Donde puede encontrarse la siguiente norma 'Dejar salir antes de entrar' ",
     "cod": "5037",
-    "level": 2,
+    "level": 1,
     "answers": [{
         "text": "En el trasporte publico",
         "valid": true
@@ -3853,7 +3853,7 @@
 {
     "question": "El Bachilleraro en España",
     "cod": "5038",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "es obligatorio",
         "valid": false
@@ -3971,7 +3971,7 @@
     }]
 },
 {
-    "question": "Cual de estos productos exporta España mas que importa",
+    "question": "Cual de estos productos EXPORTA España mas que importa",
     "cod": "5046",
     "level": 2,
     "answers": [{
@@ -4033,7 +4033,7 @@
 {
     "question": "Para cuantos años vale la tarjeta sanitaria europea",
     "cod": "5050",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "Para un año",
         "valid": false
@@ -4408,7 +4408,7 @@
 {
     "question": "Cual es el sector de mayor peso en la economia española",
     "cod": "5075",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "Agricultura",
         "valid": false
@@ -4423,7 +4423,7 @@
 {
     "question": "España es innovadora en el sector de ...",
     "cod": "5076",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "la ingenieria aeroespacial",
         "valid": false
@@ -4436,7 +4436,7 @@
     }]
 },
 {
-    "question": "Como se llama la ley laboral mas importante de España",
+    "question": "Como se llama la ley LABORAL mas importante de España",
     "cod": "5077",
     "level": 3,
     "answers": [{

@@ -72,8 +72,6 @@ export const getQuestions = async (id,questionlen) =>
   res = await fetch(url);
   tempdata = await res.json().catch(err => console.log(err));
 
-debugger;
-
   if (id === 0){
     data = tempdata.questions;
   }
@@ -81,8 +79,6 @@ debugger;
   if (id > 0 ){
     data = tempdata.questions.filter(x => x.level === id);    
   }
-
-  debugger;
 
   while (lIndex.length <= questionlen) 
   {
@@ -94,8 +90,6 @@ debugger;
        lIndex.push(n);
     }
   }
-
-  debugger;
 
   for (let i in lIndex) {
     lQuestion.push(data[lIndex[i]]);
