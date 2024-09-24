@@ -79,6 +79,27 @@
     {
         "cod" : 4,
         "answersrangemin": 21,
+        "answersrangemax": 22,
+        "description" : "Oye tio.!!.. te ha ido muy bien... pero no te descuides, que aun tienes errores",
+        "levels" :
+         [
+            {
+                "level": 0
+            },
+            {
+                "level": 1
+            },
+            {
+                "level": 2
+            },
+            {
+                "level": 3
+            }
+        ]
+    },
+    {
+        "cod" : 4,
+        "answersrangemin": 23,
         "answersrangemax": 25,
         "description" : "Oye tio.!!.. tu eres mas español que el JAMON !! que haces tu aqui ?.. tienes muy buen resultado...",
         "levels" :
@@ -376,7 +397,7 @@
     }]
 },
 {
-    "question": "Cuantas ciudades autonomas hay en España",
+    "question": "Cuantas CIUDADES autonomas hay en España",
     "cod": "1017",
     "level": 3,
     "answers": [{
@@ -393,7 +414,7 @@
 {
     "question": "Como se aprobó la Constitucion",
     "cod": "1018",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "Por ley",
         "valid": false
@@ -526,7 +547,7 @@
     }]
 },
 {
-    "question": "Cuantas comunidades autonomas hay en España",
+    "question": "Cuantas COMUNIDADES autonomas hay en España",
     "cod": "1027",
     "level": 3,
     "answers": [{
@@ -973,7 +994,7 @@
 {
     "question": "El Gobierno esta formado por el presidente,uno o mas vicepresidentes y los ...",
     "cod": "1055",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "Consejales",
         "valid": false
@@ -1048,7 +1069,7 @@
 {
     "question": "La Constitucion defiende valores tales como la libertad, igualdad, el pluralismo politico y ...",
     "cod": "1060",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "La justicia",
         "valid": true
@@ -1063,7 +1084,7 @@
 {
     "question": "Cuantos kilometros cuadrados tiene España mas o menos",
     "cod": "1061",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "100.000 km^2",
         "valid": false
@@ -1138,7 +1159,7 @@
 {
     "question": "El instituto Etxepare tiene como mision la difusion del ...",
     "cod": "1066",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "euskera y la cultura vasca",
         "valid": true
@@ -1183,7 +1204,7 @@
 {
     "question": "Como se llama el rey de España - 2024",
     "cod": "1069",
-    "level": 1,
+    "level": 3,
     "answers": [{
         "text": "Juan Carlos I",
         "valid": false
@@ -1468,7 +1489,7 @@
 {
     "question": "Donde se publican las leyes nacionales",
     "cod": "1088",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "En el boletin del instituto Nacional de Estadistica (INE)",
         "valid": false
@@ -2443,7 +2464,7 @@
 {
     "question": "Como se llama la extensa llanura situada en el centro de la peninsula iberica",
     "cod": "3004",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "Marisma",
         "valid": false
@@ -2518,7 +2539,7 @@
 {
     "question": "La capital de la comunidad Autonoma de Galicia es...",
     "cod": "3009",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "A Caruña",
         "valid": false
@@ -2683,7 +2704,7 @@
 {
     "question": "Canarias tiene un clima",
     "cod": "3020",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "Mediterraneo",
         "valid": false
@@ -2713,7 +2734,7 @@
 {
     "question": "España esta entre los paises de Europa mas...",
     "cod": "3022",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "lluviosos",
         "valid": false
@@ -2788,7 +2809,7 @@
 {
     "question": "Como se llama, en literatura, a los siglos XVI y XVII",
     "cod": "1152",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "Siglos de Oro",
         "valid": true
@@ -2953,7 +2974,7 @@
 {
     "question": "En que epoca del año es la Semana Santa",
     "cod": "4014",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "En Enero-Febrero",
         "valid": false

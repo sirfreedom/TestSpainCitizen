@@ -141,7 +141,9 @@ return (
             <p>
               <strong>
                 #{indexQuestion+1}
-                  {'. '}  &nbsp;
+                {'- '}  &nbsp;
+                {rowQuestion.cod}
+                {'. '}
                 {rowQuestion.question} 
               </strong>
             </p>
