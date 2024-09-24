@@ -80,7 +80,7 @@ export const getQuestions = async (id,questionlen) =>
     data = tempdata.questions.filter(x => x.level === id);    
   }
 
-  while (lIndex.length <= questionlen) 
+  while (lIndex.length < questionlen) 
   {
     let n;
     n = Math.floor(Math.random() * (data.length - 0 + 1));

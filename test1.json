@@ -243,7 +243,7 @@
         "text": "La Policia Foral de Navarra",
         "valid": false
     }, {
-        "text": "La Guardia Civil",
+        "text": "El cuerpo nacional de policia",
         "valid": true
     }, {
         "text": "Los Mossos d'Escuadra",
@@ -346,7 +346,7 @@
     }]
 },
 {
-    "question": "El jefe del Estado es...",
+    "question": "Quién modera el funcionamiento de las instituciones españolas?",
     "cod": "1015",
     "level": 2,
     "answers": [{
@@ -362,7 +362,7 @@
 },
 {
     "question": "En que año entró España en la Comunidad Economica Europea",
-    "cod": "1016",
+    "cod": "1016a",
     "level": 2,
     "answers": [{
         "text": "En 1986",
@@ -1215,7 +1215,7 @@
     "cod": "1071",
     "level": 3,
     "answers": [{
-        "text": "Las Cartes Generales",
+        "text": "Las Cortes Generales",
         "valid": true
     }, {
         "text": "La Junta Electoral Central",
@@ -4554,6 +4554,22 @@
         "text": "Andalucia",
         "valid": false
     }]
+},
+{
+    "question": "¿Cómo se llama la cámara de representación territorial en España?",
+    "cod": "1016b",
+    "level": 3,
+    "answers": [{
+        "text": "Senado",
+        "valid": true
+    }, {
+        "text": "Diputación permanente",
+        "valid": false
+    }, {
+        "text": "Congreso de los Diputados",
+        "valid": false
+    }]
 }
+
 ]
 }

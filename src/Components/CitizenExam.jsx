@@ -124,7 +124,7 @@ return (
                   <div key={'colNivelMedio_' + rowQuestion.cod + indexQuestion} className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 cuadradoNivelMedio"></div>
                 )}
                 {rowQuestion.level === 1 && (
-                  <div key={'colNivelBajo' + rowQuestion.cod + indexQuestion} className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 cuadradoNivelBajo"></div>
+                  <div key={'colNivelBajo_' + rowQuestion.cod + indexQuestion} className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 cuadradoNivelBajo"></div>
                 )}
             </div>
 
@@ -253,7 +253,7 @@ return (
               </div>
             
  
-            ); //End Return
+            );
       })}
 
       </div>
@@ -279,7 +279,7 @@ return (
       <div className='col-12'>
         <p className='align-items-center'> 
           El puntaje obtenido por Ud. fue &nbsp;
-            {CorrectAnwers} {' / ' + Setting.correctanswers }  
+            {CorrectAnwers} {' / Total Preguntas ' + Setting.questionperpage + ' / Necesarias para aprobar : ' + Setting.correctanswers }  
             &nbsp; 
             Respuestas correctas.
         </p>
