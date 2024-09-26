@@ -3,7 +3,7 @@
 
 export const getQuestionLevels = async () =>
 {
-  let url = 'https://raw.githubusercontent.com/sirfreedom/TestSpainCitizen/main/test1.json';
+  let url = 'https://raw.githubusercontent.com/sirfreedom/TestSpainCitizen/main/spaintest.json';
   let res;
   let data = [];
   let tempdata = [];
@@ -22,7 +22,7 @@ export const getQuestionLevels = async () =>
 
 export const getMessagesFinalTest = async () =>
 {
-  let url = 'https://raw.githubusercontent.com/sirfreedom/TestSpainCitizen/main/test1.json';
+  let url = 'https://raw.githubusercontent.com/sirfreedom/TestSpainCitizen/main/spaintest.json';
   let res;
   let data = [];
   let tempdata = [];
@@ -42,7 +42,7 @@ export const getMessagesFinalTest = async () =>
 
 export const getSetting = async () =>
 {
-  let url = 'https://raw.githubusercontent.com/sirfreedom/TestSpainCitizen/main/test1.json';
+  let url = 'https://raw.githubusercontent.com/sirfreedom/TestSpainCitizen/main/spaintest.json';
   let res;
   let data = [];
   let tempdata = [];
@@ -61,7 +61,7 @@ export const getSetting = async () =>
 
 export const getQuestions = async (id,questionlen) => 
 {
-  let url = 'https://raw.githubusercontent.com/sirfreedom/TestSpainCitizen/main/test1.json';
+  let url = 'https://raw.githubusercontent.com/sirfreedom/TestSpainCitizen/main/spaintest.json';
   let res;
   let data = [];
   let tempdata = [];

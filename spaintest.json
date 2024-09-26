@@ -336,7 +336,7 @@
 {
     "question": "Quien fue el primer presidente del Gobierno de España en democracia",
     "cod": "1013",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "Mariano Rayoy",
         "valid": false
@@ -489,7 +489,7 @@
 {
     "question": "Que ciudad tiene mas habitantes",
     "cod": "1023",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "Sevilla",
         "valid": false
@@ -700,7 +700,7 @@
 {
     "question": "Cual de estas opciones es una lengua Co-Oficial en alguna comunidad autonoma",
     "cod": "1036",
-    "level": 1,
+    "level": 2,
     "answers": [{
         "text": "El gallego",
         "valid": true
@@ -750,7 +750,7 @@
 {
     "question": "Donde vive el presidente del Gobierno",
     "cod": "1039",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "En el Palacio Real",
         "valid": false
@@ -780,7 +780,7 @@
 {
     "question": "Quienes forman parte del Gobierno",
     "cod": "1041",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "Los Ministros",
         "valid": true
@@ -964,7 +964,7 @@
 {
     "question": "Donde vive el rey",
     "cod": "1053",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "En el palacio de la Moneda",
         "valid": false
@@ -1054,7 +1054,7 @@
 {
     "question": "Que lengua co-oficial se habla en las islas Baleares",
     "cod": "1059",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "Gallego",
         "valid": false
@@ -1129,7 +1129,7 @@
 {
     "question": "Quien dirige la politica interior y exterior de España",
     "cod": "1064",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "El Rey",
         "valid": false
@@ -1264,7 +1264,7 @@
 {
     "question": "Las Cortes Generales estan compuestas por el Senado y...",
     "cod": "1073",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "el Congreso de los Diputados",
         "valid": true
@@ -1369,7 +1369,7 @@
 {
     "question": "Como se llama la policia autonomica de Cataluña",
     "cod": "1080",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "Guardia Civil",
         "valid": false
@@ -1384,7 +1384,7 @@
 {
     "question": "Como se llama la policia autonomica del Pais Vasco",
     "cod": "1081",
-    "level": 2,
+    "level": 3,
     "answers": [{
         "text": "Ertzaintza",
         "valid": true
@@ -1409,6 +1409,21 @@
     }, {
         "text": "Desde 2020",
         "valid": false
+    }]
+},
+{
+    "question": "Jose maria Aznar fue presidente ... ",
+    "cod": "1083b",
+    "level": 3,
+    "answers": [{
+        "text": "1992 a 1996",
+        "valid": false
+    }, {
+        "text": "1980 a 1986",
+        "valid": false
+    }, {
+        "text": "1996 a 2004",
+        "valid": true
     }]
 },
 {
@@ -1654,7 +1669,7 @@
 {
     "question": "El poder ejecutivo corresponde...",
     "cod": "1099",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "al Gobierno del Estado",
         "valid": true
@@ -1774,7 +1789,7 @@
 {
     "question": "Cual es el organo de gobierno en los municipios",
     "cod": "1107",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "El ayuntamiento",
         "valid": true
@@ -1937,7 +1952,7 @@
     }]
 },
 {
-    "question": "La comunidad autonoma mas poblada de España es ...",
+    "question": "La COMUNIDAD AUTONOMA mas poblada de España es ...",
     "cod": "1118",
     "level": 3,
     "answers": [{
@@ -2449,7 +2464,7 @@
 {
     "question": "Donde estan las islas Baleares",
     "cod": "3003",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "En el mar Cantabrico",
         "valid": false
@@ -2659,7 +2674,7 @@
 {
     "question": "Cual de estos rios desemboca en el oceano Atlantico",
     "cod": "3017",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "El guadalquivir",
         "valid": true
@@ -2689,7 +2704,7 @@
 {
     "question": "Las temperaturas suaves con abundantes lluvias son propias del clima",
     "cod": "3019",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "Continental",
         "valid": false
@@ -3094,7 +3109,7 @@
 {
     "question": "Quien fue presidente de Gobierno durante la transicion española",
     "cod": "4022",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "Pedro Sanchez",
         "valid": false
@@ -3139,7 +3154,7 @@
 {
     "question": "Donde esta el Museo del Prado",
     "cod": "4025",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "En Madrid",
         "valid": true
@@ -3199,7 +3214,7 @@
 {
     "question": "El 6 de diciembre se celebra en España...",
     "cod": "4029",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "el dia de la Constitucion",
         "valid": true
@@ -3229,7 +3244,7 @@
 {
     "question": "Que regimen politico habia en España antes del rey Juan Carlos I",
     "cod": "4031",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "Republica",
         "valid": false
@@ -3349,7 +3364,7 @@
 {
     "question": "A que edad es obligatorio tener el DNI",
     "cod": "5003",
-    "level": 3,
+    "level": 2,
     "answers": [{
         "text": "A los 14 años",
         "valid": true
