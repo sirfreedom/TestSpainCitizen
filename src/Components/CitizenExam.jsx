@@ -86,7 +86,7 @@ export const CitizenExam = () => {
       setShowWelcome(false);
       setIsSelectQuestion(true);
       setLevel(iLevel);
-      getQuestions(iLevel,Setting.questionperpage).then(lTest => {
+      getQuestions(iLevel).then(lTest => {
         setTest(lTest);
       });
     }
@@ -117,13 +117,14 @@ return (
           <div key={'colCuadrado' + rowQuestion.cod + indexQuestion } className='col-1'>
 
             <div  key={'rowNivelCuadrado_' + rowQuestion.cod + indexQuestion } className='row justify-content-start' >
-                {rowQuestion.level === 3 && (
+
+                {Number(rowQuestion.codLevel) === 3 && (
                   <div key={'colNivelAlto_'+ rowQuestion.cod + indexQuestion} className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-lg-1 cuadradoNivelAlto"></div>
                 )}
-                {rowQuestion.level === 2 && (
+                {Number(rowQuestion.codLevel) === 2 && (
                   <div key={'colNivelMedio_' + rowQuestion.cod + indexQuestion} className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 cuadradoNivelMedio"></div>
                 )}
-                {rowQuestion.level === 1 && (
+                {Number(rowQuestion.codLevel) === 1 && (
                   <div key={'colNivelBajo_' + rowQuestion.cod + indexQuestion} className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 cuadradoNivelBajo"></div>
                 )}
             </div>
@@ -144,7 +145,7 @@ return (
                 {'- '}  &nbsp;
                 {rowQuestion.cod}
                 {'. '}
-                {rowQuestion.question} 
+                {rowQuestion.questionDescription} 
               </strong>
             </p>
           </div>
@@ -161,7 +162,7 @@ return (
                   <p key={'p' + rowQuestion.cod + indexQuestion + idAnswer} id={'p' + rowQuestion.cod + indexQuestion + idAnswer} className="respuesta"> 
                       <input className='radio' type="radio" data-cod={rowQuestion.cod} key={'op' + rowQuestion.cod + indexQuestion + idAnswer } id={'op' + idAnswer} name={indexQuestion} radioGroup={indexQuestion} disabled={DisableAnwers} data-respuesta={rowAnswer.valid} ></input>
                       &nbsp;
-                      <label className='answer' id={'lbl' + rowQuestion.cod + indexQuestion + idAnswer} key={'lbl' + rowQuestion.cod + indexQuestion + idAnswer} htmlFor={idAnswer} > {rowAnswer.text} </label>
+                      <label className='answer' id={'lbl' + rowQuestion.cod + indexQuestion + idAnswer} key={'lbl' + rowQuestion.cod + indexQuestion + idAnswer} htmlFor={idAnswer} > {rowAnswer.answerDescription} </label>
                       &nbsp;
                       {ShowValid && rowAnswer.valid &&(
                         <img key={'imgA'+ rowQuestion.cod + indexQuestion + idAnswer} id={'imgA'+ rowQuestion.cod + indexQuestion + idAnswer} className="imgA" title="Valida" alt="imagen correcta" border="0" width="10px" height="10px" ></img>
@@ -246,15 +247,11 @@ return (
 
       {QuestionLevels.map((item, idx ) => 
       {
-       return (
-        
-     
 
+       return (
               <div key={'divquestionlevel' + idx } className='col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-sm-1'>
-                <Button key={'btn' + item.description} variant={item.class} onClick={() => NewForm(item.cod)} > {item.description} </Button>{' '}
+                <Button key={'btn' + item.questionLevelDescription} variant={item.class} onClick={() => NewForm(item.cod)} > {item.questionLevelDescription} </Button>{' '}
               </div>
-            
- 
             );
       })}
 
@@ -280,7 +277,7 @@ return (
     <div className='row mb-3'>
       <div className='col-12'>
         <p className='align-items-center'> 
-          El puntaje obtenido por Ud. fue &nbsp;
+          El puntaje obtenido por Ud. es &nbsp;
             {CorrectAnwers} {' / Total Preguntas ' + Setting.questionperpage + ' / Necesarias para aprobar : ' + Setting.correctanswers }  
             &nbsp; 
             Respuestas correctas.
@@ -298,13 +295,13 @@ return (
     {FinalTestMessage.map((item, idx ) => 
     {
      return (
-              ( item.levels.filter(x => x.level === Level).length > 0 ) 
-              && (CorrectAnwers > item.answersrangemin)  
-              && (CorrectAnwers <= item.answersrangemax ) && (  
+              ( item.levels.filter(x => x.cod === Level).length > 0 ) 
+              && (CorrectAnwers > item.answersRangeMin)  
+              && (CorrectAnwers <= item.answersRangeMax ) && (  
               <div key={'divrow' + idx} className='row'>
                   <div key={'divcol' + idx} className='col-12' >
                     <p key={'p' + idx} className='align-items-center' > 
-                    { item.description }
+                    { item.finalTestMessageDescription }
                    </p>
                   </div>
               </div>

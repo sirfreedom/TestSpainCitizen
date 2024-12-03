@@ -1,9 +1,6 @@
-
-
-
 export const getQuestionLevels = async () =>
 {
-  let url = 'https://raw.githubusercontent.com/sirfreedom/TestSpainCitizen/main/spaintest.json';
+  let url = 'http://sirfreedom.somee.com/api/QuestionLevel?IdDependency=1';
   let res;
   let data = [];
   let tempdata = [];
@@ -11,7 +8,7 @@ export const getQuestionLevels = async () =>
   {
     res = await fetch(url);
     tempdata = await res.json().catch(err => console.log(err));
-    data = tempdata.questionlevels;
+    data = tempdata.questionLevels;
   }
   catch(ex){
     console.log(ex);
@@ -22,7 +19,7 @@ export const getQuestionLevels = async () =>
 
 export const getMessagesFinalTest = async () =>
 {
-  let url = 'https://raw.githubusercontent.com/sirfreedom/TestSpainCitizen/main/spaintest.json';
+  let url = 'http://sirfreedom.somee.com/api/FinalTestMessage?IdDependency=1';
   let res;
   let data = [];
   let tempdata = [];
@@ -42,16 +39,15 @@ export const getMessagesFinalTest = async () =>
 
 export const getSetting = async () =>
 {
-  let url = 'https://raw.githubusercontent.com/sirfreedom/TestSpainCitizen/main/spaintest.json';
+  let url = 'http://sirfreedom.somee.com/api/Setting?IdDependency=1';
   let res;
   let data = [];
   let tempdata = [];
-
   try 
   {
     res = await fetch(url);
     tempdata = await res.json().catch(err => console.log(err));
-    data = tempdata.settings[0];
+    data = tempdata.setting;
   }
   catch(ex){
     console.log(ex);
@@ -59,47 +55,24 @@ export const getSetting = async () =>
   return data;
 }
 
-export const getQuestions = async (id,questionlen) => 
+export const getQuestions = async (codlevel) => 
 {
-  let url = 'https://raw.githubusercontent.com/sirfreedom/TestSpainCitizen/main/spaintest.json';
+  let url = 'http://sirfreedom.somee.com/api/Question?IdDependency=1&CodLevel='+ codlevel;
   let res;
   let data = [];
   let tempdata = [];
-
-  let lIndex = [];
-  let lQuestion = [];
   try {
+
+  debugger;
   res = await fetch(url);
   tempdata = await res.json().catch(err => console.log(err));
-
-  if (id === 0){
-    data = tempdata.questions;
-  }
-
-  if (id > 0 ){
-    data = tempdata.questions.filter(x => x.level === id);    
-  }
-
-  while (lIndex.length < questionlen) 
-  {
-    let n;
-    n = Math.floor(Math.random() * (data.length - 0 + 1));
- 
-    if (lIndex.indexOf(n) === -1 )
-    {
-       lIndex.push(n);
-    }
-  }
-
-  for (let i in lIndex) {
-    lQuestion.push(data[lIndex[i]]);
-  }
+  data = tempdata.questions; 
 
   }
   catch(ex){
     console.log(ex);
   }
-  return lQuestion;
+  return data;
 }
 
 
