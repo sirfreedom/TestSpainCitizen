@@ -13,7 +13,7 @@ export const getQuestionLevels = async () =>
     data = tempdata.questionLevels;
   }
   catch(ex){
-    console.log(ex);
+    console.error('Error en get QuestionLevel',ex);
   }
   return data;
 }
@@ -32,43 +32,12 @@ export const getMessagesFinalTest = async () =>
     data = tempdata.finaltestmessage;
   }
   catch(ex){
-    console.log(ex);
+    console.error('Error en getMessageFinal',ex);
   }
   return data;
 }
 
-
-
-
-export const getSetting = async () => {
-  const url = 'http://sirfreedom.somee.com/api/Setting?IdDependency=1';
-  let data = [];
-
-  try {
-    const res = await fetch(url);
-
-    // Verifica si la respuesta es exitosa
-    if (!res.ok) {
-      throw new Error(`Error en la red: ${res.status} ${res.statusText}`);
-    }
-
-    const tempdata = await res.json();
-    
-    // Asegúrate de que 'setting' exista en la respuesta
-    if (tempdata && tempdata.setting) {
-      data = tempdata.setting;
-    } else {
-      console.warn('La propiedad "setting" no se encontró en la respuesta');
-    }
-  } catch (ex) {
-    console.error('Error al obtener la configuración:', ex);
-  }
-
-  return data;
-};
-
-
-export const getSetting1 = async () =>
+export const getSetting = async () =>
 {
   let url = 'http://sirfreedom.somee.com/api/Setting?IdDependency=1';
   let res;
@@ -81,7 +50,7 @@ export const getSetting1 = async () =>
     data = tempdata.setting;
   }
   catch(ex){
-    console.log(ex);
+    console.error('Error en getSetting',ex);
   }
   return data;
 }
@@ -105,7 +74,7 @@ export const getQuestions = async (codlevel) =>
 
   }
   catch(ex){
-    console.log(ex);
+    console.error('Error en getQuestion',ex);
   }
   return data;
 }
