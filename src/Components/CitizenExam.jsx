@@ -1,8 +1,6 @@
 import '../Css/App.css';
 import '../Css/bootstrap.min.css';
 import React, { useState,useEffect } from "react";
-
-
 import {getQuestions,getSetting ,getMessagesFinalTest,getQuestionLevels} from './Helpers';
 import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';

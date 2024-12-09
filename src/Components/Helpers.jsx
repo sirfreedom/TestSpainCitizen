@@ -1,5 +1,3 @@
-
-
 export const getQuestionLevels = async () =>
 {
   let url = 'https://sirfreedom.somee.com/api/QuestionLevel?IdDependency=1';
@@ -10,7 +8,7 @@ export const getQuestionLevels = async () =>
   {
     res = await fetch(url);
     tempdata = await res.json().catch(err => console.log(err));
-    data = tempdata.questionLevels;
+    data = tempdata.questionlevels;
   }
   catch(ex){
     console.error('Error en get QuestionLevel',ex);
@@ -48,6 +46,7 @@ export const getSetting = async () =>
     res = await fetch(url);
     tempdata = await res.json().catch(err => console.log(err));
     data = tempdata.setting;
+    debugger
   }
   catch(ex){
     console.error('Error en getSetting',ex);
