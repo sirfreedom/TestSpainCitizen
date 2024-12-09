@@ -2,7 +2,7 @@
 
 export const getQuestionLevels = async () =>
 {
-  let url = 'http://sirfreedom.somee.com/api/QuestionLevel?IdDependency=1';
+  let url = 'https://sirfreedom.somee.com/api/QuestionLevel?IdDependency=1';
   let res;
   let data = [];
   let tempdata = [];
@@ -21,7 +21,7 @@ export const getQuestionLevels = async () =>
 
 export const getMessagesFinalTest = async () =>
 {
-  let url = 'http://sirfreedom.somee.com/api/FinalTestMessage?IdDependency=1';
+  let url = 'https://sirfreedom.somee.com/api/FinalTestMessage?IdDependency=1';
   let res;
   let data = [];
   let tempdata = [];
@@ -39,7 +39,7 @@ export const getMessagesFinalTest = async () =>
 
 export const getSetting = async () =>
 {
-  let url = 'http://sirfreedom.somee.com/api/Setting?IdDependency=1';
+  let url = 'https://sirfreedom.somee.com/api/Setting?IdDependency=1';
   let res;
   let data = [];
   let tempdata = [];
@@ -56,18 +56,15 @@ export const getSetting = async () =>
 }
 
 
-
-
-
 export const getQuestions = async (codlevel) => 
 {
-  let url = 'http://sirfreedom.somee.com/api/Question?IdDependency=1&CodLevel='+ codlevel;
+  let url = 'https://sirfreedom.somee.com/api/Question?IdDependency=1&CodLevel='+ codlevel;
   let res;
   let data = [];
   let tempdata = [];
   try {
 
-  debugger;
+  
   res = await fetch(url);
   tempdata = await res.json().catch(err => console.log(err));
   data = tempdata.questions; 
