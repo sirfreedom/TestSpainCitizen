@@ -210,22 +210,21 @@ return (
       <div className='row justify-content-center' >
         <div className='col-12'>
           <p className='align-items-start' >
-            {Setting.instruction}
+              {Setting.instruction}
           </p>
 
           <a key="download" rel="noopener" href={Setting.downloadlink} >
-            {Setting.downloadtittle}
+              {Setting.downloadtittle}
           </a>
           <p>
-            Revisa las instrucciones antes del inicio del examen.  
+              {Setting.preinstructiontittle}
           </p>
         </div>
       </div>
       <div className='row justify-content-center'>
         <div className='col-12' >
           <p className='align-items-start'>
-            Este examen es a modo de prueba para saber sus conocimientos y poder practicar 
-            Suerte...
+              {Setting.preinstruction}
           </p>
         </div>
       </div>
