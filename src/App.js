@@ -30,34 +30,52 @@ function App() {
 
  return (
     <>
-        
-      <Modal key="modalwelcome" show={ShowWelcome} onHide={handleWelcomeClose} width="800px" >
-        <Modal.Header key="modalwelcome_header" closeButton>
-          <Modal.Title key="modalwelcome_tittle">
-          <p>
-            Login
-          </p>
-          </Modal.Title>
-          </Modal.Header>
-        <Modal.Body key="modalwelcome_body"> 
-     
-            <AuthLogin></AuthLogin>
+      <div className='container' >
+          
+          <div className='row'> 
+              <div className='col-12'>
 
-        </Modal.Body>
+              <Modal key="modalwelcome" show={ShowWelcome} onHide={handleWelcomeClose} width="800px" >
+              <Modal.Header key="modalwelcome_header" closeButton>
+                <Modal.Title key="modalwelcome_tittle">
+              <p>
+                Login
+              </p>
+              </Modal.Title>
+              </Modal.Header>
+              <Modal.Body key="modalwelcome_body"> 
+                <AuthLogin></AuthLogin>
+              </Modal.Body>
+              <Modal.Footer key="modalwelcome_footer">
+              </Modal.Footer>
+              </Modal>
 
-    <Modal.Footer key="modalwelcome_footer">
+              </div>
+          </div>
+          <div className='row'>
+              <div className='col-12'>
 
-    </Modal.Footer>
-    </Modal>
+              {
+              (IsAutenticated)
+              &&
+              <TestExam></TestExam>
+              }
 
-      {
-      (IsAutenticated)
-      &&
-        <>
-         <TestExam></TestExam>
-         <LogOut></LogOut>
-        </>
-      }
+              </div>
+              <div className='row'> 
+                  <div className='col-12'>
+                    {
+                    (IsAutenticated)
+                    &&
+                     <LogOut></LogOut>
+                    }
+                  </div>
+              </div>
+          </div>
+
+      </div>        
+
+
 
     </>
   );
