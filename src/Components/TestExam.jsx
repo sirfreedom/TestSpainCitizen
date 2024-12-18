@@ -1,12 +1,12 @@
 import '../Css/App.css';
 import '../Css/bootstrap.min.css';
 import React, { useState,useEffect } from "react";
-import {getQuestions,getSetting ,getMessagesFinalTest,getQuestionLevels} from './Helpers';
+import { getQuestions, getSetting , getMessagesFinalTest, getQuestionLevels } from './Helpers';
 import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-export const CitizenExam = () => {
+export const TestExam = () => {
     
     const [Test, setTest] = useState([]);
     const [ShowValid,setShowValid] = useState(false);
@@ -17,6 +17,7 @@ export const CitizenExam = () => {
     const [Setting, setSetting] = useState([]);
     const [FinalTestMessage,setFinalTestMessage] = useState([]);
     const [QuestionLevels,setQuestionLevels] = useState([]);
+    
   
     const [ShowWelcome, setShowWelcome] = useState(false);
     const handleWelcomeClose = () => setShowWelcome(false);
@@ -26,7 +27,6 @@ export const CitizenExam = () => {
 
     useEffect(() => 
     {
-
         setShowWelcome(true);
         
         getSetting().then(data => {
@@ -92,7 +92,6 @@ export const CitizenExam = () => {
       });
     }
 
-
 return (
 <>
 
@@ -120,7 +119,7 @@ return (
             <div  key={'rowNivelCuadrado_' + rowQuestion.cod + indexQuestion } className='row justify-content-start' >
 
                 {Number(rowQuestion.codLevel) === 3 && (
-                  <div key={'colNivelAlto_'+ rowQuestion.cod + indexQuestion} className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-lg-1 cuadradoNivelAlto"></div>
+                  <div key={'colNivelAlto_'+ rowQuestion.cod + indexQuestion} className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 cuadradoNivelAlto"></div>
                 )}
                 {Number(rowQuestion.codLevel) === 2 && (
                   <div key={'colNivelMedio_' + rowQuestion.cod + indexQuestion} className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 cuadradoNivelMedio"></div>
@@ -128,6 +127,7 @@ return (
                 {Number(rowQuestion.codLevel) === 1 && (
                   <div key={'colNivelBajo_' + rowQuestion.cod + indexQuestion} className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 cuadradoNivelBajo"></div>
                 )}
+
             </div>
 
             <div className='row'>
@@ -195,7 +195,7 @@ return (
 
   { !IsSelectQuestion  &&  
   (
-    <Button variant="primary" onClick={ () => setShowWelcome(true)} > Iniciar un nuevo Examen </Button>
+    <Button id='btnInit' key='btnInit' variant="primary" onClick={ () => setShowWelcome(true)} > Iniciar un nuevo Examen </Button>
   )}
 
 <Modal key="modalwelcome" show={ShowWelcome} onHide={handleWelcomeClose}>
@@ -328,4 +328,4 @@ return (
     
 )}
 
-export default CitizenExam
+export default TestExam

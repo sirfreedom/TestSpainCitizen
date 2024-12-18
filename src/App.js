@@ -1,14 +1,65 @@
 import './Css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import React from 'react';
-import CitizenExam from './Components/CitizenExam';
+import React, { useState,useEffect } from "react";
+import TestExam from './Components/TestExam';
+import AuthLogin from './Components/AuthLogin';
+import LogOut from './Components/LogOut';
+import Modal from 'react-bootstrap/Modal';
 
 
 function App() {
 
+  const [ShowWelcome, setShowWelcome] = useState(true);
+  const [IsAutenticated,setIsAutenticated] = useState(false);
+  
+  const handleWelcomeClose = () =>
+  { 
+    setShowWelcome(!IsAutenticated);
+  }
+
+
+  useEffect(() => 
+  {
+    let token = '';
+    token = localStorage.getItem('token');
+    setShowWelcome((token === null)); 
+    setIsAutenticated((token !== null))
+
+  }, [localStorage.getItem('token')]);
+
+
  return (
     <>
-        <CitizenExam></CitizenExam>
+        
+      <Modal key="modalwelcome" show={ShowWelcome} onHide={handleWelcomeClose} width="800px" >
+        <Modal.Header key="modalwelcome_header" closeButton>
+          <Modal.Title key="modalwelcome_tittle">
+          <p>
+            Login
+          </p>
+          </Modal.Title>
+          </Modal.Header>
+        <Modal.Body key="modalwelcome_body"> 
+     
+            <AuthLogin></AuthLogin>
+
+        </Modal.Body>
+
+    <Modal.Footer key="modalwelcome_footer">
+
+    </Modal.Footer>
+    </Modal>
+
+      {
+      (IsAutenticated)
+      &&
+      <div>
+        <TestExam></TestExam>
+        <LogOut></LogOut>
+      </div>
+      }
+
+
     </>
   );
 }

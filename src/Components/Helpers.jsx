@@ -1,13 +1,14 @@
+
 export const getQuestionLevels = async () =>
 {
   let url = 'https://sirfreedom.somee.com/api/QuestionLevel?IdDependency=1';
-  let res;
+  let response;
   let data = [];
   let tempdata = [];
   try 
   {
-    res = await fetch(url);
-    tempdata = await res.json().catch(err => console.log(err));
+    response = await fetch(url);
+    tempdata = await response.json().catch(err => console.log(err));
     data = tempdata.questionlevels;
   }
   catch(ex){
@@ -20,13 +21,13 @@ export const getQuestionLevels = async () =>
 export const getMessagesFinalTest = async () =>
 {
   let url = 'https://sirfreedom.somee.com/api/FinalTestMessage?IdDependency=1';
-  let res;
+  let response;
   let data = [];
   let tempdata = [];
   try 
   {
-    res = await fetch(url);
-    tempdata = await res.json().catch(err => console.log(err));
+    response = await fetch(url);
+    tempdata = await response.json().catch(err => console.log(err));
     data = tempdata.finaltestmessage;
   }
   catch(ex){
@@ -38,15 +39,14 @@ export const getMessagesFinalTest = async () =>
 export const getSetting = async () =>
 {
   let url = 'https://sirfreedom.somee.com/api/Setting?IdDependency=1';
-  let res;
+  let response;
   let data = [];
   let tempdata = [];
   try 
   {
-    res = await fetch(url);
-    tempdata = await res.json().catch(err => console.log(err));
+    response = await fetch(url);
+    tempdata = await response.json().catch(err => console.log(err));
     data = tempdata.setting;
-    debugger
   }
   catch(ex){
     console.error('Error en getSetting',ex);
@@ -58,16 +58,13 @@ export const getSetting = async () =>
 export const getQuestions = async (codlevel) => 
 {
   let url = 'https://sirfreedom.somee.com/api/Question?IdDependency=1&CodLevel='+ codlevel;
-  let res;
+  let response;
   let data = [];
   let tempdata = [];
   try {
-
-  
-  res = await fetch(url);
-  tempdata = await res.json().catch(err => console.log(err));
+  response = await fetch(url);
+  tempdata = await response.json().catch(err => console.log(err));
   data = tempdata.questions; 
-
   }
   catch(ex){
     console.error('Error en getQuestion',ex);
@@ -76,6 +73,62 @@ export const getQuestions = async (codlevel) =>
 }
 
 
+export const getJasoWebToken = async (user, pass) => 
+{
+  let data = [];
+  let token = '';
+  let response;
+  try 
+  {
+      response = await fetch('https://sirfreedom.somee.com/Account/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: user,
+        password: pass,
+      }),
+    });
+
+    if (response.status == 200)
+    {
+      data = await response.json();
+      token = data.jwtToken;
+    }
+
+  } catch (ex) 
+  {
+    console.error('Error en getQuestion',ex);
+  }
+  return token;
+}
 
 
+export const getTest = async (token) => 
+  {
+    //let response;
+    let data;
+    try 
+    {
+      data = await fetch('https://sirfreedom.somee.com/api/Values/jwt', 
+      {
+        headers: { Authorization: 'Bearer ' + token }
+      }).then(response => 
+      {
+        if (response.status != 200) 
+        {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      });
 
+      //JSON.stringify(result)
+  
+    } 
+    catch (ex) 
+    {
+      console.error('Error en getQuestion',ex);
+    }
+    return data;
+  }
