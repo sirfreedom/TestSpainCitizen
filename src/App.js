@@ -65,8 +65,6 @@ function App() {
               <LogOut></LogOut>
             </div>
         </div>
-
-        
         
       </div>
       }
