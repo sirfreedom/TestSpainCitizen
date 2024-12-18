@@ -53,12 +53,23 @@ function App() {
       {
       (IsAutenticated)
       &&
-      <div>
-        <TestExam></TestExam>
-        <LogOut></LogOut>
+      <div >
+
+        <div className='row'>
+            <div className='col-12'>
+              <TestExam></TestExam>
+            </div>
+        </div>
+        <div className='row'>
+            <div className='col-12'>
+              <LogOut></LogOut>
+            </div>
+        </div>
+
+        
+        
       </div>
       }
-
 
     </>
   );
