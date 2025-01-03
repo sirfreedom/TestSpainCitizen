@@ -1,7 +1,7 @@
 
 export const getQuestionLevels = async () =>
 {
-  let url = 'http://sircode.somee.com/api/QuestionLevel?IdDependency=1';
+  let url = 'https://sirfreedom.somee.com/api/QuestionLevel?IdDependency=1';
   let response;
   let data = [];
   let tempdata = [];
@@ -20,7 +20,7 @@ export const getQuestionLevels = async () =>
 
 export const getMessagesFinalTest = async () =>
 {
-  let url = 'http://sircode.somee.com/api/FinalTestMessage?IdDependency=1';
+  let url = 'https://sirfreedom.somee.com/api/FinalTestMessage?IdDependency=1';
   let response;
   let data = [];
   let tempdata = [];
@@ -38,7 +38,7 @@ export const getMessagesFinalTest = async () =>
 
 export const getSetting = async () =>
 {
-  let url = 'http://sircode.somee.com/api/Setting?IdDependency=1';
+  let url = 'https://sirfreedom.somee.com/api/Setting?IdDependency=1';
   let response;
   let data = [];
   let tempdata = [];
@@ -57,7 +57,7 @@ export const getSetting = async () =>
 
 export const getQuestions = async (codlevel) => 
 {
-  let url = 'http://sircode.somee.com/api/Question?IdDependency=1&CodLevel='+ codlevel;
+  let url = 'https://sirfreedom.somee.com/api/Question?IdDependency=1&CodLevel='+ codlevel;
   let response;
   let data = [];
   let tempdata = [];
@@ -80,7 +80,8 @@ export const getJasoWebToken = async (user, pass) =>
   let response;
   try 
   {
-      response = await fetch('http://sircode.somee.com/Account/login', {
+      debugger;
+      response = await fetch('https://sirfreedom.somee.com/Account/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -111,7 +112,7 @@ export const getTest = async (token) =>
     let data;
     try 
     {
-      data = await fetch('http://sircode.somee.com/api/Values/jwt', 
+      data = await fetch('https://sirfreedom.somee.com/api/Values/jwt', 
       {
         headers: { Authorization: 'Bearer ' + token }
       }).then(response => 
