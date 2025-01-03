@@ -6,7 +6,6 @@ import AuthLogin from './Components/AuthLogin';
 import LogOut from './Components/LogOut';
 import Modal from 'react-bootstrap/Modal';
 
-
 function App() {
 
   const [ShowWelcome, setShowWelcome] = useState(true);
@@ -44,7 +43,9 @@ function App() {
               </Modal.Title>
               </Modal.Header>
               <Modal.Body key="modalwelcome_body"> 
-                <AuthLogin></AuthLogin>
+                <div>
+                    <AuthLogin></AuthLogin>
+                </div>
               </Modal.Body>
               <Modal.Footer key="modalwelcome_footer">
               </Modal.Footer>
@@ -58,7 +59,9 @@ function App() {
               {
               (IsAutenticated)
               &&
-              <TestExam></TestExam>
+              <div>
+                  <TestExam></TestExam>
+              </div>
               }
 
               </div>
@@ -67,7 +70,7 @@ function App() {
                     {
                     (IsAutenticated)
                     &&
-                     <LogOut></LogOut>
+                        <LogOut></LogOut>
                     }
                   </div>
               </div>
