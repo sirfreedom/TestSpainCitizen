@@ -80,15 +80,16 @@ export const getJasoWebToken = async (user, pass) =>
   let response;
   try 
   {
-      debugger;
       response = await fetch('https://sirfreedom.somee.com/Account/login', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+      headers: 
+      {
+          'Content-Type': 'application/json',
       },
+      credentials: 'include',
       body: JSON.stringify({
-        username: user,
-        password: pass,
+        user: user,
+        pass: pass,
       }),
     });
 
@@ -106,9 +107,8 @@ export const getJasoWebToken = async (user, pass) =>
 }
 
 
-export const getTest = async (token) => 
+export const getCredencials = async (token) => 
   {
-    //let response;
     let data;
     try 
     {
@@ -124,8 +124,6 @@ export const getTest = async (token) =>
         return response.json();
       });
 
-      //JSON.stringify(result)
-  
     } 
     catch (ex) 
     {

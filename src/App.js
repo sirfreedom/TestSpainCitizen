@@ -2,82 +2,41 @@ import './Css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { useState,useEffect } from "react";
 import TestExam from './Components/TestExam';
-
-
+import { getJasoWebToken} from './Components/Helpers';
 
 function App() {
 
-  const [ShowWelcome, setShowWelcome] = useState(true);
-  const [IsAutenticated,setIsAutenticated] = useState(false);
-  
-  const handleWelcomeClose = () =>
-  { 
-    setShowWelcome(!IsAutenticated);
+  const handleLogin = async () => {
+    let sResult = '';
+    let token = '';
+
+    token = localStorage.getItem('token');
+
+    if(token !== ''){
+      sResult = await getJasoWebToken("admin","1234");
+      localStorage.setItem('token', JSON.stringify(sResult));
+      console.log('get token');
+      console.log(sResult);
+    }
+    
   }
 
   useEffect(() => 
   {
-    let token = '';
-    token = localStorage.getItem('token');
-    setShowWelcome((token === null)); 
-    setIsAutenticated((token !== null))
-
-  }, [localStorage.getItem('token')]);
+    handleLogin();
+  }, []);
 
 
  return (
     <>
       <div className='container' >
-        {/*  
-          <div className='row'> 
-
-        
-              <div className='col-12'>
-
-              <Modal key="modalwelcome" show={ShowWelcome} onHide={handleWelcomeClose} width="800px" >
-              <Modal.Header key="modalwelcome_header" closeButton>
-                <Modal.Title key="modalwelcome_tittle">
-              <p>
-                Login
-              </p>
-              </Modal.Title>
-              </Modal.Header>
-              <Modal.Body key="modalwelcome_body"> 
-                <div>
-                    <AuthLogin></AuthLogin>
-                </div>
-              </Modal.Body>
-              <Modal.Footer key="modalwelcome_footer">
-              </Modal.Footer>
-              </Modal>
-        
-
-           </div>
-          </div>
-          */}
 
           <div className='row'>
               <div className='col-12'>
-
-        
             
-                  <TestExam></TestExam>
-             
-              
+                <TestExam></TestExam>
 
               </div>
-
-              {/*
-              <div className='row'> 
-                  <div className='col-12'>
-                    {
-                    (IsAutenticated)
-                    &&
-                        <LogOut></LogOut>
-                    }
-                  </div>
-              </div>
-              */}
           </div>
 
       </div>        
