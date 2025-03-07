@@ -2,9 +2,8 @@ import './Css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { useState,useEffect } from "react";
 import TestExam from './Components/TestExam';
-import AuthLogin from './Components/AuthLogin';
-import LogOut from './Components/LogOut';
-import Modal from 'react-bootstrap/Modal';
+
+
 
 function App() {
 
@@ -15,7 +14,6 @@ function App() {
   { 
     setShowWelcome(!IsAutenticated);
   }
-
 
   useEffect(() => 
   {
@@ -30,8 +28,10 @@ function App() {
  return (
     <>
       <div className='container' >
-          
+        {/*  
           <div className='row'> 
+
+        
               <div className='col-12'>
 
               <Modal key="modalwelcome" show={ShowWelcome} onHide={handleWelcomeClose} width="800px" >
@@ -50,21 +50,24 @@ function App() {
               <Modal.Footer key="modalwelcome_footer">
               </Modal.Footer>
               </Modal>
+        
 
-              </div>
+           </div>
           </div>
+          */}
+
           <div className='row'>
               <div className='col-12'>
 
-              {
-              (IsAutenticated)
-              &&
-              <div>
+        
+            
                   <TestExam></TestExam>
-              </div>
-              }
+             
+              
 
               </div>
+
+              {/*
               <div className='row'> 
                   <div className='col-12'>
                     {
@@ -74,6 +77,7 @@ function App() {
                     }
                   </div>
               </div>
+              */}
           </div>
 
       </div>        
