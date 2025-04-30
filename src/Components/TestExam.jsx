@@ -34,11 +34,11 @@ export const TestExam = () => {
         setShowWelcome(true);
 
         getSetting().then(data => {
-          setSetting(data.setting);
+          setSetting(data);
         });
 
         ListQuestionLevels().then(data => {
-          setQuestionLevels(data.questionlevels);
+          setQuestionLevels(data);
         });
 
     }, []);
@@ -93,7 +93,7 @@ export const TestExam = () => {
       setIsSelectQuestion(true);
       setLevel(iLevel);
       ListQuestion(iLevel).then(lTest => {
-        setTest(lTest.questions);
+        setTest(lTest);
       });
     }
 

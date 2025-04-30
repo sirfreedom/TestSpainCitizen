@@ -5,12 +5,12 @@ export const ListQuestion = async (codLevel) =>
 {
 let data;
 let tempdata;
-let url = "https://sircode.somee.com/api/Question";
-const param = [ { clave: "IdDependency", valor: 1 }, { clave: "CodLevel", valor: codLevel } ];
+let url = 'api/Question';
+const param = [ { clave: 'IdDependency', valor: 1 }, { clave: 'CodLevel', valor: codLevel } ];
 try 
 {
-    tempdata = FillAnonimousFromParameter(url,param);
-    data = tempdata;
+    tempdata = await FillAnonimousFromParameter(url,param);
+    data = tempdata.questions;
 }
 catch(ex)
 {
