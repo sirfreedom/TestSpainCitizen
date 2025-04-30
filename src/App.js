@@ -2,22 +2,22 @@ import './Css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { useState,useEffect } from "react";
 import TestExam from './Components/TestExam';
-import { getJasoWebToken} from './Components/Helpers';
+//import { getJasoWebToken} from './Components/Helpers';
 
 function App() {
 
   const handleLogin = async () => {
-    let sResult = '';
-    let token = '';
+    //let sResult = '';
+    //let token = '';
 
-    token = localStorage.getItem('token');
+    //token = localStorage.getItem('token');
 
-    if(token !== ''){
-      sResult = await getJasoWebToken("admin","1234");
-      localStorage.setItem('token', JSON.stringify(sResult));
-      console.log('get token');
-      console.log(sResult);
-    }
+    //if(token !== ''){
+    //  sResult = await getJasoWebToken("admin","1234");
+    //  localStorage.setItem('token', JSON.stringify(sResult));
+    //  console.log('get token');
+    //  console.log(sResult);
+    // }
     
   }
 

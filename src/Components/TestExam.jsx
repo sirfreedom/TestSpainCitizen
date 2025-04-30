@@ -1,10 +1,14 @@
 import '../Css/App.css';
 import '../Css/bootstrap.min.css';
 import React, { useState,useEffect } from "react";
-import { getQuestions, getSetting , getMessagesFinalTest, getQuestionLevels } from './Helpers';
 import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { ListFinalTestMessage } from '../Api/FinalTestMessageHelper';
+import { getSetting } from '../Api/SettingHelper';
+import { ListQuestionLevels } from '../Api/QuestionLevelHelper';
+import { ListQuestion } from '../Api/QuestionHelper';
+
 
 export const TestExam = () => {
     
@@ -28,17 +32,18 @@ export const TestExam = () => {
     useEffect(() => 
     {
         setShowWelcome(true);
-        
+
         getSetting().then(data => {
-          setSetting(data);
+          setSetting(data.setting);
         });
 
-        getQuestionLevels().then(data => {
-          setQuestionLevels(data);
+        ListQuestionLevels().then(data => {
+          setQuestionLevels(data.questionlevels);
         });
 
     }, []);
     
+
 
     const ValidQuestion = () => 
     {
@@ -69,7 +74,7 @@ export const TestExam = () => {
             setDisableAnwers(true);
             setIsSelectQuestion(false);
 
-            getMessagesFinalTest().then(data => {
+            ListFinalTestMessage().then(data => {
               setFinalTestMessage(data);
             });
     
@@ -87,8 +92,8 @@ export const TestExam = () => {
       setShowWelcome(false);
       setIsSelectQuestion(true);
       setLevel(iLevel);
-      getQuestions(iLevel).then(lTest => {
-        setTest(lTest);
+      ListQuestion(iLevel).then(lTest => {
+        setTest(lTest.questions);
       });
     }
 
@@ -187,7 +192,7 @@ return (
 
 <div className='row justify-content-center mt-2 mb-3' >
   <div className='col-12'>
-      {IsSelectQuestion && !ShowValid &&(
+      {IsSelectQuestion && !ShowValid && (
       <Button key="btnValidQuestion" variant="success" onClick={ValidQuestion} > Completar el Examen </Button>
       )}
   </div>

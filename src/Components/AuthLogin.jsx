@@ -2,6 +2,7 @@ import React from 'react';
 import {MDBContainer, MDBCol, MDBRow, MDBBtn, MDBInput  } from 'mdb-react-ui-kit';
 import { getJasoWebToken} from './Helpers';
 
+
 const AuthLogin = () => {
 
 
@@ -70,7 +71,7 @@ const AuthLogin = () => {
      <MDBContainer fluid className="p-1 my-2 h-custom">
         <MDBRow>
           <MDBCol col='12' md='12'>
-            <MDBInput id='txtUser' key='txtUser' wrapperClass='mb-8' label='Email address' type='email' size="lg"/>
+            <MDBInput id='txtUser' key='txtUser' wrapperClass='mb-8' label='Email address' type='email'  size="lg"/>
             <MDBInput id='txtPass' key='txtPass' wrapperClass='mb-8' label='Password' type='password' size="lg"/>
               <div className='text-end text-md-end mt-4 pt-1'>
               <MDBBtn id='btnLogin' key='btnLogin' className="mb-0 px-5" size='lg' onClick={handleLogin} >Login</MDBBtn>
