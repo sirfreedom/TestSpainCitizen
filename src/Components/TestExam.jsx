@@ -9,7 +9,6 @@ import { getSetting } from '../Api/SettingHelper';
 import { ListQuestionLevels } from '../Api/QuestionLevelHelper';
 import { ListQuestion } from '../Api/QuestionHelper';
 
-
 export const TestExam = () => {
     
     const [Test, setTest] = useState([]);
@@ -21,7 +20,6 @@ export const TestExam = () => {
     const [Setting, setSetting] = useState([]);
     const [FinalTestMessage,setFinalTestMessage] = useState([]);
     const [QuestionLevels,setQuestionLevels] = useState([]);
-    
   
     const [ShowWelcome, setShowWelcome] = useState(false);
     const handleWelcomeClose = () => setShowWelcome(false);
@@ -31,6 +29,8 @@ export const TestExam = () => {
 
     useEffect(() => 
     {
+      try{
+
         setShowWelcome(true);
 
         getSetting().then(data => {
@@ -41,9 +41,13 @@ export const TestExam = () => {
           setQuestionLevels(data);
         });
 
+      }
+      catch(e){
+        console.log(e.message);
+      }
+
     }, []);
     
-
 
     const ValidQuestion = () => 
     {

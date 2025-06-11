@@ -1,5 +1,5 @@
 
-const BASEURL = 'https://sircode.somee.com/';
+const BASEURL = 'http://sirfreedom.somee.com/';
 
 function toQueryString(params) 
 {
