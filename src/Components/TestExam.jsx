@@ -29,8 +29,6 @@ export const TestExam = () => {
 
     useEffect(() => 
     {
-      try{
-
         setShowWelcome(true);
 
         getSetting().then(data => {
@@ -40,11 +38,6 @@ export const TestExam = () => {
         ListQuestionLevels().then(data => {
           setQuestionLevels(data);
         });
-
-      }
-      catch(e){
-        console.log(e.message);
-      }
 
     }, []);
     

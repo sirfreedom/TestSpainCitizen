@@ -1,7 +1,9 @@
 import './Css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import React, { useState,useEffect } from "react";
+import React, { useEffect } from "react";
 import TestExam from './Components/TestExam';
+import Prueba from './Components/Prueba';
+
 //import { getJasoWebToken} from './Components/Helpers';
 
 function App() {
@@ -34,7 +36,8 @@ function App() {
           <div className='row'>
               <div className='col-12'>
             
-                <TestExam></TestExam>
+              <Prueba></Prueba>
+
 
               </div>
           </div>

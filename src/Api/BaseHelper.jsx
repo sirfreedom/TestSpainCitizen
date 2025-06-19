@@ -1,12 +1,22 @@
 
-const BASEURL = 'http://sirfreedom.somee.com/';
+const BASEURL = 'https://sirfreedom.somee.com/';
 
-function toQueryString(params) 
-{
-return params.map(({ clave, valor }) => 
-  { const valorStr = Array.isArray(valor) ? valor.join(',') : valor; 
-    return encodeURIComponent(clave) + '=' + encodeURIComponent(valorStr);
-  }).join('&');
+function toQueryString(params) {
+  let sReturn = '';
+  try {
+    if (Array.isArray(params)) {
+      sReturn = params.map(({ clave, valor }) => {
+        const valorStr = Array.isArray(valor) ? valor.join(',') : valor;
+        return encodeURIComponent(clave) + '=' + encodeURIComponent(valorStr);
+      }).join('&');
+    } else {
+      // Si params no es un array, retornamos cadena vacía o puedes lanzar un error si prefieres
+      sReturn = '';
+    }
+  } catch (ex) {
+    console.error('Error en toQueryString', ex);
+  }
+  return sReturn;
 }
 
 export const FillWithLoginFromBody = async (Url,DataRequest,Method,Token ) => 
@@ -72,7 +82,7 @@ export const FillAnonimousFromBody = async (Url,DataRequest,Method ) =>
 /*
   const param = [ { clave: "IdDependency", valor: 1 } ];
 */
-export const FillAnonimousFromParameter = async (Url, lParam) =>
+export const FillAnonimousFromParameter = async (Url,lParam,Method) =>
 {
 let response;
 let data = [];
@@ -80,12 +90,17 @@ let Parameters;
 try 
 {
 Parameters = toQueryString(lParam);
-response = await fetch(BASEURL + Url + '?' + Parameters );
+response = await fetch(BASEURL + Url + '?' + Parameters, 
+{
+  method: Method,
+  headers: 
+  { 'Content-Type': 'application/json',  },  credentials: 'include'
+});
 data = await response.json().catch(err => console.log(err));
 }
 catch(ex)
 {
-  console.error('Error en get QuestionLevel',ex);
+  console.error('Error Fill Anonimous From Parameter',ex);
 }
 return data;
 }
