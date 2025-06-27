@@ -1,16 +1,31 @@
 import '../Css/App.css';
 import '../Css/bootstrap.min.css';
-import React from "react";
 import Button from 'react-bootstrap/Button';
 import { GetTestMethod } from '../Api/PruebaHelper';
 import { PutTestMethod } from '../Api/PruebaHelper';
 import { PostTestMethod } from '../Api/PruebaHelper';
 import { DeleteTestMethod } from '../Api/PruebaHelper';
 import { PatchTestMethod } from '../Api/PruebaHelper';
+import { getToken } from '../Api/PruebaHelper';
+
 
 export const Prueba = () => {
 
-        const TestMethod1 = () => 
+
+
+        const TestMethodLogin = () => 
+        {
+            let sResult;
+
+            sResult = getToken();
+
+            console.log('Login');
+            console.log(sResult);
+            localStorage.setItem('token',sResult);
+        }
+
+
+        const TestMethodGet = () => 
         {
             let lGetReturn;
 
@@ -20,17 +35,19 @@ export const Prueba = () => {
             console.log(lGetReturn);
         }
 
-        const TestMethod2 = () => 
+        const TestMethodPut = () => 
         {
             let lPutReturn;
+            let sToken;
 
-            //console.log("Prueba put");
-            lPutReturn = PutTestMethod();
+            sToken = localStorage.getItem('token');
+
+            lPutReturn = PutTestMethod(sToken);
             console.log('Put')
             console.log(lPutReturn);
         }
 
-        const TestMethod3 = () => 
+        const TestMethodPost = () => 
         {
             let lPostReturn;
 
@@ -40,7 +57,7 @@ export const Prueba = () => {
             console.log(lPostReturn);
         }
 
-        const TestMethod4 = () => 
+        const TestMethodDelete = () => 
         {
             let lDeleteReturn;
             lDeleteReturn = DeleteTestMethod();
@@ -50,7 +67,7 @@ export const Prueba = () => {
         }
 
 
-        const TestMethod5 = () => 
+        const TestMethodPatch = () => 
         {
 
             let lPatchReturn;
@@ -64,26 +81,30 @@ export const Prueba = () => {
         return (
         <>
 
-        <Button key="modalfinish_btnGet" variant="secondary" onClick={TestMethod1}>
+        <Button key="modalfinish_btnLogin" variant="secondary" onClick={TestMethodLogin}>
+         Login
+        </Button>
+
+        <Button key="modalfinish_btnGet" variant="secondary" onClick={TestMethodGet}>
          Prueba Test Get
         </Button>
         
-        <Button key="modalfinish_btnPut" variant="secondary" onClick={TestMethod2}>
+        <Button key="modalfinish_btnPut" variant="secondary" onClick={TestMethodPut}>
          Prueba Test Put
         </Button>
 
         
-        <Button key="modalfinish_btnpost" variant="secondary" onClick={TestMethod3}>
+        <Button key="modalfinish_btnpost" variant="secondary" onClick={TestMethodPost}>
          Prueba Test Post
         </Button>
 
                 
-        <Button key="modalfinish_btnDelete" variant="secondary" onClick={TestMethod4}>
+        <Button key="modalfinish_btnDelete" variant="secondary" onClick={TestMethodDelete}>
          Prueba Test Delete
         </Button>
 
                 
-        <Button key="modalfinish_btnPatch" variant="secondary" onClick={TestMethod5}>
+        <Button key="modalfinish_btnPatch" variant="secondary" onClick={TestMethodPatch}>
          Prueba Test Patch
         </Button>
 

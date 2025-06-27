@@ -5,19 +5,22 @@ function toQueryString(params) {
   let sReturn = '';
   try {
     if (Array.isArray(params)) {
-      sReturn = params.map(({ clave, valor }) => {
-        const valorStr = Array.isArray(valor) ? valor.join(',') : valor;
-        return encodeURIComponent(clave) + '=' + encodeURIComponent(valorStr);
-      }).join('&');
+      sReturn = params.map(obj => 
+        Object.entries(obj)
+          .map(([key, value]) => 
+            encodeURIComponent(key) + '=' + encodeURIComponent(Array.isArray(value) ? value.join(',') : value)
+          ).join('&')
+      ).join('&');
     } else {
-      // Si params no es un array, retornamos cadena vacía o puedes lanzar un error si prefieres
       sReturn = '';
     }
   } catch (ex) {
     console.error('Error en toQueryString', ex);
   }
+  console.log(sReturn);
   return sReturn;
 }
+
 
 export const FillWithLoginFromBody = async (Url,DataRequest,Method,Token ) => 
 {
@@ -28,12 +31,12 @@ export const FillWithLoginFromBody = async (Url,DataRequest,Method,Token ) =>
   response = await fetch(BASEURL + Url, 
   {
   method: Method,
+  credentials: 'include',
   headers: 
   { 
   'Content-Type': 'application/json',  Authorization: 'Bearer ' + Token   
   },
-  credentials: 'include',
-  body: JSON.stringify(DataRequest)
+    body: JSON.stringify(DataRequest)
   });
 
     if (response.status === 200)
@@ -58,11 +61,11 @@ export const FillAnonimousFromBody = async (Url,DataRequest,Method ) =>
   {
   response = await fetch(BASEURL + Url, {
   method: Method,
+  credentials: 'include',
   headers: 
   {
     'Content-Type': 'application/json',
   },
-  credentials: 'include',
   body: JSON.stringify(DataRequest)
   });
     
@@ -93,8 +96,9 @@ Parameters = toQueryString(lParam);
 response = await fetch(BASEURL + Url + '?' + Parameters, 
 {
   method: Method,
+  credentials: 'include',
   headers: 
-  { 'Content-Type': 'application/json',  },  credentials: 'include'
+  { 'Content-Type': 'application/json',  }
 });
 data = await response.json().catch(err => console.log(err));
 }
@@ -103,7 +107,7 @@ catch(ex)
   console.error('Error Fill Anonimous From Parameter',ex);
 }
 return data;
-}
+};
 
 
    

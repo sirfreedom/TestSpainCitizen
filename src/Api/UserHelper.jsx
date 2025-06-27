@@ -7,6 +7,7 @@ export const getToken = async (User, Pass) =>
     let data;
     try 
     {
+        debugger;
         data = FillAnonimousFromBody('Account/login',{ user: User, pass: Pass },'POST');
     } 
     catch (ex) 

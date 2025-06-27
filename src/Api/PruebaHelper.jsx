@@ -1,16 +1,32 @@
 import { FillAnonimousFromBody } from './BaseHelper';
 import { FillAnonimousFromParameter } from './BaseHelper';
+import { FillWithLoginFromBody } from './BaseHelper';
+
+
+export const getToken = async () => 
+{
+    let data;
+    try 
+    {
+        data = await FillAnonimousFromBody('Account/login',{ user: 'admin', pass: '1234' },'POST');
+    } 
+    catch (ex) 
+    {
+    console.error('Error en get token',ex);
+    }
+    return data.jwtToken;
+}
+
 
 export const GetTestMethod = async () =>
 {
 let data;
 let tempdata = [];
-let param = '';
-let UrlGet = 'api/Values';
+let UrlGet = 'api/Setting';
+let param = [ { IdDependency: 1 } ];
 try 
 {
-    tempdata = await FillAnonimousFromParameter(UrlGet,param,'GET');
-    data = tempdata;
+    data = await FillAnonimousFromParameter(UrlGet,param,'GET');
 }
 catch(ex)
 {
@@ -19,16 +35,15 @@ catch(ex)
     return data;
 }
 
-export const PutTestMethod = async () =>
+export const PutTestMethod = async (token) =>
 {
 let data;
-let tempdata = [];
-let UrlPut = 'api/Values';
-const param = [ { id: 1, descripcion: 'manzana' } ];
+let UrlPut = 'api/Setting';
+const param = { "tittle": "manzanaPut" } ;
+let sLogin;
 try 
 {
-    tempdata = await FillAnonimousFromBody(UrlPut,param,'PUT');
-    data = tempdata;
+    data = await FillWithLoginFromBody(UrlPut,param,'PUT',token);
 }
 catch(ex)
 {
@@ -41,8 +56,8 @@ export const PostTestMethod = async () =>
 {
 let data;
 let tempdata = [];
-let UrlPost = 'api/Values/PostTest1';
-const param = [ { id: 1, descripcion: 'manzana' } ];
+let UrlPost = 'api/Setting';
+const param = { "tittle": "manzanaPost" } ;
 try 
 {
     tempdata = await FillAnonimousFromBody(UrlPost,param,'POST');
@@ -58,13 +73,11 @@ catch(ex)
 export const DeleteTestMethod = async () =>
 {
 let data;
-let tempdata = [];
-let UrlDelete = 'api/Values/DeleteTest1';
-const param = [ { id: 1 } ];
+let UrlDelete = 'api/Setting';
+const param = [ { "Id" : 234 } ];
 try 
 {
-    tempdata = await FillAnonimousFromParameter(UrlDelete,param,'DELETE');
-    data = tempdata;
+    data = await FillAnonimousFromParameter(UrlDelete,param,'DELETE');
 }
 catch(ex)
 {
@@ -77,7 +90,7 @@ export const PatchTestMethod = async () =>
 {
 let data;
 let tempdata = [];
-let UrlPatch = 'api/Values/PatchTest1';
+let UrlPatch = 'api/Values/PatchTest';
 const param = [ { id: 1, descripcion: 'manzana' } ];
 try 
 {
