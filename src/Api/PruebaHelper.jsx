@@ -40,7 +40,6 @@ export const PutTestMethod = async (token) =>
 let data;
 let UrlPut = 'api/Setting';
 const param = { "tittle": "manzanaPut" } ;
-let sLogin;
 try 
 {
     data = await FillWithLoginFromBody(UrlPut,param,'PUT',token);

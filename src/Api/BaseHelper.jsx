@@ -1,5 +1,7 @@
 
-const BASEURL = 'https://sirfreedom.somee.com/';
+//const BASEURL = 'https://sirfreedom.somee.com/';
+const BASEURL = 'https://localhost:54044/';
+
 
 function toQueryString(params) {
   let sReturn = '';
@@ -34,7 +36,8 @@ export const FillWithLoginFromBody = async (Url,DataRequest,Method,Token ) =>
   credentials: 'include',
   headers: 
   { 
-  'Content-Type': 'application/json',  Authorization: 'Bearer ' + Token   
+  'Content-Type': 'application/json',  
+  "Authorization": 'Bearer ' + Token   
   },
     body: JSON.stringify(DataRequest)
   });

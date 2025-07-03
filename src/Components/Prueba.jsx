@@ -1,6 +1,7 @@
 import '../Css/App.css';
 import '../Css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
+import React, { useState } from "react";
 import { GetTestMethod } from '../Api/PruebaHelper';
 import { PutTestMethod } from '../Api/PruebaHelper';
 import { PostTestMethod } from '../Api/PruebaHelper';
@@ -11,19 +12,19 @@ import { getToken } from '../Api/PruebaHelper';
 
 export const Prueba = () => {
 
+        const [Token, setToken] = useState([]);
 
+        const TestInput = () => 
+        {
+
+        }
 
         const TestMethodLogin = () => 
         {
-            let sResult;
-
-            sResult = getToken();
-
-            console.log('Login');
-            console.log(sResult);
-            localStorage.setItem('token',sResult);
+            getToken().then(data => {
+                setToken(data);
+            });
         }
-
 
         const TestMethodGet = () => 
         {
@@ -38,13 +39,12 @@ export const Prueba = () => {
         const TestMethodPut = () => 
         {
             let lPutReturn;
-            let sToken;
 
-            sToken = localStorage.getItem('token');
-
-            lPutReturn = PutTestMethod(sToken);
-            console.log('Put')
-            console.log(lPutReturn);
+            lPutReturn = PutTestMethod(Token).then(data => {
+                console.log('Put');
+                console.log(data);
+            } );
+            
         }
 
         const TestMethodPost = () => 
@@ -80,6 +80,13 @@ export const Prueba = () => {
 
         return (
         <>
+
+        <input id='txtkey' type='texbox' value={Token} onChange={e => TestInput(e.value)} ></input>
+
+        <Button key="modalfinish_btnTest" variant="secondary" >
+         Test
+        </Button>
+
 
         <Button key="modalfinish_btnLogin" variant="secondary" onClick={TestMethodLogin}>
          Login
