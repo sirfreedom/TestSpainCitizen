@@ -1,6 +1,6 @@
 import '../Css/App.css';
 import '../Css/bootstrap.min.css';
-import React, { useState,useEffect } from "react";
+import { useState,useEffect } from "react";
 import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -29,8 +29,6 @@ export const TestExam = () => {
 
     useEffect(() => 
     {
-        setShowWelcome(true);
-
         getSetting().then(data => {
           setSetting(data);
         });
@@ -39,8 +37,11 @@ export const TestExam = () => {
           setQuestionLevels(data);
         });
 
+        setShowWelcome(true);
+
     }, []);
-    
+
+
 
     const ValidQuestion = () => 
     {

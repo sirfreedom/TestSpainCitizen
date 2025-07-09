@@ -51,19 +51,19 @@ export const Prueba = () => {
         {
             let lPostReturn;
 
-            lPostReturn = PostTestMethod();
-
-            console.log('Post')
-            console.log(lPostReturn);
+            lPostReturn = PostTestMethod(Token).then(data => {
+                console.log('Post');
+                console.log(data);
+            });
         }
 
         const TestMethodDelete = () => 
         {
             let lDeleteReturn;
-            lDeleteReturn = DeleteTestMethod();
-
-            console.log('Delete')
-            console.log(lDeleteReturn);
+            lDeleteReturn = DeleteTestMethod(Token).then(data => {
+                console.log('Delete');
+                console.log(data);
+            });
         }
 
 
@@ -114,6 +114,24 @@ export const Prueba = () => {
         <Button key="modalfinish_btnPatch" variant="secondary" onClick={TestMethodPatch}>
          Prueba Test Patch
         </Button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         </>
             

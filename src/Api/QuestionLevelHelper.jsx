@@ -6,7 +6,7 @@ export const ListQuestionLevels = async () =>
 let data;
 let tempdata;
 let url = 'api/QuestionLevel';
-const param = [ { clave: 'IdDependency', valor: 1 } ];
+const param = [ { "IdDependency": 1 } ];
 try 
 {
     tempdata = await FillAnonimousFromParameter(url,param);

@@ -1,6 +1,7 @@
 import { FillAnonimousFromBody } from './BaseHelper';
 import { FillAnonimousFromParameter } from './BaseHelper';
 import { FillWithLoginFromBody } from './BaseHelper';
+import { FillWithLoginFromParameter } from './BaseHelper';
 
 
 export const getToken = async () => 
@@ -21,7 +22,6 @@ export const getToken = async () =>
 export const GetTestMethod = async () =>
 {
 let data;
-let tempdata = [];
 let UrlGet = 'api/Setting';
 let param = [ { IdDependency: 1 } ];
 try 
@@ -51,16 +51,14 @@ catch(ex)
     return data;
 }
 
-export const PostTestMethod = async () =>
+export const PostTestMethod = async (token) =>
 {
 let data;
-let tempdata = [];
 let UrlPost = 'api/Setting';
 const param = { "tittle": "manzanaPost" } ;
 try 
 {
-    tempdata = await FillAnonimousFromBody(UrlPost,param,'POST');
-    data = tempdata;
+    data = await FillWithLoginFromBody(UrlPost,param,'POST',token);
 }
 catch(ex)
 {
@@ -69,14 +67,14 @@ catch(ex)
     return data;
 }
 
-export const DeleteTestMethod = async () =>
+export const DeleteTestMethod = async (token) =>
 {
 let data;
 let UrlDelete = 'api/Setting';
 const param = [ { "Id" : 234 } ];
 try 
 {
-    data = await FillAnonimousFromParameter(UrlDelete,param,'DELETE');
+    data = await FillWithLoginFromParameter(UrlDelete,param,'DELETE',token);
 }
 catch(ex)
 {
