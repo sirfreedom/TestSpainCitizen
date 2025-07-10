@@ -103,11 +103,6 @@ div {
   font-weight: 700;
 }
 
-label {
-  font-size: 14px;
-  font-weight: 600;
-  color: rgb(34, 34, 34);
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -140,30 +135,71 @@ label {
 }
 
 
-ul {
-  background-color: #8a6d3b;
-  list-style-type: none;
-  margin: 0;
-  overflow: hidden;
+/* Contenedor del menú principal */
+.menu {
+  display: flex;
+  background-color: #333;
   padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
-li {
-  float: left;
+/* Items del menú principal */
+.menu > li {
+  position: relative;
 }
 
-li a {
-  color: white;
+/* Enlaces del menú principal */
+.menu > li > a {
   display: block;
-  padding: 5px 15px;
-  text-align: center;
+  padding: 14px 20px;
+  color: white;
   text-decoration: none;
+  font-weight: bold;
 }
 
-li a:hover {
-  background-color: #985f0d;
+/* Cambio de color al pasar el mouse */
+.menu > li > a:hover,
+.menu > li > a.active {
+  background-color: #555;
+  color: #fff;
 }
 
+/* Submenú oculto inicialmente */
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%; /* justo debajo del item padre */
+  left: 0;
+  background-color: #444;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-width: 160px;
+  z-index: 1000;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+/* Items del submenú */
+.submenu li a {
+  display: block;
+  padding: 12px 16px;
+  color: white;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+/* Hover en submenú */
+.submenu li a:hover,
+.submenu li a.active {
+  background-color: #666;
+}
+
+/* Mostrar submenú al pasar el mouse */
+.menu > li:hover .submenu {
+  display: block;
+}
 
 .cuadradoNivelAlto {
   width: 10px;       

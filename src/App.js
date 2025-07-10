@@ -1,5 +1,3 @@
-import './Css/App.css';
-import 'bootstrap/dist/css/bootstrap.css';
 import TestExam from './Components/TestExam';
 import SettingABM from './Components/SettingABM';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -24,10 +22,9 @@ function App() {
  return (
     <>
       <div className='container' >
-
-          <div className='row'>
+         <div className='row'>
               <div className='col-12'>
-            
+           
                 <BrowserRouter>
                   <Routes>
                     <Route path="/" element={<Layout />}>
@@ -38,6 +35,9 @@ function App() {
                     </Route>
                   </Routes>
                 </BrowserRouter>
+
+                
+
               </div>
           </div>
 

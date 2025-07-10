@@ -4,7 +4,7 @@ const Layout = () => {
   return (
     <>
       <nav>
-        <ul>
+        <ul className="menu" >
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -12,13 +12,21 @@ const Layout = () => {
             <Link to="Examenes">Examenes</Link>
           </li>
           <li>
-            <Link to="Setting">Setting</Link>
+            <Link >Configuracion</Link>
+            <ul className="submenu" >
+              <li><Link to="Setting">Setting</Link></li>
+              <li><Link to="servicios/desarrollo">Desarrollo</Link></li>
+              <li><Link to="servicios/marketing">Marketing</Link></li>
+            </ul>
           </li>
         </ul>
       </nav>
 
       <Outlet />
+    
     </>
+    
+
   )
 };
 
