@@ -18,3 +18,21 @@ catch(ex)
 }
 return data;
 }
+
+export const FindSetting = async () =>
+{
+let data;
+let tempdata;
+let url = 'api/Setting/Find';
+const param = [];
+try 
+{
+    tempdata = await FillAnonimousFromParameter(url,param);
+    data = tempdata.listsetting
+}
+catch(ex)
+{
+    console.error('Error en get Setting',ex);
+}
+return data;
+}

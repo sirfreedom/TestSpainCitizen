@@ -1,16 +1,69 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
+import RGrid from './RGrid'
+import { FindSetting } from '../Api/SettingHelper';
 
 export const SettingABM = () => {
 
-            const [formData, setFormData] = useState({
-                opcion: '',
-                texto1: '',
-                texto2: '',
-                texto3: ''
-            });
+  const [SettingId,setSettingId] = useState(0);
+  const [Settings, setSettings] = useState([]);
+  //const [ShowModalEdit, setShowModalEdit] = useState(false);
+  //const [ShowModalNew, setShowModalNew] = useState(false);
 
+const GrillaConfiguracion = [
+  {
+    Tittle: 'Titulo',
+    Selector: fila => fila.tittle,
+    WidthColumn: '50%',
+    Ordenable: false,
+    ColumnOrdenable: 'tittle',
+  },
+  {
+    Tittle: 'Preguntas Por pagina',
+    Selector: fila => fila.questionperpage,
+    WidthColumn: '50%',
+    Ordenable: false
+  },
+];
 
+  useEffect(() => {
+    FindSetting().then(lSetting => {
+        console.log(lSetting);
+      setSettings(lSetting);
+    });
+  }, []);
+
+  const GridEdit = id => {
+    //setShowModalEdit(true);
+    //setDogId(id);
+  };
+
+const GridNew = () => {
+  //console.log("paso");
+  //alert("ssss");
+  //setShowModalNew(true);
+  };
+  
     return (
+    <>
+
+       <div>
+
+          <RGrid
+              key="RGrid"
+              Tittle="Setting"
+              rows={Settings}
+              RowPerPage={5}
+              columns={GrillaConfiguracion}
+              ShowDelete={true}
+              ShowEdit={true}
+              TotalWidth="100%"
+              DeleteId={id => alert("not implementes id" + id)}
+              EditId={id => GridEdit(id)}
+              isLoading={false}
+              ConfigurationId="id" //Id de los datos de la grilla
+            />
+
+       </div>
 
        <div className="form-container">
                     <h2 className="form-title"> Setting </h2>
@@ -74,6 +127,8 @@ export const SettingABM = () => {
                         </div>
                 </div>
 
+
+        </>
         )}
         
 export default SettingABM
