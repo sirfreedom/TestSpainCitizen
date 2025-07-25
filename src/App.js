@@ -5,6 +5,8 @@ import Layout from "./Components/Layout";
 import Home from "./Components/Home";
 import NoPage from "./Components/NoPage";
 
+
+
 function App() {
 
   const handleLogin = async () => {
@@ -35,8 +37,6 @@ function App() {
                     </Route>
                   </Routes>
                 </BrowserRouter>
-
-                
 
               </div>
           </div>

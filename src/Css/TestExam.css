@@ -8,28 +8,10 @@
 }
 
 
-
-
-   body {
-            padding: 20px;
-            background-color: #f8f9fa;
-        }
-        .form-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 30px;
-            border-radius: 10px;
-            background-color: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        .form-title {
-            color: #2c3e50;
-            margin-bottom: 30px;
-            text-align: center;
-            font-weight: bold;
-        }
-
-
+body {
+  background-color: #a4acb3;
+  font-family: sans-serif;
+}
 
 div {
   width: 95%;
@@ -103,6 +85,11 @@ div {
   font-weight: 700;
 }
 
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(34, 34, 34);
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -134,72 +121,6 @@ div {
   }
 }
 
-
-/* Contenedor del menú principal */
-.menu {
-  display: flex;
-  background-color: #333;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-/* Items del menú principal */
-.menu > li {
-  position: relative;
-}
-
-/* Enlaces del menú principal */
-.menu > li > a {
-  display: block;
-  padding: 14px 20px;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-/* Cambio de color al pasar el mouse */
-.menu > li > a:hover,
-.menu > li > a.active {
-  background-color: #555;
-  color: #fff;
-}
-
-/* Submenú oculto inicialmente */
-.submenu {
-  display: none;
-  position: absolute;
-  top: 100%; /* justo debajo del item padre */
-  left: 0;
-  background-color: #444;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  min-width: 160px;
-  z-index: 1000;
-  border-radius: 0 0 4px 4px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-}
-
-/* Items del submenú */
-.submenu li a {
-  display: block;
-  padding: 12px 16px;
-  color: white;
-  text-decoration: none;
-  font-weight: normal;
-}
-
-/* Hover en submenú */
-.submenu li a:hover,
-.submenu li a.active {
-  background-color: #666;
-}
-
-/* Mostrar submenú al pasar el mouse */
-.menu > li:hover .submenu {
-  display: block;
-}
 
 .cuadradoNivelAlto {
   width: 10px;       

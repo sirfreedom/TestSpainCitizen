@@ -1,0 +1,59 @@
+
+
+    
+
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo del menú principal */
+.menu {
+    background-color: #2d0676;
+    overflow: hidden;
+}
+
+/* Estilo de los elementos del menú */
+.menu-item {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Cambiar color al pasar el mouse */
+.menu-item:hover {
+    background-color: #575757;
+}
+
+
+/* Estilo de los elementos del submenú */
+.submenu-item {
+    float: none;
+    color: white;
+    text-align: left;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Cambiar color al pasar el mouse en el submenú */
+.submenu-item:hover {
+    background-color: #575757;
+}
+
+
+
+    .submenu {
+      display: none; /* Cambia esto a block o flex cuando sea necesario */
+    }
+
+    
+    .menu-item:hover .submenu {
+      display: block; /* Muestra el submenú al pasar el mouse */
+    }

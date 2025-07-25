@@ -38,7 +38,6 @@ const AuthLogin = () => {
     let sResult = '';
     try 
     {
-
       sResult = await getToken('admin','1234');
       
       if (sResult != '')

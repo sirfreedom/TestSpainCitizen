@@ -1,31 +1,60 @@
 import { Outlet, Link } from "react-router-dom";
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import '../Css/Layout.css';
 
 const Layout = () => {
   return (
-    <>
-      <nav>
-        <ul className="menu" >
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="Examenes">Examenes</Link>
-          </li>
-          <li>
-            <Link >Configuracion</Link>
-            <ul className="submenu" >
-              <li><Link to="Setting">Setting</Link></li>
-              <li><Link to="servicios/desarrollo">Desarrollo</Link></li>
-              <li><Link to="servicios/marketing">Marketing</Link></li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
+<>
 
-      <Outlet />
+    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+      <Container>
+        <Navbar.Brand > 
+            <Link to="/">Home</Link>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+
+          <Nav className="me-auto">
+            <Nav.Link > 
+              <Link to="Examenes">
+                Examenes
+              </Link>
+            </Nav.Link>
+
+            <NavDropdown title="Setting Questions" id="collapsible-nav-dropdown">
+              
+              <NavDropdown.Item >
+                  <Link to="Setting">Setting</Link>
+              </NavDropdown.Item>
+              
+              <NavDropdown.Item >
+                Segundo abm 
+              </NavDropdown.Item>
+              
+              <NavDropdown.Item >
+                Something
+              </NavDropdown.Item>
+
+              <NavDropdown.Divider />
+
+              <NavDropdown.Item >
+                Separated link
+              </NavDropdown.Item>
+
+            </NavDropdown>
+          </Nav>
+
+
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+
+<Outlet />
     
-    </>
-    
+</>
 
   )
 };

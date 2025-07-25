@@ -1,4 +1,5 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import '../Css/RGrid.css'
+import{ useCallback, useState, useEffect } from 'react';
 import * as lodash from 'lodash';
 
 const RGrid = props => {
@@ -93,13 +94,16 @@ const RGrid = props => {
         <>
           <div className="d-flex justify-content-between align-items-center mb-2 px-2"> 
 
+            {props.ShowPaging && (
             <div className="d-flex align-items-center">
               <label htmlFor="ddlPages" className="form-label me-1 mb-0 text-muted small">Rows per page:</label> 
               <select
                 value={rowsPerPage}
                 className="form-select form-select-sm"
+                defaultValue="5"
                 name="ddlPages"
                 id="ddlPages"
+                key="ddlPages"
                 onChange={e => ddlPages_OnChange(e.target.value)}
                 style={{ width: 'auto' }}
               >
@@ -111,6 +115,8 @@ const RGrid = props => {
                 <option value="9999">All</option>
               </select>
             </div>
+            )}
+
           </div>
 
           <div className="card border-0 shadow-sm mb-3"> 

@@ -1,5 +1,6 @@
-import '../Css/App.css';
+import '../Css/TestExam.css';
 import '../Css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import { useState,useEffect } from "react";
 import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
