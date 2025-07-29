@@ -4,6 +4,7 @@ import { FindSetting } from '../Api/SettingHelper';
 import {Modal, Button} from 'react-bootstrap/'
 import { ListDependency } from '../Api/DependencyHelper';
 import {EmptyAllProperties} from '../Api/BaseHelper';
+import { ChangePropertyValue } from '../Api/BaseHelper';
 
 
 export const SettingABM = () => {
@@ -11,8 +12,8 @@ export const SettingABM = () => {
   const [Settings, setSettings] = useState([]);
   const [ShowModalEdit, setShowModalEdit] = useState(false);
   const [Dependencies, setDependencies] = useState([]);
-  const [DependencyId, setDependencyId] = useState(0);
   const [Setting, setSetting] = useState();
+  
 
 const GrillaConfiguracion = [
   {
@@ -66,6 +67,15 @@ const GrillaConfiguracion = [
     setSetting(EmptyAllProperties(Setting));
   };
 
+
+  const ddlDependency_OnChange = (id) => {
+    setSetting(ChangePropertyValue(Setting,'IdDependency',id));
+  }
+
+  const Save = () => {
+    console.log(Setting);
+    setShowModalEdit(false);
+  }
 
     return (
     <>
@@ -132,19 +142,19 @@ const GrillaConfiguracion = [
                     <h2 className="form-title"> Setting </h2>
                     
                         <div className="mb-3">
-                            <label htmlFor="dropdown">Dependency</label>
-                            <select id="ddlDependency" 
-                            className="form-select"
-                            value={DependencyId} 
-                            onChange={e => setDependencyId(e)}>
-                            <option value="0">-- Elige una opción --</option>
-                            {Dependencies.map((dependency) => 
-                            (
-                            <option key={dependency.id} value={dependency.id}>
-                            {dependency.descripcion}
-                            </option>
-                            ))}
-                            </select>
+                        <label htmlFor="dropdown">Dependency</label>
+                        <select id="ddlDependency" 
+                        className="form-select"
+                        value={Setting.IdDependency} 
+                        onChange={e => ddlDependency_OnChange(e.target.value)}>
+                        <option value="0">--Selecciona--</option>
+                        {Dependencies.map((dependency) => 
+                        (
+                        <option key={dependency.id} value={dependency.id}>
+                        {dependency.descripcion}
+                        </option>
+                        ))}
+                        </select>
                         </div>
 
                         <div className="mb-3">
@@ -184,14 +194,11 @@ const GrillaConfiguracion = [
                             />
                         </div>
 
-                        <div className="d-grid gap-2">
-                            <button type="submit" className="btn btn-primary">Enviar Formulario</button>
-                            <button type="reset" className="btn btn-secondary">Limpiar</button>
-                        </div>
-                </div>
+                 </div>
     
           </Modal.Body>
           <Modal.Footer>
+            <Button onClick={() => Save()}>Save</Button>
             <Button onClick={() => GridModalShowOff()}>Close</Button>
           </Modal.Footer>
         </Modal>

@@ -123,7 +123,6 @@ return data;
 };
 
 
-
 export const FillWithLoginFromParameter = async (Url,lParam,Method,Token) =>
 {
 let response;
@@ -156,8 +155,15 @@ export const EmptyAllProperties = (obj) => {
   const objVaciado = {};
   for (const key in obj) {
     if (obj.hasOwnProperty(key)) {
-      objVaciado[key] = null; // Puedes cambiar null por '' (cadena vacía), 0, o lo que prefieras
+      objVaciado[key] = null; 
     }
   }
   return objVaciado;
 }
+
+export const ChangePropertyValue = (obj, propiedad, nuevoValor) => {
+    return {
+      ...obj,
+      [propiedad]: nuevoValor
+    };
+};

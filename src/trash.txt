@@ -1,4 +1,18 @@
-
+                        <div className="mb-3">
+                        <label htmlFor="dropdown">Dependency</label>
+                        <select id="ddlDependency" 
+                        className="form-select"
+                        value={Setting.IdDependency} 
+                        onChange={e => console.log(e.target.value)}>
+                        <option value="0">--Selecciona--</option>
+                        {Dependencies.map((dependency) => 
+                        (
+                        <option key={dependency.id} value={dependency.id}>
+                        {dependency.descripcion}
+                        </option>
+                        ))}
+                        </select>
+                        </div>
 
     
 
