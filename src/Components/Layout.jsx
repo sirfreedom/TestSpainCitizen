@@ -9,11 +9,15 @@ const Layout = () => {
   return (
 <>
 
-    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+{/*}
+
+   <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
       <Container>
+        
         <Navbar.Brand > 
             <Link to="/">Home</Link>
         </Navbar.Brand>
+
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
 
@@ -47,10 +51,65 @@ const Layout = () => {
             </NavDropdown>
           </Nav>
 
-
-        </Navbar.Collapse>
+          </Navbar.Collapse>
       </Container>
     </Navbar>
+
+
+   
+<Nav className="me-auto">
+  <Nav.Link as={Link} to="Examenes">
+    Examenes
+  </Nav.Link>
+  <NavDropdown title="Setting Questions" id="collapsible-nav-dropdown">
+    <NavDropdown.Item as={Link} to="Setting">
+      Setting
+    </NavDropdown.Item>
+    <NavDropdown.Item>
+      Segundo abm 
+    </NavDropdown.Item>
+    <NavDropdown.Item>
+      Something
+    </NavDropdown.Item>
+    <NavDropdown.Divider />
+    <NavDropdown.Item>
+      Separated link
+    </NavDropdown.Item>
+  </NavDropdown>
+
+
+{*/}
+
+ <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+  <Container>
+    <Navbar.Brand>
+      <Link to="/">Home</Link>
+    </Navbar.Brand>
+    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+    <Navbar.Collapse id="responsive-navbar-nav">
+      <Nav className="me-auto">
+        <Nav.Link as={Link} to="Examenes">
+          Examenes
+        </Nav.Link>
+        <NavDropdown title="Setting Questions" id="collapsible-nav-dropdown">
+          <NavDropdown.Item as={Link} to="Setting">
+            Setting
+          </NavDropdown.Item>
+          <NavDropdown.Item>
+            Segundo abm
+          </NavDropdown.Item>
+          <NavDropdown.Item>
+            Something
+          </NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item>
+            Separated link
+          </NavDropdown.Item>
+        </NavDropdown>
+      </Nav>
+    </Navbar.Collapse>
+  </Container>
+</Navbar>
 
 <Outlet />
     

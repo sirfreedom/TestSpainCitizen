@@ -151,3 +151,13 @@ catch(ex)
 return data;
 };
    
+
+export const EmptyAllProperties = (obj) => {
+  const objVaciado = {};
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      objVaciado[key] = null; // Puedes cambiar null por '' (cadena vacía), 0, o lo que prefieras
+    }
+  }
+  return objVaciado;
+}

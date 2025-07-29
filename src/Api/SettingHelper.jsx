@@ -1,12 +1,12 @@
 import { FillAnonimousFromParameter } from './BaseHelper';
 
 
-export const getSetting = async () =>
+export const getByDependency = async (id) =>
 {
 let data;
 let tempdata;
-let url = 'api/Setting/Get';
-const param = [ { "IdDependency": 1 } ];
+let url = 'api/Setting/GetByDependency';
+const param = [ { "IdDependency": id } ];
 try 
 {
     tempdata = await FillAnonimousFromParameter(url,param);
@@ -18,6 +18,26 @@ catch(ex)
 }
 return data;
 }
+
+
+export const get = async (id) =>
+{
+let data;
+let tempdata;
+let url = 'api/Setting/Get';
+const param = [ { "Id": id } ];
+try 
+{
+    tempdata = await FillAnonimousFromParameter(url,param);
+    data = tempdata.setting
+}
+catch(ex)
+{
+    console.error('Error en get Setting',ex);
+}
+return data;
+}
+
 
 export const FindSetting = async () =>
 {

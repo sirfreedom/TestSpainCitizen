@@ -6,7 +6,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { ListFinalTestMessage } from '../Api/FinalTestMessageHelper';
-import { getSetting } from '../Api/SettingHelper';
+import { getByDependency } from '../Api/SettingHelper';
 import { ListQuestionLevels } from '../Api/QuestionLevelHelper';
 import { ListQuestion } from '../Api/QuestionHelper';
 
@@ -30,7 +30,7 @@ export const TestExam = () => {
 
     useEffect(() => 
     {
-        getSetting().then(data => {
+        getByDependency(1).then(data => {
           setSetting(data);
         });
 
