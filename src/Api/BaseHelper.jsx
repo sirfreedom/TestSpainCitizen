@@ -12,27 +12,6 @@ function toQueryString(params)
     .join('&');
 }
 
-function Manzana(params) {
-  let sReturn = '';
-  try {
-    if (Array.isArray(params)) 
-      {
-      sReturn = params.map(obj => 
-        Object.entries(obj)
-          .map(([key, value]) => 
-            encodeURIComponent(key) + '=' + encodeURIComponent(Array.isArray(value) ? value.join(',') : value)
-          ).join('&')
-      ).join('&');
-    } else {
-      sReturn = '';
-    }
-  } catch (ex) {
-    console.error('Error en toQueryString', ex);
-  }
-  console.log(sReturn);
-  return sReturn;
-}
-
 
 export const FillWithLoginFromBody = async (Url,DataRequest,Method,Token ) => 
 {
@@ -167,3 +146,40 @@ export const ChangePropertyValue = (obj, propiedad, nuevoValor) => {
       [propiedad]: nuevoValor
     };
 };
+
+
+export const createDate = (year, month, day, hour, minute) =>{
+  if (
+    typeof year !== 'number' || 
+    typeof month !== 'number' || 
+    typeof day !== 'number' || 
+    typeof hour !== 'number' || 
+    typeof minute !== 'number'
+  ) {
+    throw new Error('Todos los parámetros deben ser números');
+  }
+  // Ajustamos el mes (JavaScript usa 0-11)
+  const monthIndex = month - 1;
+  
+  // Creamos el objeto Date
+  const fecha = new Date(year, monthIndex, day, hour, minute);
+  
+  // Verificamos si la fecha es válida
+  if (isNaN(fecha.getTime())) {
+    throw new Error('Fecha inválida');
+  }
+  
+  // Verificamos que los valores ingresados coincidan con los de la fecha creada
+  // (por si JavaScript ajustó automáticamente valores fuera de rango)
+  if (
+    fecha.getFullYear() !== year ||
+    fecha.getMonth() !== monthIndex ||
+    fecha.getDate() !== day ||
+    fecha.getHours() !== hour ||
+    fecha.getMinutes() !== minute
+  ) {
+    throw new Error('Los valores proporcionados no corresponden a una fecha válida');
+  }
+  
+  return fecha;
+}

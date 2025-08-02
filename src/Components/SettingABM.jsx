@@ -1,9 +1,9 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import RGrid from './RGrid'
 import { FindSetting } from '../Api/SettingHelper';
-import {Modal, Button} from 'react-bootstrap/'
+import { Modal, Button } from 'react-bootstrap/'
 import { ListDependency } from '../Api/DependencyHelper';
-import {EmptyAllProperties} from '../Api/BaseHelper';
+import { EmptyAllProperties } from '../Api/BaseHelper';
 import { ChangePropertyValue } from '../Api/BaseHelper';
 
 
@@ -13,49 +13,48 @@ export const SettingABM = () => {
   const [ShowModalEdit, setShowModalEdit] = useState(false);
   const [Dependencies, setDependencies] = useState([]);
   const [Setting, setSetting] = useState();
-  
 
-const GrillaConfiguracion = [
-  {
-    Tittle: 'Titulo',
-    Selector: fila => fila.tittle,
-    WidthColumn: '50%',
-    Ordenable: false,
-    ColumnOrdenable: 'tittle',
-  },
-  {
-    Tittle: 'Preguntas Por pagina',
-    Selector: fila => fila.questionperpage,
-    WidthColumn: '50%',
-    Ordenable: false
-  },
-];
+  const GrillaConfiguracion = [
+    {
+      Tittle: 'Titulo',
+      Selector: fila => fila.tittle,
+      WidthColumn: '70%',
+      Ordenable: false,
+      ColumnOrdenable: 'tittle',
+    },
+    {
+      Tittle: 'Preguntas Por pagina',
+      Selector: fila => fila.questionperpage,
+      WidthColumn: '30%',
+      Ordenable: false
+    },
+  ];
 
   useEffect(() => {
     FindSetting().then(lSetting => {
-    setSettings(lSetting);
-  });
+      setSettings(lSetting);
+    });
 
-  ListDependency().then(lDependencies => {
-  setDependencies(lDependencies);
-  });
+    ListDependency().then(lDependencies => {
+      setDependencies(lDependencies);
+    });
 
   }, []);
 
   const GridEdit = id => {
-   var oSetting;
-   setShowModalEdit(true);
-   oSetting = Settings.filter(x => x.Id === id);
+    var oSetting;
+    setShowModalEdit(true);
+    oSetting = Settings.filter(x => x.Id === id);
 
-  if(oSetting.length === 1){
-    setSetting(oSetting[0]);
+    if (oSetting.length === 1) {
+      setSetting(oSetting[0]);
+    }
+
+  };
+
+  const GridModalShowOff = () => {
+    setShowModalEdit(false);
   }
-
-};
-
- const GridModalShowOff = () =>{
-  setShowModalEdit(false);
- }
 
   const GridDelete = id => {
     console.log(id);
@@ -65,11 +64,24 @@ const GrillaConfiguracion = [
     setSetting([]);
     setShowModalEdit(true);
     setSetting(EmptyAllProperties(Setting));
+    setSetting({
+      ...Setting,
+        IdDependency: 0,
+        correctanswers:1,
+        questionperpage:1
+      });
+
+
   };
 
 
   const ddlDependency_OnChange = (id) => {
-    setSetting(ChangePropertyValue(Setting,'IdDependency',id));
+    setSetting(ChangePropertyValue(Setting, 'IdDependency', id));
+  }
+
+
+  const ChangeValues = (value, campo) => {
+    setSetting(ChangePropertyValue(Setting, campo, value));
   }
 
   const Save = () => {
@@ -77,135 +89,222 @@ const GrillaConfiguracion = [
     setShowModalEdit(false);
   }
 
-    return (
+  return (
     <>
-        <div className='container-fluid'>
-         <div className='row align-items-end'>
-            <div className='col-12'>
-                <button className="btn-2" onClick={GridNew} > Nuevo Registro </button>
-            </div>
+      <div className='container-fluid'>
+        <div className='row align-items-end'>
+          <div className='col-12'>
+            <button className="btn-2" onClick={GridNew} > Nuevo Registro </button>
           </div>
-          <div className='row align-items-center'>
-            <div className='col-12'>
-              <RGrid
-                key="RGrid"
-                Tittle="Setting"
-                rows={Settings}
-                RowPerPage={5}
-                ShowPaging={false}
-                columns={GrillaConfiguracion}
-                ShowDelete={true}
-                ShowEdit={true}
-                TotalWidth="100%"
-                DeleteId={id => GridDelete(id)}
-                EditId={id => GridEdit(id)}
-                isLoading={false}
-                ConfigurationId="Id" //Id de los datos de la grilla
-              />
-            </div>
+        </div>
+        <div className='row align-items-center'>
+          <div className='col-12'>
+            <RGrid
+              key="RGrid"
+              Tittle="Setting"
+              rows={Settings}
+              RowPerPage={5}
+              ShowPaging={false}
+              columns={GrillaConfiguracion}
+              ShowDelete={true}
+              ShowEdit={true}
+              TotalWidth="100%"
+              DeleteId={id => GridDelete(id)}
+              EditId={id => GridEdit(id)}
+              isLoading={false}
+              ConfigurationId="Id" //Id de los datos de la grilla
+            />
           </div>
-
         </div>
 
-{/*}
-    "Id": 1,
-      "cod": 1,
-      "Dependency": "TestSpainCitizen",
-      "correctanswers": 15,
-      "downloadlink": "https://examenes.cervantes.es/sites/default/files/Manual%20CCSE%202024_0.pdf",
-      "downloadtittle": "Baja el documento de Preparacion Examen Ciudadania",
-      "IdDependency": 1,
-      "instruction": "El examen consta de 25 preguntas totalmente aleatorias, obtenidas de unas 300 que son tomadas en el examen real, para poder aprobar el examen debe tener 15 preguntas respondidas de forma correcta.de esta forma se le tomara el examen para la nacionalidad Española. puede elegir preguntas : Random, Nivel bajo, Medio, Alto. Al final podras verificar tus respuestas. ",
-      "preinstruction": "Este examen es a modo de prueba para saber sus conocimientos y poder practicar \r\n</br> Suerte...",
-      "preinstructiontittle": "Revisa las instrucciones antes del inicio del examen.",
-      "questionperpage": 25,
-      "subtittle": "Bienvenido al examen CCSE 2024",
-      "tittle": "Bienvenido al examen CCSE 2024 NACIONALIDAD ESPAÑOLA version 2.0"
-{*/}
+      </div>
 
-<div>
+      <Modal show={ShowModalEdit} className="modal-dialog modal-xl" aria-labelledby="contained-modal-title-vcenter1">
 
-        <Modal show={ShowModalEdit} aria-labelledby="contained-modal-title-vcenter1">
-
-          <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter1"> 
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter1">
 
             {Setting?.Id !== 0 && Setting?.Dependency}
             {Setting?.Id === 0 || Setting?.Id === null && ("Nueva Setting")}
-                
-            </Modal.Title>
-          </Modal.Header>
 
-          <Modal.Body className="show-grid">
-    
-             <div className="form-container">
-                    <h2 className="form-title"> Setting </h2>
-                    
-                        <div className="mb-3">
-                        <label htmlFor="dropdown">Dependency</label>
-                        <select id="ddlDependency" 
-                        className="form-select"
-                        value={Setting.IdDependency} 
-                        onChange={e => ddlDependency_OnChange(e.target.value)}>
-                        <option value="0">--Selecciona--</option>
-                        {Dependencies.map((dependency) => 
-                        (
-                        <option key={dependency.id} value={dependency.id}>
-                        {dependency.descripcion}
-                        </option>
-                        ))}
-                        </select>
-                        </div>
+          </Modal.Title>
+        </Modal.Header>
 
-                        <div className="mb-3">
-                            <label htmlFor="texto1" className="form-label">Primer campo de texto</label>
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                id="texto1" 
-                                name="texto1"
-                                //value={}
-                                defaultValue={""}
-                                placeholder="Ingresa texto aquí"
-                            />
-                        </div>
+        <Modal.Body className="show-grid">
 
-                        <div className="mb-3">
-                            <label htmlFor="texto2" className="form-label">Segundo campo de texto</label>
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                id="texto2" 
-                                name="texto2"
-                                //value={""}
-                                placeholder="Ingresa más texto"
-                            />
-                        </div>
+          <div className="container-fluid" >
 
-                        <div className="mb-3">
-                            <label htmlFor="texto3" className="form-label">Tercer campo de texto</label>
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                id="texto3" 
-                                name="texto3"
-                                //value={""}
-                                placeholder="Último campo de texto"
-                            />
-                        </div>
+            <div className="row" >
 
-                 </div>
-    
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={() => Save()}>Save</Button>
-            <Button onClick={() => GridModalShowOff()}>Close</Button>
-          </Modal.Footer>
-        </Modal>
+              <div className="col-5">
 
-</div>
+                <label htmlFor="txtTittle" className="form-label"> Tittle </label>
+                <textarea
+                  type="text"
+                  className="form-control"
+                  id="txtTittle"
+                  name="txtTittle"
+                  defaultValue={Setting?.tittle}
+                  placeholder={Setting?.tittle}
+                  onChange={e => ChangeValues(e.target.value, 'tittle')}
+                />
 
-        </>
-        )}
-        
+              </div>
+
+              <div className="col-3">
+
+                <label htmlFor="ddlDependency">Dependency</label>
+                <select id="ddlDependency"
+                  className="form-select"
+                  value={Setting?.IdDependency}
+                  onChange={e => ddlDependency_OnChange(e.target.value)}>
+                  {Dependencies.map((dependency) =>
+                  (
+                    <option key={dependency.id} value={dependency.id}>
+                      {dependency.descripcion}
+                    </option>
+                  ))}
+                </select>
+
+              </div>
+
+              <div className="col-2">
+                <label htmlFor="txtcorrectanswers" className="form-label">Respuestas correctas</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  id="txtcorrectanswers"
+                  name="txtcorrectanswers"
+                  min="1"
+                  max="1000"
+                  defaultValue={Setting?.correctanswers}
+                  placeholder={Setting?.correctanswers}
+                  onChange={e => ChangeValues(e.target.value, 'correctanswers')}
+                />
+              </div>
+
+              <div className="col-2">
+                <label htmlFor="txtquestionperpage" className="form-label"> Preguntas x pagina </label>
+                <input
+                  type="number"
+                  className="form-control"
+                  id="txtquestionperpage"
+                  name="txtsquestionperpage"
+                  min="1"
+                  max="50"
+                  defaultValue={Setting?.questionperpage}
+                  placeholder={Setting?.questionperpage}
+                  onChange={e => ChangeValues(e.target.value, 'questionperpage')}
+                />
+              </div>
+
+            </div>
+
+            <div className="row" >
+
+              <div className="col-3">
+
+                <label htmlFor="txtpreinstructiontittle" className="form-label"> Titulo intrucciones </label>
+                <textarea
+                  type="text"
+                  className="form-control"
+                  id="txtpreinstructiontittle"
+                  name="txtpreinstructiontittle"
+                  defaultValue={Setting?.preinstructiontittle}
+                  placeholder={Setting?.preinstructiontittle}
+                  onChange={e => ChangeValues(e.target.value, 'preinstructiontittle')}
+                />
+
+              </div>
+
+              <div className="col-4">
+
+                <label htmlFor="txtpreinstruction" className="form-label"> Pre intrucciones </label>
+                <textarea
+                  type="text"
+                  className="form-control"
+                  id="txtpreinstruction"
+                  name="txtpreinstruction"
+                  defaultValue={Setting?.preinstruction}
+                  placeholder={Setting?.preinstruction}
+                  onChange={e => ChangeValues(e.target.value, 'preinstruction')}
+                />
+
+              </div>
+
+             <div className="col-5">
+
+                <label htmlFor="txtinstruction" className="form-label"> intrucciones </label>
+                <textarea
+                  type="text"
+                  className="form-control"
+                  id="txtinstruction"
+                  name="txtinstruction"
+                  defaultValue={Setting?.instruction}
+                  placeholder={Setting?.instruction}
+                  onChange={e => ChangeValues(e.target.value, 'instruction')}
+                />
+
+              </div>
+            </div>
+
+            <div className="row" >
+
+              <div className="col-4">
+                <label htmlFor="txtsubtittle" className="form-label"> Sub Titulo </label>
+                <textarea
+                  type="text"
+                  className="form-control"
+                  id="txtsubtittle"
+                  name="txtsubtittle"
+                  defaultValue={Setting?.tittle}
+                  placeholder={Setting?.tittle}
+                  onChange={e => ChangeValues(e.target.value, 'subtittle')}
+                />
+              </div>
+
+              <div className="col-4">
+
+                <label htmlFor="txtdownloadtittle" className="form-label"> Titulo Descarga </label>
+                <textarea
+                  type="text"
+                  className="form-control"
+                  id="txtdownloadtittle"
+                  name="txtdownloadtittle"
+                  defaultValue={Setting?.downloadtittle}
+                  placeholder={Setting?.downloadtittle}
+                  onChange={e => ChangeValues(e.target.value, 'downloadtittle')}
+                />
+
+              </div>
+
+              <div className="col-4">
+
+                <label htmlFor="txtdownloadlink" className="form-label"> Descarga </label>
+                <textarea
+                  type="text"
+                  className="form-control"
+                  id="txtdownloadlink"
+                  name="txtdownloadlink"
+                  defaultValue={Setting?.downloadlink}
+                  placeholder={Setting?.downloadlink}
+                  onChange={e => ChangeValues(e.target.value, 'downloadlink')}
+                />
+
+              </div>
+            </div>
+
+          </div>
+
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={() => Save()}>Save</Button>
+          <Button onClick={() => GridModalShowOff()}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+
+    </>
+  )
+}
+
 export default SettingABM
