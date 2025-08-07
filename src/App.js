@@ -13,26 +13,40 @@ function App() {
   const CreateToken = () => {
     const DateNow = new Date();
     let ExpirationDate;
-    var token;
 
-    if (localStorage.getItem('token') === 'undefined') {
-      getToken('admin', '1234').then(oToken => {
-        localStorage.setItem('token', JSON.stringify(oToken));
+    if (localStorage.length === 0) {
+        debugger;
+
+        getToken('admin', '1234').then(async data => {
+        
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        console.log("Luego de la espera dentro del then");
+
+        //JSON.parse(
+        //JSON.stringify(
+
+        ExpirationDate = createDate(data.expirationYear, data.expirationMonth, data.expirationDay, data.expirationHour, data.expirationMinute);
+        localStorage.setItem('ExpirationDate',ExpirationDate);
+        localStorage.setItem('token', data.token);
       });
     }
-
-    token = JSON.parse(localStorage.getItem('token'));
-    ExpirationDate = createDate(token?.expirationYear, token?.expirationMonth, token?.expirationDay, token?.expirationHour, token?.expirationMinute);
+        
+    if(localStorage.length > 0){
+      ExpirationDate = localStorage.getItem('ExpirationDate');
+    }
     
-    if ((ExpirationDate < DateNow) ) 
-    {
-      getToken('admin', '1234').then(oToken => {
-        localStorage.setItem('token', JSON.stringify(oToken));
+    if ( (localStorage.length !== 0) && (ExpirationDate > DateNow)  ) {
+
+      getToken('admin', '1234').then(async data => {
+        await new Promise(resolve => setTimeout(resolve, 3000)); 
+
+        ExpirationDate = createDate(data.expirationYear, data.expirationMonth, data.expirationDay, data.expirationHour, data.expirationMinute);
+        localStorage.setItem('ExpirationDate',ExpirationDate);
+        localStorage.setItem('token', data.token);
       });
       console.log("Actualizo");
     }
 
-    console.log(token);
   }
 
 
@@ -52,19 +66,6 @@ function App() {
   }, []); // El array vacío asegura que esto se ejecute solo una vez al montar
 
 
-
-
-  const handleLogin = async () => {
-    //let sResult = '';
-    //let token = '';
-    //token = localStorage.getItem('token');
-    //if(token !== ''){
-    //  sResult = await getJasoWebToken("admin","1234");
-    //  localStorage.setItem('token', JSON.stringify(sResult));
-    //  console.log('get token');
-    //  console.log(sResult);
-    // }
-  }
 
   return (
     <>

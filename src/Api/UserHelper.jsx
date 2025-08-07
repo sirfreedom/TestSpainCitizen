@@ -1,7 +1,6 @@
 import { FillAnonimousFromBody, FillWithLoginFromBody } from './BaseHelper';
 
 
-
 //Token, ExpirationYear, ExpirationMonth, ExpirationDay,ExpirationHour, ExpirationMinutes
 export const getToken = async (User, Pass) => 
 {
@@ -9,12 +8,6 @@ export const getToken = async (User, Pass) =>
     try 
     {
         data = await FillAnonimousFromBody('Account/login',{ user: User, pass: Pass },'POST');
-        
-  //const fechaConOffset = ahora.toISOString(); // Convertir a cadena ISO
-
-  //npm localStorage.setItem('fechaConOffset', fechaConOffset);
-
-
     } 
     catch (ex) 
     {
@@ -22,7 +15,6 @@ export const getToken = async (User, Pass) =>
     }
     return data;
 }
-
 
         
 export const getTest = async (Token) => 

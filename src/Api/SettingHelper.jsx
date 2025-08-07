@@ -38,28 +38,28 @@ catch(ex)
 return data;
 }
 
-export const Update = async (Token,id,tittle,questionperpage,correctanswers,subtittle,instruction,downloadtittle,downloadlink,preinstructiontittle,preinstruction) => {
+export const UpdateSetting = async (Token,id,cod,iddependency,tittle,questionperpage,correctanswers,subtittle,instruction,downloadtittle,downloadlink,preinstructiontittle,preinstruction) => {
     let data;
-    let tempdata;
     let url = 'api/Setting/Update';
     const method = 'PUT';
-    let param = 
-    [ { 
-      "id": id,
-    "tittle": tittle,
-    "questionperpage": questionperpage,
-    "correctanswers": correctanswers,
-    "subtittle": subtittle,
-    "instruction": instruction,
-    "downloadtittle": downloadtittle,
-    "downloadlink": downloadlink,
-    "preinstructiontittle": preinstructiontittle,
-    "preinstruction": preinstruction
-    } ];
+    let param =   
+    {  
+    "id": id 
+    ,"iddependency": iddependency
+    ,"cod" : cod
+    ,"tittle": tittle  
+    ,"questionperpage": questionperpage  
+    ,"correctanswers": correctanswers 
+    ,"subtittle": subtittle
+    ,"instruction": instruction
+    ,"downloadtittle": downloadtittle
+    ,"downloadlink": downloadlink
+    ,"preinstructiontittle": preinstructiontittle
+    ,"preinstruction": preinstruction
+    };
 try 
 {
-    tempdata = await FillWithLoginFromBody(url,param,method,Token);
-    data = tempdata.listsetting
+    data = await FillWithLoginFromBody(url,param,method,Token);
 }
 catch(ex)
 {
@@ -68,9 +68,8 @@ catch(ex)
 return data;
 }
 
-export const Insert = async (Token,tittle,questionperpage,correctanswers,subtittle,instruction,downloadtittle,downloadlink,preinstructiontittle,preinstruction) => {
+export const InsertSetting = async (Token,tittle,questionperpage,correctanswers,subtittle,instruction,downloadtittle,downloadlink,preinstructiontittle,preinstruction) => {
     let data;
-    let tempdata;
     let url = 'api/Setting/Insert';
     const method = 'POST';
     let param = 
@@ -87,8 +86,7 @@ export const Insert = async (Token,tittle,questionperpage,correctanswers,subtitt
     } ];
 try 
 {
-    tempdata = await FillWithLoginFromBody(url,param,method,Token);
-    data = tempdata.listsetting
+    data = await FillWithLoginFromBody(url,param,method,Token);
 }
 catch(ex)
 {

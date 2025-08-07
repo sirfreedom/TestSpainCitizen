@@ -5,7 +5,7 @@ import { Modal, Button } from 'react-bootstrap/'
 import { ListDependency } from '../Api/DependencyHelper';
 import { EmptyAllProperties } from '../Api/BaseHelper';
 import { ChangePropertyValue } from '../Api/BaseHelper';
-
+import { UpdateSetting } from '../Api/SettingHelper';
 
 export const SettingABM = () => {
 
@@ -49,7 +49,6 @@ export const SettingABM = () => {
     if (oSetting.length === 1) {
       setSetting(oSetting[0]);
     }
-
   };
 
   const GridModalShowOff = () => {
@@ -66,26 +65,42 @@ export const SettingABM = () => {
     setSetting(EmptyAllProperties(Setting));
     setSetting({
       ...Setting,
+        Id : 0,
         IdDependency: 0,
         correctanswers:1,
         questionperpage:1
       });
-
-
   };
-
-
-  const ddlDependency_OnChange = (id) => {
-    setSetting(ChangePropertyValue(Setting, 'IdDependency', id));
-  }
-
 
   const ChangeValues = (value, campo) => {
     setSetting(ChangePropertyValue(Setting, campo, value));
   }
 
   const Save = () => {
-    console.log(Setting);
+   let Token;
+   Token = localStorage.getItem('token');
+
+    if (Setting.Id !== 0){
+      UpdateSetting(Token,
+        Setting.Id,
+        Setting.IdDependency,
+        Setting.cod,
+        Setting.tittle,
+        Setting.questionperpage,
+        Setting.correctanswers,
+        Setting.subtittle,
+        Setting.instruction,
+        Setting.downloadtittle,
+        Setting.downloadlink,
+        Setting.preinstructiontittle,
+        Setting.preinstruction
+        ).then(data => {
+          console.log(data);
+        }
+      );
+      //setSettings(Settings.filter(x => x.id !== Setting.Id));
+      //setSettings([...Settings, Setting]);
+    }
     setShowModalEdit(false);
   }
 
@@ -116,7 +131,6 @@ export const SettingABM = () => {
             />
           </div>
         </div>
-
       </div>
 
       <Modal show={ShowModalEdit} className="modal-dialog modal-xl" aria-labelledby="contained-modal-title-vcenter1">
@@ -146,7 +160,7 @@ export const SettingABM = () => {
                   name="txtTittle"
                   defaultValue={Setting?.tittle}
                   placeholder={Setting?.tittle}
-                  onChange={e => ChangeValues(e.target.value, 'tittle')}
+                  onChange={e =>  ChangeValues(e.target.value, 'tittle')}
                 />
 
               </div>
@@ -157,8 +171,9 @@ export const SettingABM = () => {
                 <select id="ddlDependency"
                   className="form-select"
                   value={Setting?.IdDependency}
-                  onChange={e => ddlDependency_OnChange(e.target.value)}>
-                  {Dependencies.map((dependency) =>
+                  onChange={e => ChangeValues(e.target.value,'iddependency') }
+                  >
+                  {Dependencies?.map((dependency) =>
                   (
                     <option key={dependency.id} value={dependency.id}>
                       {dependency.descripcion}

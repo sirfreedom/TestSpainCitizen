@@ -1,6 +1,6 @@
 
-const BASEURL = 'https://sirfreedom.somee.com/';
-//const BASEURL = 'https://localhost:54044/';
+//const BASEURL = 'https://sirfreedom.somee.com/';
+const BASEURL = 'https://localhost:54044/';
 
 
 function toQueryString(params) 
@@ -35,6 +35,8 @@ export const FillWithLoginFromBody = async (Url,DataRequest,Method,Token ) =>
     {
       data = await response.json();
     }
+
+    
   } 
   catch (ex) 
   {
@@ -92,7 +94,14 @@ try
   headers: 
   { 'Content-Type': 'application/json',  }
 });
-data = await response.json().catch(err => console.log(err));
+
+  
+if (response.status === 200)
+  {
+    data = await response.json();
+  }
+
+
 }
 catch(ex)
 {
@@ -120,7 +129,9 @@ response = await fetch(BASEURL + Url + '?' + Parameters,
   "Authorization": 'Bearer ' + Token   
   }
 });
+
 data = await response.json().catch(err => console.log(err));
+
 }
 catch(ex)
 {
@@ -149,20 +160,26 @@ export const ChangePropertyValue = (obj, propiedad, nuevoValor) => {
 
 
 export const createDate = (year, month, day, hour, minute) =>{
+
+var fecha;
+try
+{
+
   if (
     typeof year !== 'number' || 
     typeof month !== 'number' || 
     typeof day !== 'number' || 
     typeof hour !== 'number' || 
     typeof minute !== 'number'
-  ) {
+  ) 
+  {
     throw new Error('Todos los parámetros deben ser números');
   }
   // Ajustamos el mes (JavaScript usa 0-11)
   const monthIndex = month - 1;
   
   // Creamos el objeto Date
-  const fecha = new Date(year, monthIndex, day, hour, minute);
+  fecha = new Date(year, monthIndex, day, hour, minute);
   
   // Verificamos si la fecha es válida
   if (isNaN(fecha.getTime())) {
@@ -181,5 +198,10 @@ export const createDate = (year, month, day, hour, minute) =>{
     throw new Error('Los valores proporcionados no corresponden a una fecha válida');
   }
   
+  }
+catch(e)
+{
+  throw e;
+}
   return fecha;
 }
