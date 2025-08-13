@@ -31,13 +31,16 @@ export const SettingABM = () => {
   ];
 
   useEffect(() => {
+
     FindSetting().then(lSetting => {
       setSettings(lSetting);
     });
 
-    ListDependency().then(lDependencies => {
-      setDependencies(lDependencies);
-    });
+    if(Dependencies.length===0){
+      ListDependency().then(lDependencies => {
+        setDependencies(lDependencies);
+      });
+    }
 
   }, []);
 
@@ -49,6 +52,11 @@ export const SettingABM = () => {
     if (oSetting.length === 1) {
       setSetting(oSetting[0]);
     }
+
+
+
+
+
   };
 
   const GridModalShowOff = () => {
@@ -56,31 +64,32 @@ export const SettingABM = () => {
   }
 
   const GridDelete = id => {
-    console.log(id);
+    alert("This is a funny test, its not avalible to delete the row, the id is " + id );
   };
 
   const GridNew = () => {
     setSetting([]);
     setShowModalEdit(true);
-    setSetting(EmptyAllProperties(Setting));
-    setSetting({
-      ...Setting,
-        Id : 0,
-        IdDependency: 0,
-        correctanswers:1,
-        questionperpage:1
-      });
+    setSetting({...EmptyAllProperties(Setting),
+      Id:0,
+      correctanswers:1,
+      questionperpage:1 
+    });
   };
 
   const ChangeValues = (value, campo) => {
     setSetting(ChangePropertyValue(Setting, campo, value));
+    console.log(campo);
+    console.log(value);
   }
+
 
   const Save = () => {
    let Token;
    Token = localStorage.getItem('token');
 
     if (Setting.Id !== 0){
+
       UpdateSetting(Token,
         Setting.Id,
         Setting.IdDependency,
@@ -95,12 +104,21 @@ export const SettingABM = () => {
         Setting.preinstructiontittle,
         Setting.preinstruction
         ).then(data => {
-          console.log(data);
+         setSettings(x => 
+         x.map(item => 
+         item.Id === Setting.Id ? { ...item, 
+          questionperpage: Setting.questionperpage,
+          Tittle: Setting.Tittle
+         } : item
+         )
+         );
         }
       );
-      //setSettings(Settings.filter(x => x.id !== Setting.Id));
-      //setSettings([...Settings, Setting]);
-    }
+     }
+
+
+
+
     setShowModalEdit(false);
   }
 
@@ -193,7 +211,6 @@ export const SettingABM = () => {
                   min="1"
                   max="1000"
                   defaultValue={Setting?.correctanswers}
-                  placeholder={Setting?.correctanswers}
                   onChange={e => ChangeValues(e.target.value, 'correctanswers')}
                 />
               </div>
@@ -208,7 +225,6 @@ export const SettingABM = () => {
                   min="1"
                   max="50"
                   defaultValue={Setting?.questionperpage}
-                  placeholder={Setting?.questionperpage}
                   onChange={e => ChangeValues(e.target.value, 'questionperpage')}
                 />
               </div>

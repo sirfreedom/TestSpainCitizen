@@ -10,7 +10,6 @@ const param = [];
 try 
 {
     tempdata = await FillAnonimousFromParameter(url,param);
-    debugger;
     data = tempdata.dependencies;
 }
 catch(ex)

@@ -34,8 +34,8 @@ function App() {
     if(localStorage.length > 0){
       ExpirationDate = localStorage.getItem('ExpirationDate');
     }
-    
-    if ( (localStorage.length !== 0) && (ExpirationDate > DateNow)  ) {
+
+    if ( (localStorage.length !== 0) && (new Date(ExpirationDate).getTime() < new Date(DateNow).getTime() )  ) {
 
       getToken('admin', '1234').then(async data => {
         await new Promise(resolve => setTimeout(resolve, 3000)); 

@@ -46,23 +46,30 @@ const RGrid = props => {
     }
   }, [Rows, rowsPerPage, actualPageIndex]);
 
-  const ChangeId = () => {
-    try 
-    {
-      if (props.rows.length === 0 || UniqueOrdering) 
-      {
-        return;
+    const ChangeId = () => {
+      try {
+        if (props.rows.length === 0) {
+          setRows([]);
+          return;
+        }
+        const oComplete = props.rows.map((item, index) => { // Añadir 'index' como fallback
+          const rowIdValue = item[props.ConfigurationId];
+          let RowId;
+          if (rowIdValue === undefined || rowIdValue === null) {
+            console.warn(`ConfigurationId '${props.ConfigurationId}' not found or is null/undefined for row at index ${index}. Using fallback index as RowId.`);
+            RowId = `fallback-${index}`; // Generar un ID único basado en el índice
+          } else {
+            RowId = rowIdValue;
+          }
+          // Asegurarse de que el RowId se extraiga correctamente si existe
+          const { [props.ConfigurationId]: originalRowId, ...rest } = item;
+          return { RowId, ...rest };
+        });
+        setRows(lodash.sortBy(oComplete, 'RowId'));
+      } catch (e) {
+        console.error("Error in ChangeId:", e.message);
       }
-      setUniqueOrdering(true);
-      const oComplete = props.rows.map(item => {
-        const { [props.ConfigurationId]: RowId, ...rest } = item;
-        return { RowId, ...rest };
-      });
-      setRows(lodash.sortBy(oComplete, 'RowId'));
-    } catch (e) {
-      console.error("Error in ChangeId:", e.message);
-    }
-  };
+    };
 
   const HandlerOrderby = (value) => {
     setRows(lodash.sortBy(Rows, value));
