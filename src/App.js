@@ -14,12 +14,14 @@ function App() {
     const DateNow = new Date();
     let ExpirationDate;
 
+    console.log(localStorage.getItem('ExpirationDate'));
+
     if (localStorage.length === 0) {
         debugger;
 
         getToken('admin', '1234').then(async data => {
         
-        await new Promise(resolve => setTimeout(resolve, 3000));
+        await new Promise(resolve => setTimeout(resolve, 1000));
         console.log("Luego de la espera dentro del then");
 
         //JSON.parse(
@@ -38,7 +40,7 @@ function App() {
     if ( (localStorage.length !== 0) && (new Date(ExpirationDate).getTime() < new Date(DateNow).getTime() )  ) {
 
       getToken('admin', '1234').then(async data => {
-        await new Promise(resolve => setTimeout(resolve, 3000)); 
+        await new Promise(resolve => setTimeout(resolve, 1000)); 
 
         ExpirationDate = createDate(data.expirationYear, data.expirationMonth, data.expirationDay, data.expirationHour, data.expirationMinute);
         localStorage.setItem('ExpirationDate',ExpirationDate);

@@ -6,6 +6,7 @@ import { ListDependency } from '../Api/DependencyHelper';
 import { EmptyAllProperties } from '../Api/BaseHelper';
 import { ChangePropertyValue } from '../Api/BaseHelper';
 import { UpdateSetting } from '../Api/SettingHelper';
+import { InsertSetting } from '../Api/SettingHelper';
 
 export const SettingABM = () => {
 
@@ -17,7 +18,7 @@ export const SettingABM = () => {
   const GrillaConfiguracion = [
     {
       Tittle: 'Titulo',
-      Selector: fila => fila.tittle,
+      Selector: fila => fila.title,
       WidthColumn: '70%',
       Ordenable: false,
       ColumnOrdenable: 'tittle',
@@ -55,8 +56,6 @@ export const SettingABM = () => {
 
 
 
-
-
   };
 
   const GridModalShowOff = () => {
@@ -79,10 +78,7 @@ export const SettingABM = () => {
 
   const ChangeValues = (value, campo) => {
     setSetting(ChangePropertyValue(Setting, campo, value));
-    console.log(campo);
-    console.log(value);
   }
-
 
   const Save = () => {
    let Token;
@@ -92,34 +88,52 @@ export const SettingABM = () => {
 
       UpdateSetting(Token,
         Setting.Id,
-        Setting.IdDependency,
-        Setting.cod,
-        Setting.tittle,
-        Setting.questionperpage,
-        Setting.correctanswers,
-        Setting.subtittle,
+        parseInt(Setting.iddependency),
+        Setting.title,
+        parseInt(Setting.questionperpage),
+        parseInt(Setting.correctanswers),
+        Setting.subtitle,
         Setting.instruction,
-        Setting.downloadtittle,
+        Setting.downloadtitle,
         Setting.downloadlink,
-        Setting.preinstructiontittle,
+        Setting.preinstructiontitle,
         Setting.preinstruction
         ).then(data => {
          setSettings(x => 
          x.map(item => 
          item.Id === Setting.Id ? { ...item, 
           questionperpage: Setting.questionperpage,
-          Tittle: Setting.Tittle
+          title: Setting.title
          } : item
          )
          );
+         setShowModalEdit(false);
         }
       );
+
      }
 
+     
+     if (Setting.Id === 0)  {
 
-
-
-    setShowModalEdit(false);
+      InsertSetting(Token,
+        parseInt(Setting.iddependency),
+        Setting.title,
+        parseInt(Setting.questionperpage),
+        parseInt(Setting.correctanswers),
+        Setting.subtitle,
+        Setting.instruction,
+        Setting.downloadtitle,
+        Setting.downloadlink,
+        Setting.preinstructiontitle,
+        Setting.preinstruction
+        ).then(data => {
+          console.log(data);
+          setSettings(oSetting => [...oSetting, data]);
+          setShowModalEdit(false);
+        })
+     }
+     
   }
 
   return (
@@ -170,15 +184,15 @@ export const SettingABM = () => {
 
               <div className="col-5">
 
-                <label htmlFor="txtTittle" className="form-label"> Tittle </label>
+                <label htmlFor="txtTitle" className="form-label"> Title </label>
                 <textarea
                   type="text"
                   className="form-control"
-                  id="txtTittle"
-                  name="txtTittle"
-                  defaultValue={Setting?.tittle}
-                  placeholder={Setting?.tittle}
-                  onChange={e =>  ChangeValues(e.target.value, 'tittle')}
+                  id="txtTitle"
+                  name="txtTitle"
+                  defaultValue={Setting?.title}
+                  placeholder={Setting?.title}
+                  onChange={e =>  ChangeValues(e.target.value, 'title')}
                 />
 
               </div>
@@ -188,9 +202,12 @@ export const SettingABM = () => {
                 <label htmlFor="ddlDependency">Dependency</label>
                 <select id="ddlDependency"
                   className="form-select"
-                  value={Setting?.IdDependency}
+                  value={Setting?.iddependency}
                   onChange={e => ChangeValues(e.target.value,'iddependency') }
                   >
+                    <option key='0' value='0'>
+                      -- Seleccione --
+                    </option>
                   {Dependencies?.map((dependency) =>
                   (
                     <option key={dependency.id} value={dependency.id}>
@@ -209,7 +226,7 @@ export const SettingABM = () => {
                   id="txtcorrectanswers"
                   name="txtcorrectanswers"
                   min="1"
-                  max="1000"
+                  max="100"
                   defaultValue={Setting?.correctanswers}
                   onChange={e => ChangeValues(e.target.value, 'correctanswers')}
                 />
@@ -223,7 +240,7 @@ export const SettingABM = () => {
                   id="txtquestionperpage"
                   name="txtsquestionperpage"
                   min="1"
-                  max="50"
+                  max="100"
                   defaultValue={Setting?.questionperpage}
                   onChange={e => ChangeValues(e.target.value, 'questionperpage')}
                 />
@@ -235,15 +252,15 @@ export const SettingABM = () => {
 
               <div className="col-3">
 
-                <label htmlFor="txtpreinstructiontittle" className="form-label"> Titulo intrucciones </label>
+                <label htmlFor="txtpreinstructiontitle" className="form-label"> Titulo intrucciones </label>
                 <textarea
                   type="text"
                   className="form-control"
-                  id="txtpreinstructiontittle"
-                  name="txtpreinstructiontittle"
-                  defaultValue={Setting?.preinstructiontittle}
-                  placeholder={Setting?.preinstructiontittle}
-                  onChange={e => ChangeValues(e.target.value, 'preinstructiontittle')}
+                  id="txtpreinstructiontitle"
+                  name="txtpreinstructiontitle"
+                  value={Setting?.preinstructiontitle}
+                  placeholder={Setting?.preinstructiontitle}
+                  onChange={e => ChangeValues(e.target.value, 'preinstructiontitle')}
                 />
 
               </div>
@@ -256,7 +273,7 @@ export const SettingABM = () => {
                   className="form-control"
                   id="txtpreinstruction"
                   name="txtpreinstruction"
-                  defaultValue={Setting?.preinstruction}
+                  value={Setting?.preinstruction}
                   placeholder={Setting?.preinstruction}
                   onChange={e => ChangeValues(e.target.value, 'preinstruction')}
                 />
@@ -271,7 +288,7 @@ export const SettingABM = () => {
                   className="form-control"
                   id="txtinstruction"
                   name="txtinstruction"
-                  defaultValue={Setting?.instruction}
+                  value={Setting?.instruction}
                   placeholder={Setting?.instruction}
                   onChange={e => ChangeValues(e.target.value, 'instruction')}
                 />
@@ -282,29 +299,29 @@ export const SettingABM = () => {
             <div className="row" >
 
               <div className="col-4">
-                <label htmlFor="txtsubtittle" className="form-label"> Sub Titulo </label>
+                <label htmlFor="txtsubtitle" className="form-label"> Sub Titulo </label>
                 <textarea
                   type="text"
                   className="form-control"
-                  id="txtsubtittle"
-                  name="txtsubtittle"
-                  defaultValue={Setting?.tittle}
-                  placeholder={Setting?.tittle}
-                  onChange={e => ChangeValues(e.target.value, 'subtittle')}
+                  id="txtsubtitle"
+                  name="txtsubtitle"
+                  value={Setting?.subtitle}
+                  placeholder={Setting?.subtitle}
+                  onChange={e => ChangeValues(e.target.value, 'subtitle')}
                 />
               </div>
 
               <div className="col-4">
 
-                <label htmlFor="txtdownloadtittle" className="form-label"> Titulo Descarga </label>
+                <label htmlFor="txtdownloadtitle" className="form-label"> Titulo Descarga </label>
                 <textarea
                   type="text"
                   className="form-control"
-                  id="txtdownloadtittle"
-                  name="txtdownloadtittle"
-                  defaultValue={Setting?.downloadtittle}
-                  placeholder={Setting?.downloadtittle}
-                  onChange={e => ChangeValues(e.target.value, 'downloadtittle')}
+                  id="txtdownloadtitle"
+                  name="txtdownloadtitle"
+                  value={Setting?.downloadtitle}
+                  placeholder={Setting?.downloadtitle}
+                  onChange={e => ChangeValues(e.target.value, 'downloadtitle')}
                 />
 
               </div>
@@ -317,7 +334,7 @@ export const SettingABM = () => {
                   className="form-control"
                   id="txtdownloadlink"
                   name="txtdownloadlink"
-                  defaultValue={Setting?.downloadlink}
+                  value={Setting?.downloadlink}
                   placeholder={Setting?.downloadlink}
                   onChange={e => ChangeValues(e.target.value, 'downloadlink')}
                 />

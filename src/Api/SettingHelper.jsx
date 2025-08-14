@@ -38,7 +38,7 @@ catch(ex)
 return data;
 }
 
-export const UpdateSetting = async (Token,id,cod,iddependency,tittle,questionperpage,correctanswers,subtittle,instruction,downloadtittle,downloadlink,preinstructiontittle,preinstruction) => {
+export const UpdateSetting = async (Token,id,iddependency,title,questionperpage,correctanswers,subtitle,instruction,downloadtitle,downloadlink,preinstructiontitle,preinstruction) => {
     let data;
     let url = 'api/Setting/Update';
     const method = 'PUT';
@@ -46,15 +46,14 @@ export const UpdateSetting = async (Token,id,cod,iddependency,tittle,questionper
     {  
     "id": id 
     ,"iddependency": iddependency
-    ,"cod" : cod
-    ,"tittle": tittle  
+    ,"title": title  
     ,"questionperpage": questionperpage  
     ,"correctanswers": correctanswers 
-    ,"subtittle": subtittle
+    ,"subtitle": subtitle
     ,"instruction": instruction
-    ,"downloadtittle": downloadtittle
+    ,"downloadtitle": downloadtitle
     ,"downloadlink": downloadlink
-    ,"preinstructiontittle": preinstructiontittle
+    ,"preinstructiontitle": preinstructiontitle
     ,"preinstruction": preinstruction
     };
 try 
@@ -68,22 +67,23 @@ catch(ex)
 return data;
 }
 
-export const InsertSetting = async (Token,tittle,questionperpage,correctanswers,subtittle,instruction,downloadtittle,downloadlink,preinstructiontittle,preinstruction) => {
+export const InsertSetting = async (Token,iddependency,title,questionperpage,correctanswers,subtitle,instruction,downloadtitle,downloadlink,preinstructiontitle,preinstruction) => {
     let data;
     let url = 'api/Setting/Insert';
     const method = 'POST';
     let param = 
-    [ { 
-    "tittle": tittle,
-    "questionperpage": questionperpage,
-    "correctanswers": correctanswers,
-    "subtittle": subtittle,
-    "instruction": instruction,
-    "downloadtittle": downloadtittle,
-    "downloadlink": downloadlink,
-    "preinstructiontittle": preinstructiontittle,
-    "preinstruction": preinstruction
-    } ];
+     { 
+    "iddependency": iddependency
+    ,"title": title  
+    ,"questionperpage": questionperpage  
+    ,"correctanswers": correctanswers 
+    ,"subtitle": subtitle
+    ,"instruction": instruction
+    ,"downloadtitle": downloadtitle
+    ,"downloadlink": downloadlink
+    ,"preinstructiontitle": preinstructiontitle
+    ,"preinstruction": preinstruction
+    };
 try 
 {
     data = await FillWithLoginFromBody(url,param,method,Token);

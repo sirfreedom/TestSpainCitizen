@@ -139,6 +139,13 @@ export const EmptyAllProperties = (obj) => {
 }
 
 export const ChangePropertyValue = (obj, propiedad, nuevoValor) => {
+   
+  if (typeof obj !== 'object' || obj === null) {
+    throw new Error('El primer argumento debe ser un objeto válido.');
+  }
+  if (typeof propiedad !== 'string') {
+    throw new Error('La propiedad debe ser una cadena.');
+  }
   return {
     ...obj,
     [propiedad]: nuevoValor
@@ -147,7 +154,6 @@ export const ChangePropertyValue = (obj, propiedad, nuevoValor) => {
 
 
 export const createDate = (year, month, day, hour, minute) => {
-
   var fecha;
   try {
 

@@ -200,7 +200,7 @@ const RGrid = props => {
                           onClick={() => props.EditId(row.RowId)}
                           title="Edit"
                         >
-                          Edit
+                        Edit
                         </button>
                       </div>
                     )}
