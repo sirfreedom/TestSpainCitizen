@@ -204,9 +204,9 @@ return (
 
 <Modal key="modalwelcome" show={ShowWelcome} onHide={handleWelcomeClose}>
     <Modal.Header key="modalwelcome_header" closeButton>
-      <Modal.Title key="modalwelcome_tittle">
+      <Modal.Title key="modalwelcome_title">
         <p>
-          {Setting.subtittle}
+          {Setting.subtitle}
         </p>
       </Modal.Title>
     </Modal.Header>
@@ -218,10 +218,10 @@ return (
           </p>
 
           <a key="download" rel="noopener" href={Setting.downloadlink} >
-              {Setting.downloadtittle}
+              {Setting.downloadtitle}
           </a>
           <p>
-              {Setting.preinstructiontittle}
+              {Setting.preinstructiontitle}
           </p>
         </div>
       </div>

@@ -50,6 +50,7 @@ export const SettingABM = () => {
     setShowModalEdit(true);
     oSetting = Settings.filter(x => x.Id === id);
 
+    console.log(oSetting);
     if (oSetting.length === 1) {
       setSetting(oSetting[0]);
     }
@@ -61,8 +62,8 @@ export const SettingABM = () => {
   }
 
   const GridDelete = id => {
-    const nuevaLista = Settings.filter(objeto => objeto.Id !== id);
-    setSettings(nuevaLista);
+    const newList = Settings.filter(objeto => objeto.Id !== id);
+    setSettings(newList);
     alert("This is a funny test, its not avalible to delete the row, the id is " + id );
   };
 
@@ -88,7 +89,7 @@ export const SettingABM = () => {
 
       UpdateSetting(Token,
         Setting.Id,
-        parseInt(Setting.iddependency),
+        parseInt(Setting.IdDependency),
         Setting.title,
         parseInt(Setting.questionperpage),
         parseInt(Setting.correctanswers),
@@ -117,7 +118,7 @@ export const SettingABM = () => {
      if (Setting.Id === 0)  {
 
       InsertSetting(Token,
-        parseInt(Setting.iddependency),
+        parseInt(Setting.IdDependency),
         Setting.title,
         parseInt(Setting.questionperpage),
         parseInt(Setting.correctanswers),
@@ -201,8 +202,8 @@ export const SettingABM = () => {
                 <label htmlFor="ddlDependency">Dependency</label>
                 <select id="ddlDependency"
                   className="form-select"
-                  value={Setting?.iddependency}
-                  onChange={e => ChangeValues(e.target.value,'iddependency') }
+                  defaultValue={Setting?.IdDependency}
+                  onChange={e => ChangeValues(e.target.value,'IdDependency') }
                   >
                   {Dependencies?.map((dependency) =>
                   (

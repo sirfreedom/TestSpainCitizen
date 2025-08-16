@@ -7,7 +7,6 @@ const RGrid = props => {
   const [rowsPerPage, setRowsPerPage] = useState(props.RowPerPage);
   const [actualPageIndex, setActualPageIndex] = useState(1);
   const [TotalPages, setTotalPages] = useState(0);
-  const [UniqueOrdering, setUniqueOrdering] = useState(false);
   const totalVisibleColumns = props.columns.length + (props.ShowDelete ? 1 : 0) + (props.ShowEdit ? 1 : 0);
 
   const ddlPages_OnChange = value => {
@@ -183,7 +182,7 @@ const RGrid = props => {
                     {props.ShowDelete && (
                       <div className="p-1 text-center" style={{ width: '60px' }}>
 
-                          <a key={'a_delete' + Math.random().toString()} href="#" onClick={() => props.DeleteId(row.RowId)}>
+                          <a key={'a_delete' + Math.random().toString()}  onClick={() => props.DeleteId(row.RowId)}>
                             <img
                               alt="imgDelete"
                               className="imgDelete"
@@ -194,14 +193,12 @@ const RGrid = props => {
                               key={'imgDelete' + Math.random().toString() }
                             ></img>
                           </a>
-
-
                       </div>
                     )}
 
                     {props.ShowEdit && (
                       <div className="p-1 text-center" style={{ width: '60px' }}>
-                       <a key={'a_edit' + row.RowId.toString()} href='/#' onClick={() => props.EditId(row.RowId)}>
+                       <a key={'a_edit' + row.RowId.toString()}  onClick={() => props.EditId(row.RowId)}>
                             <img
                               alt="imgEdit"
                               className="imgEdit"
