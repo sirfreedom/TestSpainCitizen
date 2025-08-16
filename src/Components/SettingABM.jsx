@@ -73,7 +73,8 @@ export const SettingABM = () => {
     setSetting({...EmptyAllProperties(Setting),
       Id:0,
       correctanswers:1,
-      questionperpage:1 
+      questionperpage:1, 
+      IdDependency:1 
     });
   };
 
@@ -101,10 +102,11 @@ export const SettingABM = () => {
         Setting.preinstruction
         ).then(data => {
          setSettings(x => 
-         x.map(item => 
+         x.map(item => // Si bien actualiza, necesito que se actualice todo lo que maneja la pantalla 
          item.Id === Setting.Id ? { ...item, 
           questionperpage: Setting.questionperpage,
-          title: Setting.title
+          title: Setting.title,
+          IdDependency: Setting.IdDependency
          } : item
          )
          );

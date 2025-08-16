@@ -186,7 +186,7 @@ const RGrid = props => {
                             <img
                               alt="imgDelete"
                               className="imgDelete"
-                              title="Next"
+                              title="Delete"
                               border="0"
                               width="18px"
                               height="18px"
@@ -202,7 +202,7 @@ const RGrid = props => {
                             <img
                               alt="imgEdit"
                               className="imgEdit"
-                              title="Next"
+                              title="Edit"
                               border="0"
                               width="18px"
                               height="18px"
