@@ -8,7 +8,6 @@ const RGrid = props => {
   const [actualPageIndex, setActualPageIndex] = useState(1);
   const [TotalPages, setTotalPages] = useState(0);
   const [UniqueOrdering, setUniqueOrdering] = useState(false);
-
   const totalVisibleColumns = props.columns.length + (props.ShowDelete ? 1 : 0) + (props.ShowEdit ? 1 : 0);
 
   const ddlPages_OnChange = value => {
@@ -153,13 +152,13 @@ const RGrid = props => {
 
               {props.ShowDelete && (
                 <div className="p-1 text-center" style={{ width: '60px' }}>
-                  Delete
+                  
                 </div>
               )}
 
               {props.ShowEdit && (
                 <div className="p-1 text-center" style={{ width: '60px' }}>
-                  Edit
+                  
                 </div>
               )}
             </div>
@@ -183,25 +182,38 @@ const RGrid = props => {
 
                     {props.ShowDelete && (
                       <div className="p-1 text-center" style={{ width: '60px' }}>
-                        <button
-                          className="btn btn-sm btn-danger py-1 px-1" 
-                          onClick={() => props.DeleteId(row.RowId)}
-                          title="Delete"
-                        >
-                        Delete
-                        </button>
+
+                          <a key={'a_delete' + Math.random().toString()} href="#" onClick={() => props.DeleteId(row.RowId)}>
+                            <img
+                              alt="imgDelete"
+                              className="imgDelete"
+                              title="Next"
+                              border="0"
+                              width="18px"
+                              height="18px"
+                              key={'imgDelete' + Math.random().toString() }
+                            ></img>
+                          </a>
+
+
                       </div>
                     )}
 
                     {props.ShowEdit && (
                       <div className="p-1 text-center" style={{ width: '60px' }}>
-                        <button
-                          className="btn btn-sm btn-warning py-1 px-1" 
-                          onClick={() => props.EditId(row.RowId)}
-                          title="Edit"
-                        >
-                        Edit
-                        </button>
+                       <a key={'a_edit' + row.RowId.toString()} href='/#' onClick={() => props.EditId(row.RowId)}>
+                            <img
+                              alt="imgEdit"
+                              className="imgEdit"
+                              title="Next"
+                              border="0"
+                              width="18px"
+                              height="18px"
+                              value={row.RowId}
+                              key={'imgEdit' + row.RowId.toString() }
+                            ></img>
+                          </a>
+
                       </div>
                     )}
                   </div>
@@ -218,9 +230,11 @@ const RGrid = props => {
                 <nav aria-label="Page navigation">
                   <ul className="pagination pagination-sm justify-content-end mb-0"> 
                     <li className={`page-item ${actualPageIndex === 1 ? 'disabled' : ''}`}>
+
                       <button className="page-link" onClick={PrevPage} disabled={actualPageIndex === 1}>
                         Previous Page
                       </button>
+
                     </li>
                     <li className="page-item disabled">
                       <span className="page-link text-muted"> 

@@ -54,8 +54,6 @@ export const SettingABM = () => {
       setSetting(oSetting[0]);
     }
 
-
-
   };
 
   const GridModalShowOff = () => {
@@ -63,6 +61,8 @@ export const SettingABM = () => {
   }
 
   const GridDelete = id => {
+    const nuevaLista = Settings.filter(objeto => objeto.Id !== id);
+    setSettings(nuevaLista);
     alert("This is a funny test, its not avalible to delete the row, the id is " + id );
   };
 
@@ -128,7 +128,6 @@ export const SettingABM = () => {
         Setting.preinstructiontitle,
         Setting.preinstruction
         ).then(data => {
-          console.log(data);
           setSettings(oSetting => [...oSetting, data]);
           setShowModalEdit(false);
         })
@@ -205,9 +204,6 @@ export const SettingABM = () => {
                   value={Setting?.iddependency}
                   onChange={e => ChangeValues(e.target.value,'iddependency') }
                   >
-                    <option key='0' value='0'>
-                      -- Seleccione --
-                    </option>
                   {Dependencies?.map((dependency) =>
                   (
                     <option key={dependency.id} value={dependency.id}>
