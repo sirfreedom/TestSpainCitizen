@@ -28,22 +28,16 @@ const Layout = () => {
     <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="me-auto">
         <Nav.Link as={Link} to="Examenes">
-          Examenes
+          Examenes 
         </Nav.Link>
         <NavDropdown title="Setting Questions" id="collapsible-nav-dropdown">
           <NavDropdown.Item as={Link} to="Setting">
-            Setting
+            Setting Abm
           </NavDropdown.Item>
           <NavDropdown.Item>
-            Segundo abm
-          </NavDropdown.Item>
-          <NavDropdown.Item>
-            Something
+            Nada 1
           </NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item>
-            Separated link
-          </NavDropdown.Item>
         </NavDropdown>
       </Nav>
     </Navbar.Collapse>
