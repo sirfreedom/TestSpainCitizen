@@ -106,7 +106,14 @@ export const SettingABM = () => {
          item.Id === Setting.Id ? { ...item, 
           questionperpage: Setting.questionperpage,
           title: Setting.title,
-          IdDependency: Setting.IdDependency
+          IdDependency: Setting.IdDependency,
+          subtitle:Setting.subtitle,
+          title: Setting.title,
+          instruction: Setting.instruction,
+          downloadtitle: Setting.downloadtitle,
+          downloadlink: Setting.downloadlink,
+          preinstructiontitle: Setting.preinstructiontitle,
+          preinstruction: Setting.preinstruction
          } : item
          )
          );
