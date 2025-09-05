@@ -1,0 +1,44 @@
+
+<Modal key="modalShowAlert" show={ShowAlert} onHide={handleShowAlertClose}>
+
+  <Modal.Header key="modalShowAlert_head"  closeButton>
+
+    <Modal.Title> 
+      <p>
+        Mensaje de alerta
+      </p>
+    </Modal.Title>
+
+  </Modal.Header>
+
+  <Modal.Body key="modalShowAlert_body" > 
+
+    <div className='row mb-3'>
+      <div className='col-12'>
+        <p className='align-items-center'> 
+          
+        </p>
+      </div>
+    </div>
+    <div className='row mb-3'>
+      <div className='col-12'> 
+        <p className='align-items-center'>
+          Podes ver las respuestas correctas en cada pregunta.
+        </p>
+      </div>
+    </div>
+
+  </Modal.Body>
+
+  <Modal.Footer key="modalShowAlert_footer" >
+
+    <div className='row mt-3' >
+      <div className='col-12' >
+        <Button key="modalShowAlert_btnCerrar" variant="secondary" onClick={handleShowAlertClose}>
+          Ok, Comprendo 
+        </Button>
+      </div>
+    </div>
+
+  </Modal.Footer>
+</Modal>

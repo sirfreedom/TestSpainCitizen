@@ -28,6 +28,9 @@ export const TestExam = () => {
     const [ShowFinishAnswer, setShowFinishAnswer] = useState(false);
     const handleFinishAnswerClose = () => setShowFinishAnswer(false);
 
+    const [ShowAlert, setShowAlert] = useState(false);
+    const handleShowAlertClose = () => setShowAlert(false);
+
     useEffect(() => 
     {
         getByDependency(1).then(data => {
@@ -42,7 +45,30 @@ export const TestExam = () => {
 
     }, []);
 
+    window.addEventListener('blur', () => {
+      console.log('Usuario cambió de pestaña o minimizó el navegador');
+      setShowAlert(true);
+    });
 
+    window.addEventListener('focus', () => {
+      console.log('Usuario volvió a la pestaña');
+      setShowAlert(false);
+    });
+
+    window.addEventListener('beforeunload', () => {
+      console.log('no se puede cambiar ');
+      setShowAlert(true);
+    });
+
+    window.addEventListener('unload', () => {
+      console.log('no se puede minimizar o cerrar el examen');
+      setShowAlert(true);
+    });
+
+    window.addEventListener('resize', () => {
+      console.log('no se puede cambiar el tamano de la pantalla del examen');
+      setShowAlert(true);
+    });
 
     const ValidQuestion = () => 
     {
@@ -216,7 +242,6 @@ return (
           <p className='align-items-start' >
               {Setting.instruction}
           </p>
-
           <a key="download" rel="noopener" href={Setting.downloadlink} >
               {Setting.downloadtitle}
           </a>
@@ -326,6 +351,57 @@ return (
 
   </Modal.Footer>
 </Modal>
+
+
+
+
+<Modal key="modalShowAlert" show={ShowAlert} onHide={handleShowAlertClose}>
+
+  <Modal.Header key="modalShowAlert_head"  closeButton>
+
+    <Modal.Title> 
+      <p>
+        Mensaje de alerta
+      </p>
+    </Modal.Title>
+
+  </Modal.Header>
+
+  <Modal.Body key="modalShowAlert_body" > 
+
+    <div className='row mb-3'>
+      <div className='col-12'>
+        <p className='align-items-center'> 
+          
+        </p>
+      </div>
+    </div>
+    <div className='row mb-3'>
+      <div className='col-12'> 
+        <p className='align-items-center'>
+          
+            ssss
+
+        </p>
+      </div>
+    </div>
+
+  </Modal.Body>
+
+  <Modal.Footer key="modalShowAlert_footer" >
+
+    <div className='row mt-3' >
+      <div className='col-12' >
+        <Button key="modalShowAlert_btnCerrar" variant="secondary" onClick={handleShowAlertClose}>
+          Ok, Comprendo 
+        </Button>
+      </div>
+    </div>
+
+  </Modal.Footer>
+</Modal>
+
+
 
 </div>
 </>
