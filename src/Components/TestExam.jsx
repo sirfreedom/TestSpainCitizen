@@ -47,27 +47,27 @@ export const TestExam = () => {
 
     window.addEventListener('blur', () => {
       console.log('Usuario cambió de pestaña o minimizó el navegador');
-      setShowAlert(true);
+      //setShowAlert(true);
     });
 
     window.addEventListener('focus', () => {
       console.log('Usuario volvió a la pestaña');
-      setShowAlert(false);
+      //setShowAlert(false);
     });
 
     window.addEventListener('beforeunload', () => {
       console.log('no se puede cambiar ');
-      setShowAlert(true);
+      //setShowAlert(true);
     });
 
     window.addEventListener('unload', () => {
       console.log('no se puede minimizar o cerrar el examen');
-      setShowAlert(true);
+      //setShowAlert(true);
     });
 
     window.addEventListener('resize', () => {
       console.log('no se puede cambiar el tamano de la pantalla del examen');
-      setShowAlert(true);
+      //setShowAlert(true);
     });
 
     const ValidQuestion = () => 
