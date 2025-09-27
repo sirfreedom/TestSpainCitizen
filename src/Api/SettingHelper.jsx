@@ -1,5 +1,5 @@
-import { FillAnonimousFromParameter } from './BaseHelper';
-import { FillWithLoginFromBody } from './BaseHelper'
+import { Fill } from './BaseHelper';
+
 
 export const getByDependency = async (id) =>
 {
@@ -9,8 +9,8 @@ let url = 'api/Setting/GetByDependency';
 let param = [ { "IdDependency": id } ];
 try 
 {
-    tempdata = await FillAnonimousFromParameter(url,param);
-    data = tempdata.setting
+    tempdata = await Fill(url,param,'GET');
+    data = await tempdata.setting
 }
 catch(ex)
 { 
@@ -28,8 +28,8 @@ let url = 'api/Setting/Find';
 const param = [];
 try 
 {
-    tempdata = await FillAnonimousFromParameter(url,param);
-    data = tempdata.listsetting
+    tempdata = await Fill(url,param,'GET');
+    data = await tempdata.listsetting
 }
 catch(ex)
 {
@@ -58,7 +58,7 @@ export const UpdateSetting = async (Token,id,iddependency,title,questionperpage,
     };
 try 
 {
-    data = await FillWithLoginFromBody(url,param,method,Token);
+    data = await Fill(url,param,method,Token);
 }
 catch(ex)
 {
@@ -86,7 +86,7 @@ export const InsertSetting = async (Token,iddependency,title,questionperpage,cor
     };
 try 
 {
-    data = await FillWithLoginFromBody(url,param,method,Token);
+    data = await Fill(url,param,method,Token);
 }
 catch(ex)
 {

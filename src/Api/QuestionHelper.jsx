@@ -1,4 +1,4 @@
-import { FillAnonimousFromParameter } from './BaseHelper';
+import { Fill } from './BaseHelper';
 
 
 export const ListQuestion = async (codLevel) =>
@@ -9,8 +9,8 @@ let url = 'api/Question';
 const param = [ { "IdDependency": 1 }, { "CodLevel": 1 } ];
 try 
 {
-    tempdata = await FillAnonimousFromParameter(url,param);
-    data = tempdata.questions;
+    tempdata = await Fill(url,param,'GET');
+    data = await tempdata.questions;
 }
 catch(ex)
 {

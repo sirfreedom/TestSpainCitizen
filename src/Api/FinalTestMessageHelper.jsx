@@ -1,4 +1,4 @@
-import { FillAnonimousFromParameter } from './BaseHelper';
+import { Fill } from './BaseHelper';
 
 
 export const ListFinalTestMessage = async () =>
@@ -9,8 +9,8 @@ let url = 'api/FinalTestMessage';
 const param = [ { "IdDependency": 1 } ];
 try 
 {
-    tempdata = await FillAnonimousFromParameter(url,param);
-    data = tempdata.finaltestmessage;
+    tempdata = await Fill(url,param,'GET');
+    data = await tempdata.finaltestmessage;
 }
 catch(ex)
 {

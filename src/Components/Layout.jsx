@@ -3,10 +3,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-
 import '../Css/Layout.css';
-
-
 
 const Layout = () => {
 
@@ -34,8 +31,8 @@ const Layout = () => {
           <NavDropdown.Item as={Link} to="Setting">
             Setting Abm
           </NavDropdown.Item>
-          <NavDropdown.Item>
-            Nada 1
+          <NavDropdown.Item as={Link} to="Prueba">
+            Prueba
           </NavDropdown.Item>
           <NavDropdown.Divider />
         </NavDropdown>
