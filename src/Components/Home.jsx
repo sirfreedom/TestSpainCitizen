@@ -5,7 +5,9 @@ const Home = () => {
 
     return (
         <>
-            <a href='/#'>home</a>
+            
+
+            
         </>
     );
 }
