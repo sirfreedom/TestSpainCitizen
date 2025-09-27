@@ -1,7 +1,6 @@
 
 const BASEURL = 'https://sirfreedom.somee.com/';
-//const BASEURL = 'https://localhost:54044/';
-
+//const BASEURL = 'https://localhost:44339/';
 
 function toQueryString(params) {
   if (!Array.isArray(params) || params.length === 0) return '';
@@ -11,115 +10,55 @@ function toQueryString(params) {
     .join('&');
 }
 
-
-export const FillWithLoginFromBody = async (Url, DataRequest, Method, Token) => {
-  let data = [];
+export const Fill = async (Url, lParam, Method,Token) => {
   let response;
-  try {
-    response = await fetch(BASEURL + Url,
-      {
-        method: Method,
-        credentials: 'include',
-        headers:
-        {
-          'Content-Type': 'application/json',
-          "Authorization": 'Bearer ' + Token
-        },
-        body: JSON.stringify(DataRequest)
-      });
-
-    if (response.ok) {
-      data = await response.json();
-    }
-
-  }
-  catch (ex) {
-    console.error('Error en FillWithLoginFromBody', ex);
-  }
-  return data;
-}
-
-
-
-export const FillAnonimousFromBody = async (Url, DataRequest, Method) => {
   let data = [];
-  let response;
+  let Parameters;
+  const headers = {};
   try {
-    response = await fetch(BASEURL + Url, {
+  
+    // Construye el objeto de opciones para fetch
+    const fetchOptions = {
       method: Method,
-      credentials: 'include',
-      headers:
+      credentials: 'include'
+    };
+
+      if (Token && Token.trim() !== '') 
       {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(DataRequest)
-    });
+        headers['Authorization'] = 'Bearer ' + Token;
+      }
+    
+    // Agrega Content-Type solo si el método no es GET (asumiendo que GET no tiene body)
+    // Puedes ajustar esta condición según tus necesidades (ej: si envías body en POST)
+    if (Method !== 'GET' && Method !== 'HEAD') {
+      headers['Content-Type'] = 'application/json';
+      fetchOptions.body = JSON.stringify(lParam); // Usa lParam como body para POST
+    }
+
+    if(Method === 'GET'){
+      Parameters = toQueryString(lParam);
+    }
+    
+    // Si hay headers, agrégalos a las opciones de fetch
+    if (Object.keys(headers).length > 0) {
+      fetchOptions.headers = headers;
+    }
+
+    if(Method === 'GET'){
+    response = await fetch(BASEURL + Url + '?' + Parameters, fetchOptions);
+    }
+
+    if(Method !== 'GET'){
+      response = await fetch(BASEURL + Url, fetchOptions);
+    }
 
     if (response.ok) {
       data = await response.json();
     }
 
-  } catch (ex) {
-    console.error('Error en FillAnonimousFromBody', ex);
-  }
-  return data;
-}
-
-
-/*
-  const param = [ { clave: "IdDependency", valor: 1 } ];
-*/
-export const FillAnonimousFromParameter = async (Url, lParam, Method) => {
-  let response;
-  let data = [];
-  let Parameters;
-  try {
-    Parameters = toQueryString(lParam);
-    response = await fetch(BASEURL + Url + '?' + Parameters,
-      {
-        method: Method,
-        credentials: 'include',
-        headers:
-          { 'Content-Type': 'application/json', }
-      });
-
-    if (response.ok) {
-      data = await response.json();
-    }
-
-
   }
   catch (ex) {
-    console.error('Error Fill Anonimous From Parameter', ex);
-  }
-  return data;
-};
-
-
-export const FillWithLoginFromParameter = async (Url, lParam, Method, Token) => {
-  let response;
-  let data = [];
-  let Parameters;
-  try {
-    Parameters = toQueryString(lParam);
-    response = await fetch(BASEURL + Url + '?' + Parameters,
-      {
-        method: Method,
-        credentials: 'include',
-        headers:
-        {
-          'Content-Type': 'application/json',
-          "Authorization": 'Bearer ' + Token
-        }
-      });
-
-     if (response.ok) {
-      data = await response.json();
-    }
-
-  }
-  catch (ex) {
-    console.error('Error Fill With Login From Parameter', ex);
+    console.error('Error Fill', ex);
   }
   return data;
 };

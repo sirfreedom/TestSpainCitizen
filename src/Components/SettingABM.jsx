@@ -18,14 +18,14 @@ export const SettingABM = () => {
   const GrillaConfiguracion = [
     {
       Tittle: 'Titulo',
-      Selector: fila => fila.title,
+      Selector: fila => fila?.title,
       WidthColumn: '70%',
       Ordenable: false,
       ColumnOrdenable: 'tittle',
     },
     {
       Tittle: 'Preguntas Por pagina',
-      Selector: fila => fila.questionperpage,
+      Selector: fila => fila?.questionperpage,
       WidthColumn: '30%',
       Ordenable: false
     },
@@ -127,10 +127,10 @@ export const SettingABM = () => {
      if (Setting.Id === 0)  {
 
       InsertSetting(Token,
-        parseInt(Setting.IdDependency),
+        parseInt(Setting?.IdDependency),
         Setting.title,
-        parseInt(Setting.questionperpage),
-        parseInt(Setting.correctanswers),
+        parseInt(Setting?.questionperpage),
+        parseInt(Setting?.correctanswers),
         Setting.subtitle,
         Setting.instruction,
         Setting.downloadtitle,
@@ -216,8 +216,8 @@ export const SettingABM = () => {
                   >
                   {Dependencies?.map((dependency) =>
                   (
-                    <option key={dependency.id} value={dependency.id}>
-                      {dependency.descripcion}
+                    <option key={dependency?.id} value={dependency?.id}>
+                      {dependency?.descripcion}
                     </option>
                   ))}
                 </select>

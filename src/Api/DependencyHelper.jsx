@@ -1,4 +1,4 @@
-import { FillAnonimousFromParameter } from './BaseHelper';
+import { Fill } from './BaseHelper';
 
 
 export const ListDependency = async () =>
@@ -9,8 +9,9 @@ let url = 'api/Dependency/List';
 const param = [];
 try 
 {
-    tempdata = await FillAnonimousFromParameter(url,param);
-    data = tempdata.dependencies;
+    debugger;
+    tempdata = await Fill(url,param,'GET');
+    data = await tempdata.dependencies;
 }
 catch(ex)
 {

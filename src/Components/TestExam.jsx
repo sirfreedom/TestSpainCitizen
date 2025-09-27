@@ -46,27 +46,27 @@ export const TestExam = () => {
     }, []);
 
     window.addEventListener('blur', () => {
-      console.log('Usuario cambió de pestaña o minimizó el navegador');
+      //console.log('Usuario cambió de pestaña o minimizó el navegador');
       //setShowAlert(true);
     });
 
     window.addEventListener('focus', () => {
-      console.log('Usuario volvió a la pestaña');
+      //console.log('Usuario volvió a la pestaña');
       //setShowAlert(false);
     });
 
     window.addEventListener('beforeunload', () => {
-      console.log('no se puede cambiar ');
+      //console.log('no se puede cambiar ');
       //setShowAlert(true);
     });
 
     window.addEventListener('unload', () => {
-      console.log('no se puede minimizar o cerrar el examen');
+      //console.log('no se puede minimizar o cerrar el examen');
       //setShowAlert(true);
     });
 
     window.addEventListener('resize', () => {
-      console.log('no se puede cambiar el tamano de la pantalla del examen');
+      //console.log('no se puede cambiar el tamano de la pantalla del examen');
       //setShowAlert(true);
     });
 
@@ -81,15 +81,15 @@ export const TestExam = () => {
             for (let i = 0; i < ls.length; i++)
             {
 
-                if (ls[i].checked.toString() === "true" &&  ls[i].dataset.respuesta === "true" )
+                if (ls[i].checked.toString() === "true" &&  ls[i].dataset?.respuesta === "true" )
                 {
-                  document.getElementById('imgAproboA' + ls[i].dataset.cod).className = "imgAA enabled";
+                  document.getElementById('imgAproboA' + ls[i].dataset?.cod).className = "imgAA enabled";
                   iCorrectAnwers++;
                 }
                 
-                if (document.getElementById('imgAproboA' + ls[i].dataset.cod).className !== "imgAA enabled" )
+                if (document.getElementById('imgAproboA' + ls[i].dataset?.cod).className !== "imgAA enabled" )
                 {
-                  document.getElementById('imgAproboA' + ls[i].dataset.cod).className = "imgXX enabled";
+                  document.getElementById('imgAproboA' + ls[i].dataset?.cod).className = "imgXX enabled";
                 }
 
             }
@@ -129,7 +129,7 @@ return (
 
   <div className='row justify-content-center' >
       <div className='col-12 m-2'> 
-          <h2> { Setting.tittle } </h2>
+          <h2> { Setting?.title } </h2>
       </div>
   </div>
 
@@ -139,31 +139,31 @@ return (
        {
         return (
         
-        <Accordion.Item key={'accordionitem_' + rowQuestion.cod + indexQuestion } eventKey={indexQuestion}>
+        <Accordion.Item key={'accordionitem_' + rowQuestion?.cod + indexQuestion } eventKey={indexQuestion}>
 
-        <Accordion.Header key={'accordionheader_' + rowQuestion.cod + indexQuestion }  >
+        <Accordion.Header key={'accordionheader_' + rowQuestion?.cod + indexQuestion }  >
 
-        <div key={'rowCuadrado_' + rowQuestion.cod + indexQuestion } className="row justify-content-center" >
-          <div key={'colCuadrado' + rowQuestion.cod + indexQuestion } className='col-1'>
+        <div key={'rowCuadrado_' + rowQuestion?.cod + indexQuestion } className="row justify-content-center" >
+          <div key={'colCuadrado' + rowQuestion?.cod + indexQuestion } className='col-1'>
 
-            <div  key={'rowNivelCuadrado_' + rowQuestion.cod + indexQuestion } className='row justify-content-start' >
+            <div  key={'rowNivelCuadrado_' + rowQuestion?.cod + indexQuestion } className='row justify-content-start' >
 
-                {Number(rowQuestion.codLevel) === 3 && (
-                  <div key={'colNivelAlto_'+ rowQuestion.cod + indexQuestion} className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 cuadradoNivelAlto"></div>
+                {Number(rowQuestion?.codLevel) === 3 && (
+                  <div key={'colNivelAlto_'+ rowQuestion?.cod + indexQuestion} className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 cuadradoNivelAlto"></div>
                 )}
-                {Number(rowQuestion.codLevel) === 2 && (
-                  <div key={'colNivelMedio_' + rowQuestion.cod + indexQuestion} className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 cuadradoNivelMedio"></div>
+                {Number(rowQuestion?.codLevel) === 2 && (
+                  <div key={'colNivelMedio_' + rowQuestion?.cod + indexQuestion} className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 cuadradoNivelMedio"></div>
                 )}
-                {Number(rowQuestion.codLevel) === 1 && (
-                  <div key={'colNivelBajo_' + rowQuestion.cod + indexQuestion} className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 cuadradoNivelBajo"></div>
+                {Number(rowQuestion?.codLevel) === 1 && (
+                  <div key={'colNivelBajo_' + rowQuestion?.cod + indexQuestion} className="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 cuadradoNivelBajo"></div>
                 )}
 
             </div>
 
             <div className='row'>
               <div className='col-1' >
-                  <img key={'imgAproboA' + rowQuestion.cod } id={'imgAproboA' + rowQuestion.cod } className="imgAA disabled" title="Correcta" alt="Correcta" border="0" ></img>
-                  <img key={'imgAproboX' + rowQuestion.cod } id={'imgAproboX' + rowQuestion.cod } className="imgXX disabled" title="Incorrecta" alt="Incorrecta" border="0" ></img>
+                  <img key={'imgAproboA' + rowQuestion?.cod } id={'imgAproboA' + rowQuestion?.cod } className="imgAA disabled" title="Correcta" alt="Correcta" border="0" ></img>
+                  <img key={'imgAproboX' + rowQuestion?.cod } id={'imgAproboX' + rowQuestion?.cod } className="imgXX disabled" title="Incorrecta" alt="Incorrecta" border="0" ></img>
               </div>
             </div>
                 
@@ -174,9 +174,9 @@ return (
               <strong>
                 #{indexQuestion+1}
                 {'- '}  &nbsp;
-                {rowQuestion.cod}
+                {rowQuestion?.cod}
                 {'. '}
-                {rowQuestion.questionDescription} 
+                {rowQuestion?.questionDescription} 
               </strong>
             </p>
           </div>
@@ -189,17 +189,17 @@ return (
           {
           return (
             <div key={'rowRespuesta_' + rowQuestion.cod + indexQuestion + idAnswer } className="row justify-content-center" >
-              <div key={'colRespuesta_' +  rowQuestion.cod + indexQuestion + idAnswer } className='col-12 align-items-center'>
+              <div key={'colRespuesta_' +  rowQuestion?.cod + indexQuestion + idAnswer } className='col-12 align-items-center'>
                   <p key={'p' + rowQuestion.cod + indexQuestion + idAnswer} id={'p' + rowQuestion.cod + indexQuestion + idAnswer} className="respuesta"> 
-                      <input className='radio' type="radio" data-cod={rowQuestion.cod} key={'op' + rowQuestion.cod + indexQuestion + idAnswer } id={'op' + idAnswer} name={indexQuestion} radioGroup={indexQuestion} disabled={DisableAnwers} data-respuesta={rowAnswer.valid} ></input>
+                      <input className='radio' type="radio" data-cod={rowQuestion.cod} key={'op' + rowQuestion.cod + indexQuestion + idAnswer } id={'op' + idAnswer} name={indexQuestion} radioGroup={indexQuestion} disabled={DisableAnwers} data-respuesta={rowAnswer?.valid} ></input>
                       &nbsp;
-                      <label className='answer' id={'lbl' + rowQuestion.cod + indexQuestion + idAnswer} key={'lbl' + rowQuestion.cod + indexQuestion + idAnswer} htmlFor={idAnswer} > {rowAnswer.answerDescription} </label>
+                      <label className='answer' id={'lbl' + rowQuestion.cod + indexQuestion + idAnswer} key={'lbl' + rowQuestion?.cod + indexQuestion + idAnswer} htmlFor={idAnswer} > {rowAnswer?.answerDescription} </label>
                       &nbsp;
                       {ShowValid && rowAnswer.valid &&(
-                        <img key={'imgA'+ rowQuestion.cod + indexQuestion + idAnswer} id={'imgA'+ rowQuestion.cod + indexQuestion + idAnswer} className="imgA" title="Valida" alt="imagen correcta" border="0" width="10px" height="10px" ></img>
+                        <img key={'imgA'+ rowQuestion?.cod + indexQuestion + idAnswer} id={'imgA'+ rowQuestion.cod + indexQuestion + idAnswer} className="imgA" title="Valida" alt="imagen correcta" border="0" width="10px" height="10px" ></img>
                       )}
                       {ShowValid && !rowAnswer.valid &&(
-                        <img key={'imgX' + rowQuestion.cod + indexQuestion + idAnswer} id={'imgX' + rowQuestion.cod + indexQuestion + idAnswer} className="imgX" title="Invalida" alt="imagen incorrecta" border="0" width="10px" height="10px"  ></img>
+                        <img key={'imgX' + rowQuestion?.cod + indexQuestion + idAnswer} id={'imgX' + rowQuestion.cod + indexQuestion + idAnswer} className="imgX" title="Invalida" alt="imagen incorrecta" border="0" width="10px" height="10px"  ></img>
                       )}
                   </p>
               </div>
@@ -232,7 +232,7 @@ return (
     <Modal.Header key="modalwelcome_header" closeButton>
       <Modal.Title key="modalwelcome_title">
         <p>
-          {Setting.subtitle}
+          {Setting?.subtitle}
         </p>
       </Modal.Title>
     </Modal.Header>
@@ -240,20 +240,20 @@ return (
       <div className='row justify-content-center' >
         <div className='col-12'>
           <p className='align-items-start' >
-              {Setting.instruction}
+              {Setting?.instruction}
           </p>
-          <a key="download" rel="noopener" href={Setting.downloadlink} >
-              {Setting.downloadtitle}
+          <a key="download" rel="noopener" href={Setting?.downloadlink} >
+              {Setting?.downloadtitle}
           </a>
           <p>
-              {Setting.preinstructiontitle}
+              {Setting?.preinstructiontitle}
           </p>
         </div>
       </div>
       <div className='row justify-content-center'>
         <div className='col-12' >
           <p className='align-items-start'>
-              {Setting.preinstruction}
+              {Setting?.preinstruction}
           </p>
         </div>
       </div>
@@ -279,7 +279,7 @@ return (
 
        return (
               <div key={'divquestionlevel' + idx } className='col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 mb-sm-1'>
-                <Button key={'btn' + item.questionLevelDescription} variant={item.class} onClick={() => NewForm(item.cod)} > {item.questionLevelDescription} </Button>{' '}
+                <Button key={'btn' + item?.questionLevelDescription} variant={item?.class} onClick={() => NewForm(item?.cod)} > {item?.questionLevelDescription} </Button>{' '}
               </div>
             );
       })}

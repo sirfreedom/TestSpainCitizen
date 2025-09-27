@@ -1,7 +1,4 @@
-import { FillAnonimousFromBody } from './BaseHelper';
-import { FillAnonimousFromParameter } from './BaseHelper';
-import { FillWithLoginFromBody } from './BaseHelper';
-import { FillWithLoginFromParameter } from './BaseHelper';
+import { Fill } from './BaseHelper';
 
 
 export const getToken = async () => 
@@ -9,7 +6,7 @@ export const getToken = async () =>
     let data;
     try 
     {
-        data = await FillAnonimousFromBody('Account/login',{ user: 'admin', pass: '1234' },'POST');
+        data = await Fill('Account/login',{ user: 'admin', pass: '1234' },'POST');
     } 
     catch (ex) 
     {
@@ -22,17 +19,18 @@ export const getToken = async () =>
 export const GetTestMethod = async () =>
 {
 let data;
-let UrlGet = 'api/Setting';
+let UrlGet = 'api/File';
 let param = [ { IdDependency: 1 } ];
 try 
 {
-    data = await FillAnonimousFromParameter(UrlGet,param,'GET');
+    debugger;
+    data = await Fill(UrlGet,param,'GET');
 }
 catch(ex)
 {
     console.error('Error',ex);
 }
-    return data;
+    return data.imageList;
 }
 
 export const PutTestMethod = async (token) =>
@@ -42,7 +40,7 @@ let UrlPut = 'api/Setting';
 const param = { "tittle": "manzanaPut" } ;
 try 
 {
-    data = await FillWithLoginFromBody(UrlPut,param,'PUT',token);
+    data = await Fill(UrlPut,param,'PUT',token);
 }
 catch(ex)
 {
@@ -58,7 +56,7 @@ let UrlPost = 'api/Setting';
 const param = { "tittle": "manzanaPost" } ;
 try 
 {
-    data = await FillWithLoginFromBody(UrlPost,param,'POST',token);
+    data = await Fill(UrlPost,param,'POST',token);
 }
 catch(ex)
 {
@@ -74,7 +72,7 @@ let UrlDelete = 'api/Setting';
 const param = [ { "Id" : 234 } ];
 try 
 {
-    data = await FillWithLoginFromParameter(UrlDelete,param,'DELETE',token);
+    data = await Fill(UrlDelete,param,'DELETE',token);
 }
 catch(ex)
 {
@@ -91,7 +89,7 @@ let UrlPatch = 'api/Values/PatchTest';
 const param = [ { id: 1, descripcion: 'manzana' } ];
 try 
 {
-    tempdata = await FillAnonimousFromBody(UrlPatch,param,'PATCH');
+    tempdata = await Fill(UrlPatch,param,'PATCH');
     data = tempdata;
 }
 catch(ex)

@@ -3,10 +3,12 @@ import SettingABM from './Components/SettingABM';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Components/Layout";
 import Home from "./Components/Home";
+import Prueba from "./Components/Prueba";
 import NoPage from "./Components/NoPage";
 import { useEffect } from "react";
 import { getToken } from './Api/UserHelper';
 import { createDate } from './Api/BaseHelper';
+
 
 function App() {
 
@@ -48,13 +50,11 @@ function App() {
       });
       console.log("Actualizo");
     }
-
   }
-
 
   useEffect(() => {
     const observer = new MutationObserver((mutations) => {
-      CreateToken();
+      //CreateToken();
       //Aquí podes manejar los cambios en el DOM
       //console.log('El DOM ha cambiado:', mutations);
     });
@@ -66,8 +66,6 @@ function App() {
       observer.disconnect();
     };
   }, []); // El array vacío asegura que esto se ejecute solo una vez al montar
-
-
 
   return (
     <>
@@ -81,6 +79,7 @@ function App() {
                   <Route index element={<Home />} />
                   <Route path="Examenes" element={<TestExam />} />
                   <Route path="Setting" element={<SettingABM />} />
+                  <Route path="Prueba" element={<Prueba />} />
                   <Route path="*" element={<NoPage />} />
                 </Route>
               </Routes>

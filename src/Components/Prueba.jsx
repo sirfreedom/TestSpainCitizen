@@ -1,4 +1,3 @@
-import '../Css/App.css';
 import '../Css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import React, { useState } from "react";
@@ -13,6 +12,7 @@ import { getToken } from '../Api/PruebaHelper';
 export const Prueba = () => {
 
         const [Token, setToken] = useState([]);
+        const [Test,setTest] = useState([]);
 
         const TestInput = () => 
         {
@@ -30,10 +30,12 @@ export const Prueba = () => {
         {
             let lGetReturn;
 
-            lGetReturn = GetTestMethod();
+            GetTestMethod().then(data => {
+                setTest(data);
+                console.log('Get')
+                console.log(data);
+            })
 
-            console.log('Get')
-            console.log(lGetReturn);
         }
 
         const TestMethodPut = () => 
@@ -69,7 +71,6 @@ export const Prueba = () => {
 
         const TestMethodPatch = () => 
         {
-
             let lPatchReturn;
             lPatchReturn = PatchTestMethod();
 
@@ -80,13 +81,29 @@ export const Prueba = () => {
 
         return (
         <>
+        {Test.map((rowTest, indexTest) => 
+        
+         <div key={indexTest}>
+            {rowTest.imageText}
+         </div>
+         
+        )}
 
+        <input id='txtTest' type='texbox' value={Test} onChange={e => TestInput(e.value)} ></input>
+        <br></br>
+
+
+        
+
+
+
+
+{/*
         <input id='txtkey' type='texbox' value={Token} onChange={e => TestInput(e.value)} ></input>
 
         <Button key="modalfinish_btnTest" variant="secondary" >
          Test
         </Button>
-
 
         <Button key="modalfinish_btnLogin" variant="secondary" onClick={TestMethodLogin}>
          Login
@@ -115,17 +132,12 @@ export const Prueba = () => {
          Prueba Test Patch
         </Button>
 
+*/}
 
 
-
-
-
-
-
-
-
-
-
+        <Button key="modalfinish_btnGet" variant="secondary" onClick={TestMethodGet}>
+         Prueba Test Get
+        </Button>
 
 
 

@@ -1,4 +1,4 @@
-import { FillAnonimousFromBody, FillWithLoginFromBody } from './BaseHelper';
+import { Fill } from './BaseHelper';
 
 
 //Token, ExpirationYear, ExpirationMonth, ExpirationDay,ExpirationHour, ExpirationMinutes
@@ -7,7 +7,7 @@ export const getToken = async (User, Pass) =>
     let data;
     try 
     {
-        data = await FillAnonimousFromBody('Account/login',{ user: User, pass: Pass },'POST');
+        data = await Fill('Account/login',{ user: User, pass: Pass },'POST');
     } 
     catch (ex) 
     {
@@ -22,7 +22,7 @@ export const getTest = async (Token) =>
     let data;
     try 
     {
-        data = FillWithLoginFromBody('api/Values/jwt',[],'POST',Token);
+        data = Fill('api/Values/jwt',[],'POST',Token);
     } 
     catch (ex) 
     {
