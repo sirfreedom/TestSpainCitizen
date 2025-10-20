@@ -9,8 +9,11 @@ import { ListFinalTestMessage } from '../Api/FinalTestMessageHelper';
 import { getByDependency } from '../Api/SettingHelper';
 import { ListQuestionLevels } from '../Api/QuestionLevelHelper';
 import { ListQuestion } from '../Api/QuestionHelper';
+import useTimerStore from '../Helper/TimerStoreHelper'
 
 export const TestExam = () => {
+      
+    const { timeLeft, isRunning, start, pause, reset, formatTime } = useTimerStore();
     
     const [Test, setTest] = useState([]);
     const [ShowValid,setShowValid] = useState(false);
@@ -27,9 +30,6 @@ export const TestExam = () => {
 
     const [ShowFinishAnswer, setShowFinishAnswer] = useState(false);
     const handleFinishAnswerClose = () => setShowFinishAnswer(false);
-
-    const [ShowAlert, setShowAlert] = useState(false);
-    const handleShowAlertClose = () => setShowAlert(false);
 
     useEffect(() => 
     {
@@ -125,13 +125,18 @@ export const TestExam = () => {
 return (
 <>
 
+{/* Master Div */}
 <div className='container-fluid mt-2 mb-3' > 
 
+
+  {/* Titulo de la pagina */}
   <div className='row justify-content-center' >
       <div className='col-12 m-2'> 
           <h2> { Setting?.title } </h2>
       </div>
   </div>
+
+
 
 <Accordion key="accordion" defaultActiveKey="0">
       
@@ -215,6 +220,9 @@ return (
 
 </Accordion>
 
+<br></br>
+<br></br>
+
 <div className='row justify-content-center mt-2 mb-3' >
   <div className='col-12'>
       {IsSelectQuestion && !ShowValid && (
@@ -223,11 +231,12 @@ return (
   </div>
 </div>
 
-  { !IsSelectQuestion  &&  
-  (
-    <Button id='btnInit' key='btnInit' variant="primary" onClick={ () => setShowWelcome(true)} > Iniciar un nuevo Examen </Button>
-  )}
+ { !IsSelectQuestion  &&  
+ (
+   <Button id='btnInit' key='btnInit' variant="primary" onClick={ () => setShowWelcome(true)} > Iniciar un nuevo Examen </Button>
+ )}
 
+{/* Modal de Bienvenida */}
 <Modal key="modalwelcome" show={ShowWelcome} onHide={handleWelcomeClose}>
     <Modal.Header key="modalwelcome_header" closeButton>
       <Modal.Title key="modalwelcome_title">
@@ -289,6 +298,7 @@ return (
     </Modal.Footer>
 </Modal>
 
+{/* Modal de Finalizacion */}
 <Modal key="modalFinish" show={ShowFinishAnswer} onHide={handleFinishAnswerClose}>
 
   <Modal.Header key="modalfinish_head"  closeButton>
@@ -355,51 +365,8 @@ return (
 
 
 
-<Modal key="modalShowAlert" show={ShowAlert} onHide={handleShowAlertClose}>
 
-  <Modal.Header key="modalShowAlert_head"  closeButton>
 
-    <Modal.Title> 
-      <p>
-        Mensaje de alerta
-      </p>
-    </Modal.Title>
-
-  </Modal.Header>
-
-  <Modal.Body key="modalShowAlert_body" > 
-
-    <div className='row mb-3'>
-      <div className='col-12'>
-        <p className='align-items-center'> 
-          
-        </p>
-      </div>
-    </div>
-    <div className='row mb-3'>
-      <div className='col-12'> 
-        <p className='align-items-center'>
-          
-            ssss
-
-        </p>
-      </div>
-    </div>
-
-  </Modal.Body>
-
-  <Modal.Footer key="modalShowAlert_footer" >
-
-    <div className='row mt-3' >
-      <div className='col-12' >
-        <Button key="modalShowAlert_btnCerrar" variant="secondary" onClick={handleShowAlertClose}>
-          Ok, Comprendo 
-        </Button>
-      </div>
-    </div>
-
-  </Modal.Footer>
-</Modal>
 
 
 

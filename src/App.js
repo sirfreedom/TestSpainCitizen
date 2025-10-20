@@ -12,6 +12,8 @@ import { createDate } from './Api/BaseHelper';
 
 function App() {
 
+
+
   const CreateToken = () => {
     const DateNow = new Date();
     let ExpirationDate;
@@ -52,19 +54,38 @@ function App() {
     }
   }
 
+  //Previene el f5
   useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'F5' || event.keyCode === 116) {
+        event.preventDefault(); // Previene la recarga
+        alert("No esta permitido recargar la pagina");
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    // Limpieza al desmontar
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+
+  useEffect(() => {
+
     const observer = new MutationObserver((mutations) => {
       //CreateToken();
       //Aquí podes manejar los cambios en el DOM
       //console.log('El DOM ha cambiado:', mutations);
     });
 
-
     observer.observe(document.body, { childList: true, subtree: true, });
     // Limpieza del observer al desmontar el componente
     return () => {
       observer.disconnect();
     };
+
+
+
   }, []); // El array vacío asegura que esto se ejecute solo una vez al montar
 
   return (

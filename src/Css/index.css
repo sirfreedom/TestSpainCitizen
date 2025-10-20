@@ -13,6 +13,13 @@
   padding: 60px;
 }
 
+
+.floating-div {
+height: 40px; /* Más pequeño en móviles */
+font-size: 14px;
+}
+
+
 img {
   width: 100%;
 }
