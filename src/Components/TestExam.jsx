@@ -16,6 +16,7 @@ export const TestExam = () => {
       
     const { timeLeft, isRunning, start, pause, reset, formatTime } = useTimerStore();
     const notifySwitch = () => toast("No esta permitido cambiarse de pantalla o de tab, Strike! ");
+    const notifyPocoTiempo = () => toast("Te queda poco tiempo... ");
     const notifyEmpezamos = () => toast("y empezamos.. ");
     
     const [Test, setTest] = useState([]);
@@ -36,6 +37,21 @@ export const TestExam = () => {
 
     useEffect(() => 
     {
+
+      if(timeLeft === 60)
+      {
+        notifyPocoTiempo(); //Queda poco tiempo
+      }
+
+      if(timeLeft === 0)
+      {
+        ValidQuestion() // se acabo el fichin...
+      }
+    
+    }, [timeLeft]);
+
+    useEffect(() => 
+    {
         getByDependency(1).then(data => {
           setSetting(data);
         });
@@ -49,8 +65,7 @@ export const TestExam = () => {
     }, []);
 
     window.addEventListener('blur', () => {
-      //console.log('Usuario cambió de pestaña o minimizó el navegador');
-      //setShowAlert(true);
+      //notifySwitch();
     });
 
     window.addEventListener('focus', () => {
@@ -71,12 +86,13 @@ export const TestExam = () => {
     window.addEventListener('resize', () => {
       //console.log('no se puede cambiar el tamano de la pantalla del examen');
       //setShowAlert(true);
+      //notifySwitch();
     });
 
     const InitNewExam = () => 
     {
-      //reset();
-      //setShowWelcome(true);
+      reset();
+      setShowWelcome(true);
     }
 
     const ValidQuestion = () => 
@@ -112,6 +128,7 @@ export const TestExam = () => {
               setFinalTestMessage(data);
             });
     
+            reset();
         }
         catch (e) {
             alert(e.message);
@@ -130,6 +147,7 @@ export const TestExam = () => {
         setTest(lTest);
       });
       notifyEmpezamos();
+      start();
     }
 
 return (
