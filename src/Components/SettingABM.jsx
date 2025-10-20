@@ -37,7 +37,7 @@ export const SettingABM = () => {
       setSettings(lSetting);
     });
 
-    if(Dependencies.length===0){
+    if(Dependencies?.length===0){
       ListDependency().then(lDependencies => {
         setDependencies(lDependencies);
       });

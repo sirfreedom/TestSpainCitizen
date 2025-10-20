@@ -9,8 +9,15 @@ import { ListFinalTestMessage } from '../Api/FinalTestMessageHelper';
 import { getByDependency } from '../Api/SettingHelper';
 import { ListQuestionLevels } from '../Api/QuestionLevelHelper';
 import { ListQuestion } from '../Api/QuestionHelper';
+import useTimerStore from '../Helper/TimerStoreHelper'
+import { ToastContainer, toast } from 'react-toastify';
 
 export const TestExam = () => {
+      
+    const { timeLeft, isRunning, start, pause, reset, formatTime } = useTimerStore();
+    const notifySwitch = () => toast("No esta permitido cambiarse de pantalla o de tab, Strike! ");
+    const notifyPocoTiempo = () => toast("Te queda poco tiempo... ");
+    const notifyEmpezamos = () => toast("y empezamos.. ");
     
     const [Test, setTest] = useState([]);
     const [ShowValid,setShowValid] = useState(false);
@@ -28,8 +35,20 @@ export const TestExam = () => {
     const [ShowFinishAnswer, setShowFinishAnswer] = useState(false);
     const handleFinishAnswerClose = () => setShowFinishAnswer(false);
 
-    const [ShowAlert, setShowAlert] = useState(false);
-    const handleShowAlertClose = () => setShowAlert(false);
+    useEffect(() => 
+    {
+
+      if(timeLeft === 60)
+      {
+        notifyPocoTiempo(); //Queda poco tiempo
+      }
+
+      if(timeLeft === 0)
+      {
+        ValidQuestion() // se acabo el fichin...
+      }
+    
+    }, [timeLeft]);
 
     useEffect(() => 
     {
@@ -46,8 +65,7 @@ export const TestExam = () => {
     }, []);
 
     window.addEventListener('blur', () => {
-      //console.log('Usuario cambió de pestaña o minimizó el navegador');
-      //setShowAlert(true);
+      //notifySwitch();
     });
 
     window.addEventListener('focus', () => {
@@ -68,7 +86,14 @@ export const TestExam = () => {
     window.addEventListener('resize', () => {
       //console.log('no se puede cambiar el tamano de la pantalla del examen');
       //setShowAlert(true);
+      //notifySwitch();
     });
+
+    const InitNewExam = () => 
+    {
+      reset();
+      setShowWelcome(true);
+    }
 
     const ValidQuestion = () => 
     {
@@ -103,6 +128,7 @@ export const TestExam = () => {
               setFinalTestMessage(data);
             });
     
+            reset();
         }
         catch (e) {
             alert(e.message);
@@ -120,13 +146,20 @@ export const TestExam = () => {
       ListQuestion(iLevel).then(lTest => {
         setTest(lTest);
       });
+      notifyEmpezamos();
+      start();
     }
 
 return (
 <>
 
+{/* Mensajero */}
+<ToastContainer />
+
+{/* Master Div */}
 <div className='container-fluid mt-2 mb-3' > 
 
+  {/* Titulo de la pagina */}
   <div className='row justify-content-center' >
       <div className='col-12 m-2'> 
           <h2> { Setting?.title } </h2>
@@ -215,6 +248,9 @@ return (
 
 </Accordion>
 
+<br></br>
+<br></br>
+
 <div className='row justify-content-center mt-2 mb-3' >
   <div className='col-12'>
       {IsSelectQuestion && !ShowValid && (
@@ -223,11 +259,12 @@ return (
   </div>
 </div>
 
-  { !IsSelectQuestion  &&  
-  (
-    <Button id='btnInit' key='btnInit' variant="primary" onClick={ () => setShowWelcome(true)} > Iniciar un nuevo Examen </Button>
-  )}
+ { !IsSelectQuestion  &&  
+ (
+   <Button id='btnInit' key='btnInit' variant="primary" onClick={ () => setShowWelcome(true)} > Iniciar un nuevo Examen </Button>
+ )}
 
+{/* Modal de Bienvenida */}
 <Modal key="modalwelcome" show={ShowWelcome} onHide={handleWelcomeClose}>
     <Modal.Header key="modalwelcome_header" closeButton>
       <Modal.Title key="modalwelcome_title">
@@ -289,6 +326,7 @@ return (
     </Modal.Footer>
 </Modal>
 
+{/* Modal de Finalizacion */}
 <Modal key="modalFinish" show={ShowFinishAnswer} onHide={handleFinishAnswerClose}>
 
   <Modal.Header key="modalfinish_head"  closeButton>
@@ -352,58 +390,47 @@ return (
   </Modal.Footer>
 </Modal>
 
-
-
-
-<Modal key="modalShowAlert" show={ShowAlert} onHide={handleShowAlertClose}>
-
-  <Modal.Header key="modalShowAlert_head"  closeButton>
-
-    <Modal.Title> 
-      <p>
-        Mensaje de alerta
-      </p>
-    </Modal.Title>
-
-  </Modal.Header>
-
-  <Modal.Body key="modalShowAlert_body" > 
-
-    <div className='row mb-3'>
-      <div className='col-12'>
-        <p className='align-items-center'> 
-          
-        </p>
-      </div>
-    </div>
-    <div className='row mb-3'>
-      <div className='col-12'> 
-        <p className='align-items-center'>
-          
-            ssss
-
-        </p>
-      </div>
-    </div>
-
-  </Modal.Body>
-
-  <Modal.Footer key="modalShowAlert_footer" >
-
-    <div className='row mt-3' >
-      <div className='col-12' >
-        <Button key="modalShowAlert_btnCerrar" variant="secondary" onClick={handleShowAlertClose}>
-          Ok, Comprendo 
-        </Button>
-      </div>
-    </div>
-
-  </Modal.Footer>
-</Modal>
-
-
-
 </div>
+
+{/* Footer */}
+ <div style={{
+      position: 'fixed',
+      bottom: 0,  // Cambiado de top: 0 a bottom: 0
+      left: 0,
+      width: '100%',  // Ocupa todo el ancho de la pantalla
+      height: '60px', // Altura fija, ajusta según necesites
+      backgroundColor: '#2d4d5fff', // Color de fondo, cámbialo
+      color: 'white',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center', // Centra el contenido horizontalmente
+      zIndex: 1000, // Asegura que esté por encima de otros elementos
+      boxShadow: '0 -2px 5px rgba(0,0,0,0.2)', // Sombra hacia arriba para resaltar
+    }}>
+      <h4>Temporizador de Examen</h4>
+      <div style={{ fontSize: '48px', margin: '20px' }}>
+
+        Minutes
+        &nbsp;
+        {formatTime()}
+
+      </div>
+      <div>
+
+        {IsSelectQuestion && !ShowValid && (
+        <Button key="btnValidQuestion" variant="success" onClick={ValidQuestion} > Completar el Examen </Button>
+        )}
+
+        {!IsSelectQuestion  && (
+        <Button id='btnInit' key='btnInit' variant="primary" onClick={InitNewExam} > Iniciar un nuevo Examen </Button>
+        )}
+
+      </div>
+
+      {timeLeft === 0 && <p style={{ color: 'red' }}>¡Tiempo agotado!</p>}
+</div>
+
+
 </>
     
 )}
