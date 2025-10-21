@@ -84,11 +84,7 @@ export const Prueba = () => {
          
         )}
 
-        <input id='txtTest' type='texbox' value={Test} onChange={e => TestInput(e.value)} ></input>
-        <br></br>
-
-
-        
+      
 
 
 
