@@ -61,6 +61,7 @@ export const TestExam = () => {
         });
 
         setShowWelcome(true);
+        reset();
 
     }, []);
 

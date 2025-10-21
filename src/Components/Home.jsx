@@ -1,3 +1,5 @@
+import ExamTimer from './ExamTimer'
+
 
 const Home = () => {
 
@@ -6,6 +8,8 @@ const Home = () => {
     return (
         <>
             
+        <ExamTimer></ExamTimer>
+
 
             
         </>
