@@ -4,9 +4,15 @@ import { persist } from 'zustand/middleware';
 const TimerStoreHelper = create(
   persist(
     (set, get) => ({
-      timeLeft: 5 * 60, // 5 minutos en segundos
+      timeLeft: 10 * 60, // 10 minutos default
       isRunning: false,
       intervalId: null,
+
+      setInitialTime: (initialTimeInMinutes) => {
+        const { intervalId } = get();
+        if (intervalId) clearInterval(intervalId); // Detiene cualquier temporizador corriendo
+        set({ timeLeft: initialTimeInMinutes * 60, isRunning: false, intervalId: null });
+      },
 
       // Función para iniciar el temporizador
       start: () => {
@@ -34,11 +40,11 @@ const TimerStoreHelper = create(
         }
       },
 
-      // Función para resetear a 30 minutos
-      reset: () => {
+      // Función para resetear 
+      reset: (initialTimeInMinutes) => {
         const { intervalId } = get();
         if (intervalId) clearInterval(intervalId);
-        set({ timeLeft: 5 * 60, isRunning: false, intervalId: null });
+        set({ timeLeft: initialTimeInMinutes * 60, isRunning: false, intervalId: null });
       },
 
       // Función para formatear el tiempo

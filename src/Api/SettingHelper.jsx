@@ -10,7 +10,8 @@ let param = [ { "IdDependency": id } ];
 try 
 {
     tempdata = await Fill(url,param,'GET');
-    data = await tempdata.setting
+    data = await tempdata.setting;
+    await console.log(tempdata.setting.TimeInMinutes);
 }
 catch(ex)
 { 
@@ -38,7 +39,7 @@ catch(ex)
 return data;
 }
 
-export const UpdateSetting = async (Token,id,iddependency,title,questionperpage,correctanswers,subtitle,instruction,downloadtitle,downloadlink,preinstructiontitle,preinstruction) => {
+export const UpdateSetting = async (Token,id,iddependency,title,questionperpage,correctanswers,subtitle,instruction,downloadtitle,downloadlink,preinstructiontitle,preinstruction,timeInMinutes) => {
     let data;
     let url = 'api/Setting/Update';
     const method = 'PUT';
@@ -55,6 +56,7 @@ export const UpdateSetting = async (Token,id,iddependency,title,questionperpage,
     ,"downloadlink": downloadlink
     ,"preinstructiontitle": preinstructiontitle
     ,"preinstruction": preinstruction
+    ,"timeInMinutes" : timeInMinutes
     };
 try 
 {
@@ -67,7 +69,7 @@ catch(ex)
 return data;
 }
 
-export const InsertSetting = async (Token,iddependency,title,questionperpage,correctanswers,subtitle,instruction,downloadtitle,downloadlink,preinstructiontitle,preinstruction) => {
+export const InsertSetting = async (Token,iddependency,title,questionperpage,correctanswers,subtitle,instruction,downloadtitle,downloadlink,preinstructiontitle,preinstruction,timeInMinutes) => {
     let data;
     let url = 'api/Setting/Insert';
     const method = 'POST';
@@ -83,6 +85,7 @@ export const InsertSetting = async (Token,iddependency,title,questionperpage,cor
     ,"downloadlink": downloadlink
     ,"preinstructiontitle": preinstructiontitle
     ,"preinstruction": preinstruction
+    ,"timeInMinutes" : timeInMinutes
     };
 try 
 {

@@ -74,7 +74,8 @@ export const SettingABM = () => {
       Id:0,
       correctanswers:1,
       questionperpage:1, 
-      IdDependency:1 
+      IdDependency:1,
+      timeInMinutes: 1
     });
   };
 
@@ -99,7 +100,8 @@ export const SettingABM = () => {
         Setting.downloadtitle,
         Setting.downloadlink,
         Setting.preinstructiontitle,
-        Setting.preinstruction
+        Setting.preinstruction,
+        ParseInt(Setting.timeInMinutes)
         ).then(data => {
          setSettings(x => 
          x.map(item => // Si bien actualiza, necesito que se actualice todo lo que maneja la pantalla 
@@ -113,7 +115,8 @@ export const SettingABM = () => {
           downloadtitle: Setting.downloadtitle,
           downloadlink: Setting.downloadlink,
           preinstructiontitle: Setting.preinstructiontitle,
-          preinstruction: Setting.preinstruction
+          preinstruction: Setting.preinstruction,
+          timeInMinutes : Setting.timeInMinutes
          } : item
          )
          );
@@ -122,10 +125,8 @@ export const SettingABM = () => {
       );
 
      }
-
      
      if (Setting.Id === 0)  {
-
       InsertSetting(Token,
         parseInt(Setting?.IdDependency),
         Setting.title,
@@ -136,7 +137,8 @@ export const SettingABM = () => {
         Setting.downloadtitle,
         Setting.downloadlink,
         Setting.preinstructiontitle,
-        Setting.preinstruction
+        Setting.preinstruction,
+        Setting.timeInMinutes
         ).then(data => {
           setSettings(oSetting => [...oSetting, data]);
           setShowModalEdit(false);
@@ -238,7 +240,7 @@ export const SettingABM = () => {
                 />
               </div>
 
-              <div className="col-2">
+              <div className="col-1">
                 <label htmlFor="txtquestionperpage" className="form-label"> Preguntas x pagina </label>
                 <input
                   type="number"
@@ -249,6 +251,20 @@ export const SettingABM = () => {
                   max="100"
                   defaultValue={Setting?.questionperpage}
                   onChange={e => ChangeValues(e.target.value, 'questionperpage')}
+                />
+              </div>
+
+              <div className="col-1">
+                <label htmlFor="txttimeinminutes" className="form-label"> Minutos Examen </label>
+                <input
+                  type="number"
+                  className="form-control"
+                  id="txttimeinminutes"
+                  name="txttimeinminutes"
+                  min="1"
+                  max="60"
+                  defaultValue={Setting?.timeInMinutes}
+                  onChange={e => ChangeValues(e.target.value, 'timeInMinutes')}
                 />
               </div>
 

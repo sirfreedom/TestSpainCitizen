@@ -14,7 +14,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 export const TestExam = () => {
       
-    const { timeLeft, isRunning, start, pause, reset, formatTime } = useTimerStore();
+    const { timeLeft, isRunning, start, pause, reset, formatTime, setInitialTime } = useTimerStore();
     const notifySwitch = () => toast("No esta permitido cambiarse de pantalla o de tab, Strike! ");
     const notifyPocoTiempo = () => toast("Te queda poco tiempo... ");
     const notifyEmpezamos = () => toast("y empezamos.. ");
@@ -38,7 +38,7 @@ export const TestExam = () => {
     useEffect(() => 
     {
 
-      if(timeLeft === 60)
+      if(timeLeft <= 90  && timeLeft % 30 === 0) // Cada 30 segundos cuando falte menos de un minuto y medio
       {
         notifyPocoTiempo(); //Queda poco tiempo
       }
@@ -46,6 +46,7 @@ export const TestExam = () => {
       if(timeLeft === 0)
       {
         ValidQuestion() // se acabo el fichin...
+        reset(5);
       }
     
     }, [timeLeft]);
@@ -54,6 +55,8 @@ export const TestExam = () => {
     {
         getByDependency(1).then(data => {
           setSetting(data);
+          setInitialTime(data.timeInMinutes);
+          reset(data.timeInMinutes);
         });
 
         ListQuestionLevels().then(data => {
@@ -61,7 +64,8 @@ export const TestExam = () => {
         });
 
         setShowWelcome(true);
-        reset();
+
+        
 
     }, []);
 
@@ -92,7 +96,7 @@ export const TestExam = () => {
 
     const InitNewExam = () => 
     {
-      reset();
+      reset(Setting.timeInMinutes);
       setShowWelcome(true);
     }
 
@@ -251,19 +255,6 @@ return (
 
 <br></br>
 <br></br>
-
-<div className='row justify-content-center mt-2 mb-3' >
-  <div className='col-12'>
-      {IsSelectQuestion && !ShowValid && (
-      <Button key="btnValidQuestion" variant="success" onClick={ValidQuestion} > Completar el Examen </Button>
-      )}
-  </div>
-</div>
-
- { !IsSelectQuestion  &&  
- (
-   <Button id='btnInit' key='btnInit' variant="primary" onClick={ () => setShowWelcome(true)} > Iniciar un nuevo Examen </Button>
- )}
 
 {/* Modal de Bienvenida */}
 <Modal key="modalwelcome" show={ShowWelcome} onHide={handleWelcomeClose}>
