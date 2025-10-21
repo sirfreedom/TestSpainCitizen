@@ -14,12 +14,7 @@ export const Prueba = () => {
         const [Token, setToken] = useState([]);
         const [Test,setTest] = useState([]);
 
-        const TestInput = () => 
-        {
-
-        }
-
-        const TestMethodLogin = () => 
+         const TestMethodLogin = () => 
         {
             getToken().then(data => {
                 setToken(data);
