@@ -1,6 +1,5 @@
 import { Fill } from './BaseHelper';
 
-
 export const getByDependency = async (id) =>
 {
 let data;
@@ -55,7 +54,7 @@ export const UpdateSetting = async (Token,id,iddependency,title,questionperpage,
     ,"downloadlink": downloadlink
     ,"preinstructiontitle": preinstructiontitle
     ,"preinstruction": preinstruction
-    ,"timeInMinutes" : timeinminutes
+    ,"timeinminutes" : timeinminutes
     };
 try 
 {
@@ -84,7 +83,7 @@ export const InsertSetting = async (Token,iddependency,title,questionperpage,cor
     ,"downloadlink": downloadlink
     ,"preinstructiontitle": preinstructiontitle
     ,"preinstruction": preinstruction
-    ,"timeInMinutes" : timeinminutes
+    ,"timeinminutes" : timeinminutes
     };
 try 
 {
