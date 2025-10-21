@@ -35,6 +35,7 @@ export const SettingABM = () => {
 
     FindSetting().then(lSetting => {
       setSettings(lSetting);
+      console.log(lSetting);
     });
 
     if(Dependencies?.length===0){
@@ -48,7 +49,7 @@ export const SettingABM = () => {
   const GridEdit = id => {
     var oSetting;
     setShowModalEdit(true);
-    oSetting = Settings.filter(x => x.Id === id);
+    oSetting = Settings.filter(x => x.id === id);
 
     console.log(oSetting);
     if (oSetting.length === 1) {
@@ -62,7 +63,7 @@ export const SettingABM = () => {
   }
 
   const GridDelete = id => {
-    const newList = Settings.filter(objeto => objeto.Id !== id);
+    const newList = Settings.filter(objeto => objeto.id !== id);
     setSettings(newList);
     alert("This is a funny test, its not avalible to delete the row, the id is " + id );
   };
@@ -71,10 +72,10 @@ export const SettingABM = () => {
     setSetting([]);
     setShowModalEdit(true);
     setSetting({...EmptyAllProperties(Setting),
-      Id:0,
+      id:0,
       correctanswers:1,
       questionperpage:1, 
-      IdDependency:1,
+      idDependency:1,
       timeinminutes: 1
     });
   };
@@ -87,11 +88,11 @@ export const SettingABM = () => {
    let Token;
    Token = localStorage.getItem('token');
 
-    if (Setting.Id !== 0){
+    if (Setting.id !== 0){
 
       UpdateSetting(Token,
-        Setting.Id,
-        parseInt(Setting.IdDependency),
+        Setting.id,
+        parseInt(Setting.iddependency),
         Setting.title,
         parseInt(Setting.questionperpage),
         parseInt(Setting.correctanswers),
@@ -105,10 +106,10 @@ export const SettingABM = () => {
         ).then(data => {
          setSettings(x => 
          x.map(item => // Si bien actualiza, necesito que se actualice todo lo que maneja la pantalla 
-         item.Id === Setting.Id ? { ...item, 
+         item.id === Setting.id ? { ...item, 
           questionperpage: Setting.questionperpage,
           title: Setting.title,
-          IdDependency: Setting.IdDependency,
+          iddependency: Setting.iddependency,
           subtitle:Setting.subtitle,
           title: Setting.title,
           instruction: Setting.instruction,
@@ -126,9 +127,9 @@ export const SettingABM = () => {
 
      }
      
-     if (Setting.Id === 0)  {
+     if (Setting.id === 0)  {
       InsertSetting(Token,
-        parseInt(Setting?.IdDependency),
+        parseInt(Setting?.iddependency),
         Setting.title,
         parseInt(Setting?.questionperpage),
         parseInt(Setting?.correctanswers),
@@ -170,7 +171,7 @@ export const SettingABM = () => {
               DeleteId={id => GridDelete(id)}
               EditId={id => GridEdit(id)}
               isLoading={false}
-              ConfigurationId="Id" //Id de los datos de la grilla
+              ConfigurationId="id" //Id de los datos de la grilla
             />
           </div>
         </div>
@@ -181,8 +182,8 @@ export const SettingABM = () => {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter1">
 
-            {Setting?.Id !== 0 && Setting?.Dependency}
-            {Setting?.Id === 0 || Setting?.Id === null && ("Nueva Setting")}
+            {Setting?.id !== 0 && Setting?.dependency}
+            {Setting?.id === 0 || Setting?.id === null && ("Nueva Setting")}
 
           </Modal.Title>
         </Modal.Header>
@@ -214,7 +215,7 @@ export const SettingABM = () => {
                 <select id="ddlDependency"
                   className="form-select"
                   defaultValue={Setting?.IdDependency}
-                  onChange={e => ChangeValues(e.target.value,'IdDependency') }
+                  onChange={e => ChangeValues(e.target.value,'iddependency') }
                   >
                   {Dependencies?.map((dependency) =>
                   (
@@ -262,8 +263,8 @@ export const SettingABM = () => {
                   id="txttimeinminutes"
                   name="txttimeinminutes"
                   min="1"
-                  max="60"
-                  defaultValue={Setting?.timeInMinutes}
+                  max="120"
+                  defaultValue={Setting?.timeinminutes}
                   onChange={e => ChangeValues(e.target.value, 'timeinminutes')}
                 />
               </div>
