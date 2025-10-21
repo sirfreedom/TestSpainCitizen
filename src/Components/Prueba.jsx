@@ -11,6 +11,8 @@ import { getToken } from '../Api/PruebaHelper';
 
 export const Prueba = () => {
 
+{/*
+
         const [Token, setToken] = useState([]);
         const [Test,setTest] = useState([]);
 
@@ -74,8 +76,15 @@ export const Prueba = () => {
         }
 
 
+        */}
+
+        
+
         return (
         <>
+
+        {/*
+
         {Test.map((rowTest, indexTest) => 
         
          <div key={indexTest}>
@@ -89,7 +98,7 @@ export const Prueba = () => {
 
 
 
-{/*
+
         <input id='txtkey' type='texbox' value={Token} onChange={e => TestInput(e.value)} ></input>
 
         <Button key="modalfinish_btnTest" variant="secondary" >
@@ -123,14 +132,14 @@ export const Prueba = () => {
          Prueba Test Patch
         </Button>
 
-*/}
+
 
 
         <Button key="modalfinish_btnGet" variant="secondary" onClick={TestMethodGet}>
          Prueba Test Get
         </Button>
 
-
+        */}
 
 
 
