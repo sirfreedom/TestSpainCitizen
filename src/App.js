@@ -21,7 +21,6 @@ function App() {
     console.log(localStorage.getItem('ExpirationDate'));
 
     if (localStorage.length === 0) {
-        debugger;
 
         getToken('admin', '1234').then(async data => {
         
@@ -57,13 +56,12 @@ function App() {
   //Previene el f5
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === 'F5' || event.keyCode === 116) {
+      if (event.key === 'F5' || event.keyCode === 116 || event.key === 'F12') {
         event.preventDefault(); // Previene la recarga
         alert("No esta permitido recargar la pagina");
       }
     };
     window.addEventListener('keydown', handleKeyDown);
-    // Limpieza al desmontar
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
@@ -79,8 +77,7 @@ function App() {
     });
 
     observer.observe(document.body, { childList: true, subtree: true, });
-    // Limpieza del observer al desmontar el componente
-    return () => {
+        return () => {
       observer.disconnect();
     };
 

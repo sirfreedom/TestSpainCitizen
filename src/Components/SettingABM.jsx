@@ -75,7 +75,7 @@ export const SettingABM = () => {
       correctanswers:1,
       questionperpage:1, 
       IdDependency:1,
-      timeInMinutes: 1
+      timeinminutes: 1
     });
   };
 
@@ -101,7 +101,7 @@ export const SettingABM = () => {
         Setting.downloadlink,
         Setting.preinstructiontitle,
         Setting.preinstruction,
-        ParseInt(Setting.timeInMinutes)
+        Setting.timeinminutes
         ).then(data => {
          setSettings(x => 
          x.map(item => // Si bien actualiza, necesito que se actualice todo lo que maneja la pantalla 
@@ -116,7 +116,7 @@ export const SettingABM = () => {
           downloadlink: Setting.downloadlink,
           preinstructiontitle: Setting.preinstructiontitle,
           preinstruction: Setting.preinstruction,
-          timeInMinutes : Setting.timeInMinutes
+          timeinminutes : Setting.timeinminutes
          } : item
          )
          );
@@ -138,7 +138,7 @@ export const SettingABM = () => {
         Setting.downloadlink,
         Setting.preinstructiontitle,
         Setting.preinstruction,
-        Setting.timeInMinutes
+        Setting.timeinminutes
         ).then(data => {
           setSettings(oSetting => [...oSetting, data]);
           setShowModalEdit(false);
@@ -193,7 +193,7 @@ export const SettingABM = () => {
 
             <div className="row" >
 
-              <div className="col-5">
+              <div className="col-4">
 
                 <label htmlFor="txtTitle" className="form-label"> Title </label>
                 <textarea
@@ -264,7 +264,7 @@ export const SettingABM = () => {
                   min="1"
                   max="60"
                   defaultValue={Setting?.timeInMinutes}
-                  onChange={e => ChangeValues(e.target.value, 'timeInMinutes')}
+                  onChange={e => ChangeValues(e.target.value, 'timeinminutes')}
                 />
               </div>
 
