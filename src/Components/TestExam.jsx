@@ -399,7 +399,7 @@ return (
       bottom: 0,  // Cambiado de top: 0 a bottom: 0
       left: 0,
       width: '100%',  // Ocupa todo el ancho de la pantalla
-      height: '60px', // Altura fija, ajusta según necesites
+      height: '5%', // Altura fija, ajusta según necesites
       backgroundColor: '#2d4d5fff', // Color de fondo, cámbialo
       color: 'white',
       display: 'flex',
@@ -408,16 +408,12 @@ return (
       zIndex: 1000, // Asegura que esté por encima de otros elementos
       boxShadow: '0 -2px 5px rgba(0,0,0,0.2)', // Sombra hacia arriba para resaltar
     }}>
-      <h4>Temporizador de Examen</h4>
-      <div style={{ fontSize: '48px', margin: '20px' }}>
-
-        Minutes
+      <div style={{ fontSize: '100%', margin: '10%' }}>
+        Minutos de examen
         &nbsp;
         {formatTime()}
-
       </div>
       <div>
-
         {IsSelectQuestion && !ShowValid && (
         <Button key="btnValidQuestion" variant="success" onClick={ValidQuestion} > Completar el Examen </Button>
         )}
@@ -427,10 +423,7 @@ return (
         )}
 
       </div>
-
-      {timeLeft === 0 && <p style={{ color: 'red' }}>¡Tiempo agotado!</p>}
 </div>
-
 
 </>
     
