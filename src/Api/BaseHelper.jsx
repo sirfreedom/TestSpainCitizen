@@ -52,8 +52,18 @@ export const Fill = async (Url, lParam, Method,Token) => {
       response = await fetch(BASEURL + Url, fetchOptions);
     }
 
-    if (response.ok) {
+    if (response.ok && Method === 'GET') {
       data = await response.json();
+    }
+
+    if(Method === 'POST' && response.status === 200) //Si es post y 200 devuelvo datos
+    {
+      data = await response.json();
+    }
+
+    if(Method === 'POST' && response.status === 201) //Si es 201 es insercion y no devuelvo nada.
+    {
+      console.log(response);
     }
 
   }

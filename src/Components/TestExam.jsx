@@ -1,7 +1,7 @@
 import '../Css/TestExam.css';
 import '../Css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { useState,useEffect } from "react";
+import { useState,useEffect} from "react";
 import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -11,12 +11,14 @@ import { ListQuestionLevels } from '../Api/QuestionLevelHelper';
 import { ListQuestion } from '../Api/QuestionHelper';
 import useTimerStore from '../Helper/TimerStoreHelper'
 import { ToastContainer, toast } from 'react-toastify';
+import { InsertExamenResult } from '../Api/ExamenResultHelper';
+import { getIP } from '../Api/IpHelper';
 
 export const TestExam = () => {
       
     const { timeLeft, isRunning, start, pause, reset, formatTime, setInitialTime } = useTimerStore();
-    const notifySwitch = () => toast("No esta permitido cambiarse de pantalla o de tab, Strike! ");
     const notifyPocoTiempo = () => toast("Te queda poco tiempo... ");
+    const notifyFinish = () => toast("Se termino el fichin...");
     const notifyEmpezamos = () => toast("y empezamos.. ");
     
     const [Test, setTest] = useState([]);
@@ -28,76 +30,83 @@ export const TestExam = () => {
     const [Setting, setSetting] = useState([]);
     const [FinalTestMessage,setFinalTestMessage] = useState([]);
     const [QuestionLevels,setQuestionLevels] = useState([]);
+    const [MsgAlert,setMsgAlert] = useState('');
+    const [Host,setHost] = useState('');
+    const [IdDependency,setIdDependency] = useState(1);
+    const [IdUsuario,setIdUsuario] = useState(1);
   
     const [ShowWelcome, setShowWelcome] = useState(false);
     const handleWelcomeClose = () => setShowWelcome(false);
 
     const [ShowFinishAnswer, setShowFinishAnswer] = useState(false);
     const handleFinishAnswerClose = () => setShowFinishAnswer(false);
+    
 
     useEffect(() => 
     {
 
-      if(timeLeft <= 90  && timeLeft % 30 === 0) // Cada 30 segundos cuando falte menos de un minuto y medio
+      if(timeLeft <= 60 && timeLeft > 0 && timeLeft % 30 === 0) // Cada 30 segundos cuando falte menos de un minuto y medio
       {
         notifyPocoTiempo(); //Queda poco tiempo
       }
 
       if(timeLeft === 0)
       {
+        notifyFinish();
         ValidQuestion() // se acabo el fichin...
-        reset(5);
+        reset(Setting.timeinminutes);
       }
     
     }, [timeLeft]);
 
+
     useEffect(() => 
     {
-        getByDependency(1).then(data => {
+        getByDependency(IdDependency).then(data => {
           setSetting(data);
-          setInitialTime(data.timeInMinutes);
-          reset(data.timeInMinutes);
+          setInitialTime(data.timeinminutes);
+          reset(data.timeinminutes);
+        });
+
+        getIP().then(ip => {
+            setHost(ip); //guarda el ip para registrar el examen
         });
 
         ListQuestionLevels().then(data => {
           setQuestionLevels(data);
         });
 
-        setShowWelcome(true);
-
-        
+        setShowWelcome(true); //Mensaje de bienvenida
 
     }, []);
 
+
     window.addEventListener('blur', () => {
-      //notifySwitch();
+      setMsgAlert('No esta permitido irte del formulario');
     });
 
     window.addEventListener('focus', () => {
-      //console.log('Usuario volvió a la pestaña');
-      //setShowAlert(false);
+      setMsgAlert(''); //Eliminamos el mensaje cuando vuelve al formulario
     });
 
     window.addEventListener('beforeunload', () => {
-      //console.log('no se puede cambiar ');
-      //setShowAlert(true);
+      setMsgAlert('No esta permitido irte del formulario de examen');
     });
 
     window.addEventListener('unload', () => {
-      //console.log('no se puede minimizar o cerrar el examen');
-      //setShowAlert(true);
+      setMsgAlert('No esta permitido irte del formulario de examen');
     });
 
     window.addEventListener('resize', () => {
-      //console.log('no se puede cambiar el tamano de la pantalla del examen');
-      //setShowAlert(true);
-      //notifySwitch();
+      setMsgAlert('No esta permitido cambiar el tamaño de pantalla');
     });
+
 
     const InitNewExam = () => 
     {
-      reset(Setting.timeInMinutes);
+      reset(Setting.timeinminutes);
       setShowWelcome(true);
+      setMsgAlert(''); 
     }
 
     const ValidQuestion = () => 
@@ -121,7 +130,6 @@ export const TestExam = () => {
                 {
                   document.getElementById('imgAproboA' + ls[i].dataset?.cod).className = "imgXX enabled";
                 }
-
             }
             setCorrectAnwers(iCorrectAnwers);
             setShowValid(true);
@@ -132,8 +140,14 @@ export const TestExam = () => {
             ListFinalTestMessage().then(data => {
               setFinalTestMessage(data);
             });
+
+            InsertExamenResult(IdDependency,Level,IdUsuario,Host,iCorrectAnwers,Setting.questionperpage).then(data =>{
+              console.log(data);    
+            });
+            
     
-            reset();
+            reset(Setting.timeinminutes);
+            setMsgAlert(''); 
         }
         catch (e) {
             alert(e.message);
@@ -390,30 +404,38 @@ return (
       bottom: 0,  // Cambiado de top: 0 a bottom: 0
       left: 0,
       width: '100%',  // Ocupa todo el ancho de la pantalla
-      height: '5%', // Altura fija, ajusta según necesites
-      backgroundColor: '#2d4d5fff', // Color de fondo, cámbialo
-      color: 'white',
+      height: '7%', // Altura fija, ajusta según necesites
+      backgroundColor: '#d5d8daff', // Color de fondo, cámbialo
+      color: 'blue',
+      bold: true,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center', // Centra el contenido horizontalmente
       zIndex: 1000, // Asegura que esté por encima de otros elementos
       boxShadow: '0 -2px 5px rgba(0,0,0,0.2)', // Sombra hacia arriba para resaltar
     }}>
-      <div style={{ fontSize: '100%', margin: '10%' }}>
-        Minutos de examen
-        &nbsp;
-        {formatTime()}
-      </div>
-      <div>
+      <div className='row'>
+        <div className='col-2'>
+          Minutos de examen
+          &nbsp;
+          {formatTime()}
+        </div>
+        <div className='col-2 '>
         {IsSelectQuestion && !ShowValid && (
         <Button key="btnValidQuestion" variant="success" onClick={ValidQuestion} > Completar el Examen </Button>
         )}
-
         {!IsSelectQuestion  && (
         <Button id='btnInit' key='btnInit' variant="primary" onClick={InitNewExam} > Iniciar un nuevo Examen </Button>
         )}
-
-      </div>
+        </div>
+        <div className='col-8'>
+          <h5>
+            <div className={MsgAlert.length !== 0 ? 'spinner-grow text-danger' : 'hidden'} role="status" >
+            </div>
+            {MsgAlert}
+          </h5>
+        </div>
+    </div>
 </div>
 
 </>

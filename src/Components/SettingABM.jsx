@@ -44,7 +44,7 @@ export const SettingABM = () => {
       });
     }
 
-  }, []);
+  }, [Settings]);
 
   const GridEdit = id => {
     var oSetting;
@@ -182,8 +182,7 @@ export const SettingABM = () => {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter1">
 
-            {Setting?.id !== 0 && Setting?.dependency}
-            {Setting?.id === 0 || Setting?.id === null && ("Nueva Setting")}
+            {Setting?.id !== 0 ? Setting?.dependency : "Nueva Setting"}
 
           </Modal.Title>
         </Modal.Header>
