@@ -35,8 +35,9 @@ export const Fill = async (Url, lParam, Method,Token) => {
       fetchOptions.body = JSON.stringify(lParam); // Usa lParam como body para POST
     }
 
-    if(Method === 'GET'){
+    if(Method === 'GET' || Method === 'DELETE' ){
       Parameters = toQueryString(lParam);
+      console.log(Parameters);
     }
     
     // Si hay headers, agrégalos a las opciones de fetch
@@ -44,11 +45,12 @@ export const Fill = async (Url, lParam, Method,Token) => {
       fetchOptions.headers = headers;
     }
 
-    if(Method === 'GET'){
+    if(Method === 'GET' || Method === 'DELETE' ){
     response = await fetch(BASEURL + Url + '?' + Parameters, fetchOptions);
+    console.log(BASEURL + Url + '?' + Parameters);
     }
 
-    if(Method !== 'GET'){
+    if(Method === 'PUT' || Method === 'POST' || Method === 'PATCH' ){
       response = await fetch(BASEURL + Url, fetchOptions);
     }
 
