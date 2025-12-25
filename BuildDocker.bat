@@ -1,2 +1,3 @@
 @echo on
-docker build -t testexamencitizen .
+docker build -t testspaincitizen .
+pause > nul
