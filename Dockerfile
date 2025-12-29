@@ -1,6 +1,6 @@
 # Etapa 1: Construcción
 FROM node:18-alpine AS build
-WORKDIR /home/app
+WORKDIR /home/testspaincitizen
 COPY package*.json ./
 RUN npm install
 COPY . .
@@ -8,7 +8,7 @@ RUN npm run build
 
 # --- PASO CLAVE: Verificamos qué carpeta se creó ---
 # Este comando lista las carpetas para que si falla, veas en el log qué pasó
-RUN ls -la /home/app
+RUN ls -la /home/testspaincitizen
 
 # Etapa 2: Producción
 FROM nginx:stable-alpine
@@ -17,9 +17,9 @@ FROM nginx:stable-alpine
 RUN rm -rf /usr/share/nginx/html/*
 
 # 2. TRUCO DEFINITIVO: 
-# Copiamos TODO lo que esté en /home/app. 
+# Copiamos TODO lo que esté en /home/testspaincitizen. 
 # Luego, dentro del contenedor, moveremos lo que sirva.
-COPY --from=build /home/app /usr/share/nginx/html/temp_folders
+COPY --from=build /home/testspaincitizen /usr/share/nginx/html/temp_folders
 
 # 3. Movemos el contenido de 'dist' O 'build' a la raíz de Nginx
 # Esto evita que el comando COPY falle si el nombre es distinto
@@ -29,8 +29,8 @@ RUN if [ -d "/usr/share/nginx/html/temp_folders/dist" ]; then \
         mv /usr/share/nginx/html/temp_folders/build/* /usr/share/nginx/html/; \
     fi && rm -rf /usr/share/nginx/html/temp_folders
 
-# 4. Ajustamos el puerto 8081 que tú quieres
-RUN sed -i 's/listen       80;/listen       8081;/g' /etc/nginx/conf.d/default.conf
+# 4. Ajustamos el puerto 8082 que tú quieres
+RUN sed -i 's/listen       80;/listen       8082;/g' /etc/nginx/conf.d/default.conf
 
-EXPOSE 8081
+EXPOSE 8082
 CMD ["nginx", "-g", "daemon off;"]

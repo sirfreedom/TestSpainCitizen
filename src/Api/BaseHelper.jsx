@@ -1,7 +1,7 @@
 
 //const BASEURL = 'https://sirfreedom.somee.com/';
 //const BASEURL = 'https://localhost:44339/';
-const BASEURL = 'http://localhost:5002/';
+const BASEURL = 'http://localhost:8080/';
  
 function toQueryString(params) {
   if (!Array.isArray(params) || params.length === 0) return '';
