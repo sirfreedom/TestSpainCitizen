@@ -1,5 +1,5 @@
 
-const BASEURL = 'https://sirfreedom.somee.com/';
+const BASEURL = 'https://hockeystore.somee.com';
 //const BASEURL = 'https://localhost:44339/';
  
 function toQueryString(params) {
