@@ -45,6 +45,8 @@ export const TestExam = () => {
     useEffect(() => 
     {
 
+      console.log(Setting);
+
       if(timeLeft <= 60 && timeLeft > 0 && timeLeft % 30 === 0) // Cada 30 segundos cuando falte menos de un minuto y medio
       {
         notifyPocoTiempo(); //Queda poco tiempo
@@ -54,7 +56,7 @@ export const TestExam = () => {
       {
         notifyFinish();
         ValidQuestion() // se acabo el fichin...
-        reset(Setting.timeinminutes);
+        reset(Setting?.timeinminutes);
       }
     
     }, [timeLeft]);
@@ -351,7 +353,7 @@ return (
       <div className='col-12'>
         <p className='align-items-center'> 
           El puntaje obtenido por Ud. es &nbsp;
-            {CorrectAnwers} {' / Total Preguntas ' + Setting.questionperpage + ' / Necesarias para aprobar : ' + Setting.correctanswers }  
+            {CorrectAnwers} {' / Total Preguntas ' + Setting?.questionperpage + ' / Necesarias para aprobar : ' + Setting?.correctanswers }  
             &nbsp; 
             Respuestas correctas.
         </p>
