@@ -91,13 +91,20 @@ export const TestExam = () => {
       setMsgAlert(''); //Eliminamos el mensaje cuando vuelve al formulario
     });
 
-    window.addEventListener('beforeunload', () => {
-      setMsgAlert('No esta permitido irte del formulario de examen');
-    });
+
+    window.addEventListener('beforeunload', (event) => {
+  setMsgAlert('No esta permitido irte del formulario de examen');
+  // Requerido por algunos navegadores para mostrar el diálogo nativo de confirmación:
+  event.preventDefault();
+  event.returnValue = '';
+});
+
+/*
 
     window.addEventListener('unload', () => {
       setMsgAlert('No esta permitido irte del formulario de examen');
     });
+    */
 
     window.addEventListener('resize', () => {
       setMsgAlert('No esta permitido cambiar el tamaño de pantalla');
@@ -144,7 +151,7 @@ export const TestExam = () => {
             });
 
             InsertExamenResult(IdDependency,Level,IdUsuario,Host,iCorrectAnwers,Setting.questionperpage).then(data =>{
-              console.log(data);    
+              //console.log(data);    
             });
             
     
@@ -188,8 +195,9 @@ return (
   </div>
 
 <Accordion key="accordion" defaultActiveKey="0">
-      
-      {Test.map((rowQuestion, indexQuestion) => 
+
+      {
+      (Test.length) && Test?.map((rowQuestion, indexQuestion) => 
        {
         return (
         
@@ -319,7 +327,7 @@ return (
     <div className='content' >
       <div className='row justify-content-center'>
 
-      {QuestionLevels.map((item, idx ) => 
+      {QuestionLevels?.map((item, idx ) => 
       {
 
        return (
@@ -353,7 +361,7 @@ return (
       <div className='col-12'>
         <p className='align-items-center'> 
           El puntaje obtenido por Ud. es &nbsp;
-            {CorrectAnwers} {' / Total Preguntas ' + Setting?.questionperpage + ' / Necesarias para aprobar : ' + Setting?.correctanswers }  
+            {CorrectAnwers} {' / Total Preguntas ' + Setting.questionperpage + ' / Necesarias para aprobar : ' + Setting.correctanswers }  
             &nbsp; 
             Respuestas correctas.
         </p>

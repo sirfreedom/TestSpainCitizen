@@ -1,4 +1,5 @@
 import { Fill } from './BaseHelper';
+import { IDAPP } from './BaseHelper';
 
 
 export const ListQuestionLevels = async () =>
@@ -6,11 +7,11 @@ export const ListQuestionLevels = async () =>
 let data;
 let tempdata;
 let url = 'api/QuestionLevel';
-const param = [ { "IdDependency": 1 } ];
+const param = [ { "IdDependency": IDAPP } ];
 try 
 {
-    tempdata = await Fill(url,param,'GET');
-    data = await tempdata.questionlevels;
+    tempdata = await Fill(url,param,'GET','','P');
+    data = await tempdata;
 }
 catch(ex)
 {

@@ -1,4 +1,5 @@
 import { Fill } from './BaseHelper';
+import { IDAPP } from './BaseHelper';
 
 
 export const ListDependency = async () =>
@@ -9,9 +10,8 @@ let url = 'api/Dependency/List';
 const param = [];
 try 
 {
-    debugger;
-    tempdata = await Fill(url,param,'GET');
-    data = await tempdata.dependencies;
+    tempdata = await Fill(url,param,'GET','','P');
+    data = await tempdata;
 }
 catch(ex)
 {

@@ -1,15 +1,16 @@
 import { Fill } from './BaseHelper';
+import { IDAPP } from './BaseHelper';
 
-export const getByDependency = async (id) =>
+export const getByDependency = async () =>
 {
 let data;
 let tempdata;
 let url = 'api/Setting/GetByDependency';
-let param = [ { "IdDependency": id } ];
+let param = [ { "IdDependency": IDAPP } ];
 try 
 {
-    tempdata = await Fill(url,param,'GET');
-    data = await tempdata.setting;
+    tempdata = await Fill(url,param,'GET','','P');
+    data = await tempdata;
 }
 catch(ex)
 { 
@@ -28,7 +29,7 @@ const param = [];
 try 
 {
     tempdata = await Fill(url,param,'GET');
-    data = await tempdata.listsetting
+    data = await tempdata;
 }
 catch(ex)
 {
@@ -87,7 +88,7 @@ export const InsertSetting = async (Token,iddependency,title,questionperpage,cor
     };
 try 
 {
-    data = await Fill(url,param,method,Token);
+    data = await Fill(url,param,method,Token,'','B');
 }
 catch(ex)
 {

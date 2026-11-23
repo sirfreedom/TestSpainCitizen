@@ -1,75 +1,86 @@
 
 const BASEURL = 'https://hockeystore.somee.com/';
-//const BASEURL = 'https://localhost:44339/';
- 
+export const IDAPP = 1;
+//const BASEURL = 'https://localhost:5000/';
+
+
+
+
 function toQueryString(params) {
   if (!Array.isArray(params) || params.length === 0) return '';
   const obj = params[0];
+  
   return Object.entries(obj)
-    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+    .map(([key, value]) => {
+      const formattedKey = key.toLowerCase();
+      return `${encodeURIComponent(formattedKey)}=${encodeURIComponent(value)}`;
+    })
     .join('&');
 }
 
-export const Fill = async (Url, lParam, Method,Token) => {
+
+export const Fill = async (Url, lParam, Method, Token, SenderType) => {
   let response;
   let data = [];
+  let tempdata = [];
   let Parameters;
   const headers = {};
   try {
-  
-    // Construye el objeto de opciones para fetch
+
     const fetchOptions = {
       method: Method,
       credentials: 'include'
     };
 
-      if (Token && Token.trim() !== '') 
-      {
-        headers['Authorization'] = 'Bearer ' + Token;
-      }
-    
-    // Agrega Content-Type solo si el método no es GET (asumiendo que GET no tiene body)
-    // Puedes ajustar esta condición según tus necesidades (ej: si envías body en POST)
-    if (Method !== 'GET' && Method !== 'HEAD') {
-      headers['Content-Type'] = 'application/json';
-      fetchOptions.body = JSON.stringify(lParam); // Usa lParam como body para POST
+    if (Token && Token !== '') {
+      headers['Authorization'] = 'Bearer ' + Token;
     }
 
-    if(Method === 'GET' || Method === 'DELETE' ){
+    //Body
+    if (SenderType === 'B') {
+      headers['Content-Type'] = 'application/json';
+      fetchOptions.body = JSON.stringify(lParam);
+    }
+
+    //Parameter
+    if (SenderType === 'P') {
       Parameters = toQueryString(lParam);
       console.log(Parameters);
     }
-    
-    // Si hay headers, agrégalos a las opciones de fetch
+
     if (Object.keys(headers).length > 0) {
       fetchOptions.headers = headers;
     }
 
-    if(Method === 'GET' || Method === 'DELETE' ){
-    response = await fetch(BASEURL + Url + '?' + Parameters, fetchOptions);
-    console.log(BASEURL + Url + '?' + Parameters);
+    if (SenderType === 'P') {
+      response = await fetch(BASEURL + Url + '?' + Parameters, fetchOptions);
     }
 
-    if(Method === 'PUT' || Method === 'POST' || Method === 'PATCH' ){
+    if (SenderType === 'B') {
       response = await fetch(BASEURL + Url, fetchOptions);
     }
 
-    if (response.ok && Method === 'GET') {
-      data = await response.json();
+     if 
+      ( 
+      (response?.status >= 201 && response?.status < 300) ||
+      (response?.status >= 400 && response?.status < 422) || 
+      (response?.status >= 423 && response?.status < 600) 
+      )
+    {
+      data = response;
+      const tempdata = { data: [], status: response.status };
+      data = tempdata;
     }
 
-    if(Method === 'POST' && response.status === 200) //Si es post y 200 devuelvo datos
+    if (response?.status === 200 || response?.status === 422) // ok or unprocesable entity (validation error) 
     {
-      data = await response.json();
-    }
-
-    if(Method === 'POST' && response.status === 201) //Si es 201 es insercion y no devuelvo nada.
-    {
-      console.log(response);
+      data = await response?.json();
+      data.status = response.status; ////le escribimos una propiedad status con el status para manejar cuestiones de front
     }
 
   }
-  catch (ex) {
+  catch (ex)
+  {
     console.error('Error Fill', ex);
   }
   return data;
@@ -80,17 +91,63 @@ export const EmptyAllProperties = (obj) => {
   const objVaciado = {};
 
   for (const key in obj) {
-    
-    if (obj.hasOwnProperty(key)) 
-    {
-        objVaciado[key] = null;
+
+    if (obj.hasOwnProperty(key)) {
+      objVaciado[key] = null;
     }
   }
   return objVaciado;
 }
 
+export const getKey = (key) => {
+  if (typeof window === 'undefined' || !window.localStorage) {
+    return "";
+  }
+
+  try {
+    const value = localStorage.getItem(key);
+    
+    if (value === null || value === "undefined" || value === "null" || value === undefined || value === "undefined") {
+      return "";
+    }
+    
+    return value;
+  } catch (e) {
+    console.error(`Error accediendo a localStorage para la llave "${key}":`, e);
+    return "";
+  }
+};
+
+
+
+export const setKey = (key, value) => {
+  // 1. Validar que estemos en el cliente (el navegador)
+  if (typeof window === 'undefined') {
+    return false;
+  }
+
+  try {
+    // 2. Validar que la key sea válida
+    if (!key) {
+      console.warn("localStorage: No se proporcionó una clave (key) válida.");
+      return false;
+    }
+
+    // 3. Convertir el valor a string (localStorage solo guarda texto)
+    const serializedValue = typeof value === 'string' ? value : JSON.stringify(value);
+    
+    window.localStorage.setItem(key, serializedValue);
+    return true;
+  } catch (error) {
+    // 4. Capturar errores comunes (ej: QuotaExceededError si se llena el almacenamiento)
+    console.error("Error guardando en localStorage:", error);
+    return false;
+  }
+};
+
+
 export const ChangePropertyValue = (obj, propiedad, nuevoValor) => {
-   
+
   if (typeof obj !== 'object' || obj === null) {
     throw new Error('El primer argumento debe ser un objeto válido.');
   }
@@ -104,6 +161,7 @@ export const ChangePropertyValue = (obj, propiedad, nuevoValor) => {
 };
 
 
+
 export const createDate = (year, month, day, hour, minute) => {
   var fecha;
   try {
@@ -114,8 +172,10 @@ export const createDate = (year, month, day, hour, minute) => {
       typeof day !== 'number' ||
       typeof hour !== 'number' ||
       typeof minute !== 'number'
-    ) {
-      throw new Error('Todos los parámetros deben ser números');
+    ) 
+    {
+      //throw new Error('Todos los parámetros deben ser números');
+      return;
     }
     // Ajustamos el mes (JavaScript usa 0-11)
     const monthIndex = month - 1;
@@ -131,11 +191,11 @@ export const createDate = (year, month, day, hour, minute) => {
     // Verificamos que los valores ingresados coincidan con los de la fecha creada
     // (por si JavaScript ajustó automáticamente valores fuera de rango)
     if (
-      fecha.getFullYear() !== year ||
-      fecha.getMonth() !== monthIndex ||
-      fecha.getDate() !== day ||
-      fecha.getHours() !== hour ||
-      fecha.getMinutes() !== minute
+      fecha?.getFullYear() !== year ||
+      fecha?.getMonth() !== monthIndex ||
+      fecha?.getDate() !== day ||
+      fecha?.getHours() !== hour ||
+      fecha?.getMinutes() !== minute
     ) {
       throw new Error('Los valores proporcionados no corresponden a una fecha válida');
     }

@@ -1,16 +1,17 @@
 import { Fill } from './BaseHelper';
+import { IDAPP } from './BaseHelper';
 
 
-export const ListQuestion = async (codLevel) =>
+export const ListQuestion = async (codlevel) =>
 {
 let data;
 let tempdata;
-let url = 'api/Question';
-const param = [ { "IdDependency": 1 }, { "CodLevel": 1 } ];
+let url = 'api/Question/List';
+const lparam =  [{ "iddependency": IDAPP, "codlevel": codlevel }] ;
 try 
 {
-    tempdata = await Fill(url,param,'GET');
-    data = await tempdata.questions;
+    tempdata = await Fill(url,lparam,'GET','','P');
+    data = await tempdata;
 }
 catch(ex)
 {

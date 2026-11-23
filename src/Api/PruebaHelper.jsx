@@ -1,4 +1,5 @@
 import { Fill } from './BaseHelper';
+import { IDAPP } from './BaseHelper';
 
 
 export const getToken = async () => 
@@ -20,10 +21,9 @@ export const GetTestMethod = async () =>
 {
 let data;
 let UrlGet = 'api/File';
-let param = [ { IdDependency: 1 } ];
+let param = [ { IdDependency: IDAPP } ];
 try 
 {
-    debugger;
     data = await Fill(UrlGet,param,'GET');
 }
 catch(ex)

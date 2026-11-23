@@ -1,4 +1,5 @@
 import { Fill } from './BaseHelper';
+import { IDAPP } from './BaseHelper';
 
 
 
@@ -16,7 +17,7 @@ export const InsertExamenResult = async (iddependency,idquestionlevel,idusuario,
     };
 try 
 {
-    await Fill(url,param,method);
+    await Fill(url,param,method,'','B');
 }
 catch(ex) 
 {
