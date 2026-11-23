@@ -45,7 +45,7 @@ export const TestExam = () => {
     useEffect(() => 
     {
 
-      console.log(Setting);
+      //console.log(Setting);
 
       if(timeLeft <= 60 && timeLeft > 0 && timeLeft % 30 === 0) // Cada 30 segundos cuando falte menos de un minuto y medio
       {
